@@ -1,0 +1,26 @@
+<maquina> id="3"
+	<isla> nombre="Isla Tortuga"
+		<sitio> nombre="Cueva de los Huesos"
+			<tesoro></tesoro>
+			<tesoro></tesoro>
+		</sitio>
+		<sitio> nombre="Bahia del Buen Retiro"
+			<tesoro></tesoro>
+			<tesoro></tesoro>
+		</sitio>
+	</isla>
+	<isla> nombre="Isla las Aves"
+		<sitio> nombre="Bahia de las Flores"
+			<tesoro></tesoro>
+			<tesoro></tesoro>
+		</sitio>
+		<sitio> nombre="Cementerio de Barcos"
+			<tesoro></tesoro>
+			<tesoro></tesoro>
+		</sitio>
+	</isla>
+	<cayo> nombre="Cayo de Barlovento"
+		<tesoro></tesoro>
+	</cayo>
+</maquina>
+

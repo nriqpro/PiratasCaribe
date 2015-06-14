@@ -1,0 +1,25 @@
+<maquina> id="4"
+	<isla> nombre="La Gran Isla de la Española"
+		<sitio> nombre="Puerto Rico"
+			<tesoro></tesoro>
+			<tesoro></tesoro>
+		</sitio>
+		<sitio> nombre="Puerto de las Ballenas"
+			<tesoro></tesoro>
+			<tesoro></tesoro>
+		</sitio>
+
+		<sitio> nombre="Bahia del Tesoro Perdido"
+			<tesoro></tesoro>
+			<tesoro></tesoro>
+		</sitio>
+		<sitio> nombre="Cueva del Pirata"
+			<tesoro></tesoro>
+			<tesoro></tesoro>
+		</sitio>
+	</isla>
+	<cayo> nombre="Cayo de los Pelicanos"
+		<tesoro></tesoro>
+	</cayo>
+</maquina>
+

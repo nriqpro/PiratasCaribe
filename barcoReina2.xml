@@ -1,0 +1,9 @@
+<barco> nombre="El Interceptor"
+	<pirata> false </pirata>
+	<origen> lugar="Puerto de la Reina"</origen>
+	<destino> lugar=""</destino>
+	<tripulacion></tripulacion>
+	<municiones></municiones>
+	<raciones></raciones>
+</barco>
+
