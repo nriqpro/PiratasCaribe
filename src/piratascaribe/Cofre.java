@@ -25,7 +25,7 @@ public class Cofre {
     }
     
     public Integer getPeso(){
-        Integer peso = new Integer(0);;
+        Integer peso = new Integer(0);
         
         for (int i=0 ; i < tesoros.size() ; i++){
             peso += tesoros.get(i).getPeso();
@@ -34,17 +34,21 @@ public class Cofre {
         return peso;
     }
     
-     /*public Integer getValor(){
+     public Integer getValor(){
         Integer valor = new Integer(0);
         Tesoro t;
+        int valorTesoroPrincesa = 10000;
+        int valorOtros = 1;
         for (int i=0 ; i < tesoros.size() ; i++){
             t = tesoros.get(i);
             if (t.getNombre().equalsIgnoreCase("Corazon de La Princesa"))
-            valor += tesoros.get(i).ge;
+                valor += valorTesoroPrincesa;
+            else
+                valor += valorOtros;
         }
         
         return valor;
-    }*/
+    }
     
     
 }
