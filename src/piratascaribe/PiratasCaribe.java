@@ -21,7 +21,7 @@ public class PiratasCaribe {
         ArrayList<String> ejemplo = new ArrayList<String>();
         ejemplo.add("Uno");
         System.out.println("Hola mundo piratas "+ejemplo.get(0));
-        Calamidad c = new Calamidad("Kraken",new Float(0.1),-10,-10,-10);
+        Calamidad c = new Calamidad("Crak",new Float(0.1),-10,-10,-10);
         for (int i = 0 ; i < 10 ; i++){
             if (c.ocurreCalamidad())
                 System.out.println("Calamidad: "+c.getNombre()+"ha ocurrido");
