@@ -22,7 +22,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     private Integer nTripulacionOriginal;
     private Integer nRacionesOriginal;
     private Integer nAmmoOriginal;
-    private ArrayList<Mapa> rutas;
+    private ArrayList<Mapa> mapas;
     
     private Cofre cofre;
     private String puertoOrigen;
@@ -110,7 +110,13 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         return this.cofre;
     }
     
+    public ArrayList<Mapa> getMapas(){
+        return this.mapas;
+    }
     
+    public String getSiguienteDestino(){
+        return "No Implementado";
+    }
     
    
 }

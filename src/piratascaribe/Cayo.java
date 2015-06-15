@@ -5,6 +5,8 @@
  */
 package piratascaribe;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author user
@@ -13,11 +15,13 @@ public class Cayo {
     private String nombre;
     private Cofre cofre;
     private Calamidad calamidad;
+    private ArrayList<Barco>barcos;
 
-    public Cayo(String nombre, Cofre cofre, Calamidad calamidad) {
+    public Cayo(String nombre, Cofre cofre, Calamidad calamidad){
         this.nombre = nombre;
         this.cofre = cofre;
         this.calamidad = calamidad;
+        this.barcos = new ArrayList<Barco>();
     }
 
     public String getNombre() {

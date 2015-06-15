@@ -44,8 +44,14 @@ public class ClienteEjemplo {
             e.printStackTrace();
         }
         
+    //METODO PARA PARTIR A LA SIGUIENTE UBICACION EN LA ISLA    
+    
         
         //posible definicion de otros metodos de la clase
     }
   
+    public void partir(Barco barco){
+        System.out.println("partir");
+        System.out.println("Siguiente destino:"+barco.getSiguienteDestino());
+    }
 }
