@@ -26,13 +26,14 @@ public class PiratasCaribe {
         int puertoRMI=8000;
         try{
             //codigo que permite obtener el valor del numero del puerto 
-            ImplEjemplo objExportado = new ImplEjemplo();
+            //ImplEjemplo objExportado = new ImplEjemplo();
             arrancarRegistro(puertoRMI);
             
             //registrar el objeto bajo el nombre "ejemplo"
-            URLregistro = "rmi://localhost:"+ puertoRMI +"/ejemplo";
-            Naming.rebind(URLregistro, objExportado);
-            System.out.println("Servidor Ejemplo Preparado");
+            Barco bp = new Barco("Venganza_Errante",true,10,10,10);
+            URLregistro = "rmi://localhost:"+ puertoRMI +"/"+bp.getName();
+            Naming.rebind(URLregistro, bp);
+            System.out.println("Servidor Ejemplo Preparado ya he enviado el barco");
         }
         catch (Exception e){
             System.out.println("Excepcion en ServidorEjemplo.main: "+ e);

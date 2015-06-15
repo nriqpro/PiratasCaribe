@@ -12,7 +12,7 @@ import java.rmi.server.*;
  *
  * @author user
  */
-public class ImplEjemplo extends UnicastRemoteObject implements InterfazEjemplo{
+public class ImplEjemplo extends UnicastRemoteObject implements InterfazBarco{
     public ImplEjemplo() throws RemoteException{
         super();
     }

@@ -11,7 +11,7 @@ import java.rmi.*;
  *
  * @author user
  */
-public interface InterfazEjemplo extends Remote{
+public interface InterfazBarco extends Remote{
     
     public String metodoEj1()throws java.rmi.RemoteException;
         

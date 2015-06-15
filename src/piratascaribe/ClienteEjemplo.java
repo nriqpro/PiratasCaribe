@@ -19,7 +19,7 @@ public class ClienteEjemplo {
     private int puertoRMI = 8000;
     private String nombreNodo;
     private String numPuerto;
-    private String URLRegistro = "rmi://localhost:"+puertoRMI+"/ejemplo";
+    private String URLRegistro = "rmi://localhost:"+puertoRMI+"/Venganza_Errante";
     //Codigo que permite obtner el nombre del nodo 
     //y el numero de puerto del registro
     
@@ -30,9 +30,9 @@ public class ClienteEjemplo {
     
     public void ejecutar(){
         try{
-            InterfazEjemplo h = (InterfazEjemplo) Naming.lookup(this.URLRegistro);
+            InterfazBarco h = (InterfazBarco) Naming.lookup(this.URLRegistro);
             //invocar el o los metodos remotos
-
+            
             String mensaje = h.metodoEj1();
             System.out.println(mensaje);
 
