@@ -7,6 +7,7 @@ package piratascaribe;
 
 import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,7 +22,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     private Integer nTripulacionOriginal;
     private Integer nRacionesOriginal;
     private Integer nAmmoOriginal;
-    private ArrayList<String> rutas =
+    private ArrayList<Mapa> rutas;
     
     private Cofre cofre;
     private String puertoOrigen;
@@ -33,6 +34,9 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         this.nTripulacionOriginal = nTripulacionOriginal;
         this.nRacionesOriginal = nRacionesOriginal;
         this.nAmmoOriginal = nAmmoOriginal;
+        this.nAmmo =nAmmoOriginal;
+        this.nTripulacion = nTripulacionOriginal;
+        this.nRaciones = nRacionesOriginal;
         if (pirata){
             //crear cofree con capacidad 100
             this.cofre = new Cofre(100);
@@ -52,6 +56,27 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     public int metodoEj2() throws RemoteException{
         //codigo del metodo
         return 1;
+    }
+    @Override
+    public void imprimirCofre() throws RemoteException{
+        
+       
+        //codigo del metodo
+        if (cofre!=null && cofre.getTesoros()!=null){
+            if (cofre.getTesoros().size() == 0){
+                System.out.println("El cofre no posee ningun tesoro :(");
+            }
+            else{
+                System.out.println("Nombre \t\t Peso");
+                for (int i = 0 ; i < cofre.getTesoros().size() ; i++){
+                    System.out.println(cofre.getTesoros().get(i).getNombre()+" -> "+cofre.getTesoros().get(i).getPeso());
+                }
+            }
+        }
+        else{
+            System.out.println("Error en Barco: imprimirCofre el cofre o arrayTesoros es null");
+        }
+        
     }
 
     public String getName(){
@@ -79,6 +104,10 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
 
     public void setnTripulacionOriginal(Integer nTripulacionOriginal) {
         this.nTripulacionOriginal = nTripulacionOriginal;
+    }
+    
+    public Cofre getCofre(){
+        return this.cofre;
     }
     
     

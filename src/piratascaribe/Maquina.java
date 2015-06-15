@@ -5,10 +5,16 @@
  */
 package piratascaribe;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author user
  */
 public class Maquina {
+    private ArrayList<Isla> islas;
+    private ArrayList<Cayo> cayos;
+    private String nombre;
+    private Integer numPuertoRMI;
     
 }

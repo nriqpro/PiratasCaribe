@@ -19,4 +19,6 @@ public interface InterfazBarco extends Remote{
     
     public int metodoEj2()throws java.rmi.RemoteException;
     
+     public void imprimirCofre() throws RemoteException;
+    
 }

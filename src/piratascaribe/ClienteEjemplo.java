@@ -33,8 +33,10 @@ public class ClienteEjemplo {
             InterfazBarco h = (InterfazBarco) Naming.lookup(this.URLRegistro);
             //invocar el o los metodos remotos
             
-            String mensaje = h.metodoEj1();
-            System.out.println(mensaje);
+           /* String mensaje = h.metodoEj1();
+            System.out.println(mensaje);*/
+            
+            h.imprimirCofre();
 
             //El metodo metodoEj2 puede invocarse del mismo nodo
         }

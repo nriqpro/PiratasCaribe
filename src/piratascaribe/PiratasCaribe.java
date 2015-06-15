@@ -31,6 +31,8 @@ public class PiratasCaribe {
             
             //registrar el objeto bajo el nombre "ejemplo"
             Barco bp = new Barco("Venganza_Errante",true,10,10,10);
+            bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
+             bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));
             URLregistro = "rmi://localhost:"+ puertoRMI +"/"+bp.getName();
             Naming.rebind(URLregistro, bp);
             System.out.println("Servidor Ejemplo Preparado ya he enviado el barco");
@@ -38,7 +40,7 @@ public class PiratasCaribe {
         catch (Exception e){
             System.out.println("Excepcion en ServidorEjemplo.main: "+ e);
         }
-        // TODO code application logic here
+       // TODO code application logic here
        /* ArrayList<String> ejemplo = new ArrayList<String>();
         ejemplo.add("Uno");
         System.out.println("Hola mundo piratas "+ejemplo.get(0));

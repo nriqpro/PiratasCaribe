@@ -5,10 +5,17 @@
  */
 package piratascaribe;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author user
  */
 public class Isla {
+    private String nombre;
+   // private String maquina;
+    private ArrayList<Sitio> sitios;
+    
+    
     
 }

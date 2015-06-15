@@ -24,6 +24,14 @@ public class Cofre {
         tesoros.add(tesoro);
     }
     
+    public void eliminarTesoro(int i){
+        tesoros.remove(i);
+    }
+    
+    public ArrayList<Tesoro> getTesoros(){
+        return tesoros;
+    }
+    
     public Integer getPeso(){
         Integer peso = new Integer(0);
         
