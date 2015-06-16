@@ -50,8 +50,14 @@ public class ClienteEjemplo {
         //posible definicion de otros metodos de la clase
     }
   
-    public void partir(Barco barco){
-        System.out.println("partir");
-        System.out.println("Siguiente destino:"+barco.getSiguienteDestino());
+    public void partir() {
+        try{
+            InterfazBarco barco = (InterfazBarco) Naming.lookup("rmi://localhost:8000/Venganza_Errante");
+            System.out.println("partir");
+            System.out.println("Siguiente destino:"+barco.getSiguienteDestino());
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

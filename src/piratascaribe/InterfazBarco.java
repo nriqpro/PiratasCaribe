@@ -6,19 +6,36 @@
 package piratascaribe;
 
 import java.rmi.*;
+import java.util.ArrayList;
 
 /**
  *
  * @author user
  */
 public interface InterfazBarco extends Remote{
-    
-    public String metodoEj1()throws java.rmi.RemoteException;
-        
+   
     
     
-    public int metodoEj2()throws java.rmi.RemoteException;
+     
+     public String getName()throws RemoteException;
+    public Integer getnTripulacion()throws RemoteException;
+
+    public void setnTripulacion(Integer nTripulacion) throws RemoteException;
+    public Integer getnAmmo() throws RemoteException;
+    public void setnAmmo(Integer nAmmo)throws RemoteException;
+
+    public Integer getnTripulacionOriginal()throws RemoteException;
+    public void setnTripulacionOriginal(Integer nTripulacionOriginal) throws RemoteException;
     
-     public void imprimirCofre() throws RemoteException;
+    public Cofre getCofre()throws RemoteException;
+    
+    public ArrayList<Mapa> getMapas()throws RemoteException;
+    
+    public int agregarMapa(Mapa mapa)throws RemoteException;
+
+    public int getSiguienteDestino()throws RemoteException;
+    
+    public void imprimirCofre() throws RemoteException;
+    public int marcarMapa() throws RemoteException;
     
 }

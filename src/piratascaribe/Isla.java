@@ -16,6 +16,34 @@ public class Isla {
    // private String maquina;
     private ArrayList<Sitio> sitios;
     
+    public Isla(String nombre){
+        this.nombre = nombre;
+        this.sitios = new ArrayList<Sitio>();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public ArrayList<Sitio> getSitios() {
+        return sitios;
+    }
+    
+    public void addSitio(Sitio sitio){
+        if (sitios!=null && sitio!=null)
+            this.sitios.add(sitio);
+        else
+            System.out.println("Error Isla: addSitio 'islas' o 'isla' es null");
+    }
+    
+    public void setSitios(ArrayList<Sitio> sitios){
+        if (sitios!=null){
+            this.sitios = sitios;
+        }
+            System.out.println("Error Isla: setSitios 'sitios' es null");
+    }
+    
+    
     
     
 }

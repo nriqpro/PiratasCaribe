@@ -33,19 +33,19 @@ public class Mapa {
         return tipoLugar;
     }
 
-    public String getMaquina() {
+    public String getNombreMaquina() {
         return maquina;
     }
 
-    public String getIsla() {
+    public String getNombreIsla() {
         return isla;
     }
 
-    public String getSitio() {
+    public String getNombreSitio() {
         return sitio;
     }
 
-    public String getCayo() {
+    public String getNombreCayo() {
         return cayo;
     }
 

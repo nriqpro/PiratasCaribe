@@ -23,6 +23,10 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     private Integer nRacionesOriginal;
     private Integer nAmmoOriginal;
     private ArrayList<Mapa> mapas;
+     private static String visitado = "visitado";
+    private static String no_visitado = "no_visitado";
+    private static String actual = "actual";
+    private static String siguiente = "siguiente";
     
     private Cofre cofre;
     private String puertoOrigen;
@@ -37,6 +41,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         this.nAmmo =nAmmoOriginal;
         this.nTripulacion = nTripulacionOriginal;
         this.nRaciones = nRacionesOriginal;
+        this.mapas = new ArrayList<Mapa>();
         if (pirata){
             //crear cofree con capacidad 100
             this.cofre = new Cofre(100);
@@ -46,17 +51,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
                 
     }
     
-    @Override
-    public String metodoEj1() throws RemoteException{
-        //codigo del metodo
-        
-        return nombre;
-    }
-    @Override
-    public int metodoEj2() throws RemoteException{
-        //codigo del metodo
-        return 1;
-    }
+
     @Override
     public void imprimirCofre() throws RemoteException{
         
@@ -114,8 +109,46 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         return this.mapas;
     }
     
-    public String getSiguienteDestino(){
-        return "No Implementado";
+    public int agregarMapa(Mapa mapa){
+        if (this.mapas!=null){
+            this.mapas.add(mapa);
+            return 1;
+        }
+        else{
+            System.out.println("Error barco:  agregarMapa el arreglo de mapas es Null");
+            return -1;
+        }
+    }
+    
+    @Override
+    public int getSiguienteDestino() throws RemoteException{
+       // return "No Implementado";
+        for (int i = 0 ; i < mapas.size() ; i++){
+            if (mapas.get(i).getEstado().equalsIgnoreCase(no_visitado))
+                    return i;
+          /*  if (mapas.get(i).esIsla()){// si es isla devuelve el nombre de la isla
+                if (mapas.get(i).getEstado().equalsIgnoreCase("no visitado"))
+                    return i;
+            }
+            else{// si es cayo devuelve el nombre
+                if (mapas.get(i).getEstado().equalsIgnoreCase("no visitado"))
+                    return i;
+            }*/
+        }
+        return -1;
+    }
+    
+    @Override
+    public int marcarMapa() throws RemoteException{
+       // return "No Implementado";
+        for (int i = 0 ; i < mapas.size() ; i++){
+            if (mapas.get(i).getEstado().equalsIgnoreCase(actual)){
+                    mapas.get(i).setEstado(visitado);
+                    return 1;
+            }
+ 
+        }
+        return -1;
     }
     
    

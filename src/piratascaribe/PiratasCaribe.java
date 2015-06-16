@@ -11,19 +11,21 @@ import java.rmi.registry.Registry;
 import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  *
  * @author user
  */
 public class PiratasCaribe {
-
+   // private Map<String,String> nodos;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         String URLregistro;
         int puertoRMI=8000;
+       // Map<String,String> nodos;
         try{
             //codigo que permite obtener el valor del numero del puerto 
             //ImplEjemplo objExportado = new ImplEjemplo();
@@ -32,7 +34,10 @@ public class PiratasCaribe {
             //registrar el objeto bajo el nombre "ejemplo"
             Barco bp = new Barco("Venganza_Errante",true,10,10,10);
             bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
-             bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));
+            bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));
+            Mapa mapa = new Mapa("Maquina1","Isla","Sitio1","Cayo1",true);
+            bp.agregarMapa(mapa);
+            System.out.println("Mapa antes de:"+bp.getMapas().get(0).getNombreMaquina());
             URLregistro = "rmi://localhost:"+ puertoRMI +"/"+bp.getName();
             Naming.rebind(URLregistro, bp);
             System.out.println("Servidor Ejemplo Preparado ya he enviado el barco");
@@ -54,6 +59,7 @@ public class PiratasCaribe {
         
         ClienteEjemplo cliente = new ClienteEjemplo();
         cliente.ejecutar();
+        cliente.partir();
     }
     
     private static void arrancarRegistro (int puertoRMI)throws RemoteException{
