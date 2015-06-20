@@ -36,6 +36,7 @@ public interface InterfazBarco extends Remote{
     public int getSiguienteDestino()throws RemoteException;
     
     public void imprimirCofre() throws RemoteException;
-    public int marcarMapa() throws RemoteException;
+    public int marcarMapa(int i) throws RemoteException;
+    public void partir() throws RemoteException;
     
 }

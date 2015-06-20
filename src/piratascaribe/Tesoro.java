@@ -5,11 +5,13 @@
  */
 package piratascaribe;
 
+import java.io.Serializable;
+
 /**
  *
  * @author user
  */
-public class Tesoro {
+public class Tesoro implements Serializable{
     private String nombre;
     private Integer peso;
 

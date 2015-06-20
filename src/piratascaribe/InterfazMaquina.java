@@ -15,7 +15,8 @@ package piratascaribe;
 public interface InterfazMaquina extends Remote {
 
     
-     public void recibirBarco (String maquinaOrigen);
+    // public void recibirBarco (String maquinaOrigen);
+     public void recibirBarco (String nombreBarco)throws RemoteException;
     
 
 }
