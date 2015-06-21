@@ -88,12 +88,12 @@ public class ClienteEjemplo {
                 xml.leerBarcos(1);
                 Barco bp = xml.barcotemp;
                 /*bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
-                bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));
-                Mapa mapa1 = new Mapa("maquina1","Isla1","Sitio1","Cayo1",true);
-                Mapa mapa2 = new Mapa("maquina2","Isla1","Sitio2","Cayo2",true);
+                bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));*/
+                Mapa mapa1 = new Mapa("maquina1","Isla Nueva Esperanzas","Puerto Real","Cayo del Buen Viento",true);
+                Mapa mapa2 = new Mapa("maquina2","Isla La Holandesa","Puerto de La Reina","NULL",true);
 
                 bp.agregarMapa(mapa1);
-                bp.agregarMapa(mapa2);*/
+                bp.agregarMapa(mapa2);
                 String URLregistro = "rmi://localhost:"+ puertoRMI +"/"+bp.getName();
                 Naming.rebind(URLregistro, bp);
                 bp.partir();
