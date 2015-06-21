@@ -23,9 +23,17 @@ public class Tesoro implements Serializable{
     public String getNombre() {
         return nombre;
     }
-
+    
     public Integer getPeso() {
         return peso;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setPeso(Integer peso) {
+        this.peso = peso;
     }
     
     

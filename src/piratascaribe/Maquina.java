@@ -34,9 +34,10 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
     private static String siguiente = "siguiente";
     private ArrayList<ArrayList<String>> maquinas;
     
-    public Maquina (String nombre,Integer numPuertoRMI) throws RemoteException{
+    public Maquina (int id,Integer numPuertoRMI) throws RemoteException{
         
-        this.nombre = nombre;
+        this.id = id;
+        this.nombre = "maquina"+id;
         this.numPuertoRMI = numPuertoRMI;
         this.islas = new ArrayList<Isla>();
         this.cayos = new ArrayList<Cayo>();
@@ -46,10 +47,10 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
         Cofre cof = new Cofre(10000);
       
         Calamidad c = new Calamidad("Kraken",1.0,10,10,10);
-        Isla is = new Isla("Isla1");
+       /* Isla is = new Isla("Isla1");
         is.addSitio(new Sitio("Sitio1",cof,c));
         is.addSitio(new Sitio("Sitio2",cof,c));
-        islas.add(is);
+        islas.add(is);*/
         
         nodos.put("maquina1", "localhost");
         nodos.put("maquina2","localhost");
