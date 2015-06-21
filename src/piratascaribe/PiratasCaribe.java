@@ -25,7 +25,7 @@ public class PiratasCaribe {
     public static void main(String[] args) {
         String URLregistro;
         int puertoRMI=8000;
-        String urlServer = "localhost";
+        String urlServer = "192.168.0.105";
        // Map<String,String> nodos;
         try{
             //codigo que permite obtener el valor del numero del puerto 

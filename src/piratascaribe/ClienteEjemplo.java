@@ -100,7 +100,7 @@ public class ClienteEjemplo {
                 /*bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
                 bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));*/
                 Mapa mapa1 = new Mapa("maquina1","Isla Nueva Esperanzas","Puerto Real","Cayo del Buen Viento",true);
-                Mapa mapa2 = new Mapa("maquina2","Isla del Naufrago","Puerto de La Reina","Cayo del Buen Viento",true);
+                Mapa mapa2 = new Mapa("maquina2","Isla La Holandesa","Puerto de La Reina","Cayo del Buen Viento",true);
 
                 bp.agregarMapa(mapa1);
                 bp.agregarMapa(mapa2);
