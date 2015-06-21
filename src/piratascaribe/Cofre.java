@@ -12,16 +12,21 @@ import java.util.ArrayList;
  * @author user
  */
 public class Cofre {
-    private Integer Capacidad;
+    private Integer capacidad;
     private ArrayList<Tesoro> tesoros;
+    private ArrayList<Mapa> mapas;
 
-    public Cofre(Integer Capacidad) {
-        this.Capacidad = Capacidad;
+    public Cofre(Integer capacidad) {
+        this.capacidad = capacidad;
         this.tesoros = new ArrayList<Tesoro>();
+        this.mapas = new ArrayList<Mapa>();
     }
     
     public void agregarTesoro (Tesoro tesoro){
-        tesoros.add(tesoro);
+        if ((this.getPeso() + tesoro.getPeso()) <= capacidad) 
+            tesoros.add(tesoro);
+        else
+            System.out.println("Agregar Tesoro: no se pudo agregar objeto supera el limite de la capacidad");
     }
     
     public void eliminarTesoro(int i){
@@ -37,6 +42,10 @@ public class Cofre {
         
         for (int i=0 ; i < tesoros.size() ; i++){
             peso += tesoros.get(i).getPeso();
+        }
+        
+        for (int i= 0 ; i < mapas.size() ; i++){
+            peso += 5;
         }
         
         return peso;
@@ -55,6 +64,9 @@ public class Cofre {
                 valor += valorOtros;
         }
         
+        for (int i= 0 ; i < mapas.size() ; i++){
+            valor += valorOtros;
+        }
         return valor;
     }
     

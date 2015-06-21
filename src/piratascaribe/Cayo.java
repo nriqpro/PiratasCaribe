@@ -17,6 +17,7 @@ public class Cayo implements Serializable{
     private Cofre cofre;
     private Calamidad calamidad;
     private ArrayList<InterfazBarco>barcos;
+   
 
     public Cayo(String nombre, Cofre cofre, Calamidad calamidad){
         this.nombre = nombre;

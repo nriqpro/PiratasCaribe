@@ -22,6 +22,7 @@ import java.util.HashMap;
  * @author user
  */
 public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
+    private Integer id;
     private ArrayList<Isla> islas;
     private ArrayList<Cayo> cayos;
     private String nombre;
@@ -31,7 +32,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
     private static String no_visitado = "no_visitado";
     private static String actual = "actual";
     private static String siguiente = "siguiente";
-    
+    private ArrayList<ArrayList<String>> maquinas;
     
     public Maquina (String nombre,Integer numPuertoRMI) throws RemoteException{
         
@@ -40,6 +41,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
         this.islas = new ArrayList<Isla>();
         this.cayos = new ArrayList<Cayo>();
         this.nodos = new HashMap<String,String>();
+        this.maquinas = new ArrayList<ArrayList<String>>();
         
         Cofre cof = new Cofre(10000);
       
@@ -70,6 +72,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
            if (i >= 0){
                 System.out.println("Siguiente destino:"+ barco.getMapas().get(i).getNombreIsla());
                 System.out.println("partir");
+                izarVelas(barco.getName());
                 barco.partir();
            }else{
                System.out.println("He visitado todos mis lugares, me regreso al inicio");
@@ -104,7 +107,9 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
             System.out.println("Error en Maquina: addCayo 'cayos' o 'cayo' es null");
     }
     
-    
+    public void izarVelas(String nombreBarco ){
+        System.out.println();
+    }
     public void ubicarBarco(InterfazBarco barco) throws RemoteException{
         try{
             int sigDest = barco.getSiguienteDestino();
