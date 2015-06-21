@@ -2,97 +2,97 @@
 	<maquina id="1"> 
 		<isla nombre="Isla Nueva Esperanzas"> 
 			<sitio nombre="Puerto Real"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 			<sitio nombre="Cala de los Martires"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 			<sitio nombre="Playa de las Perlas"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 		</isla>
 		<cayo nombre="Cayo del Buen Viento"> 
-			<tesoro></tesoro>
+			<cofre tesoro=""></cofre>
 		</cayo>
 		<cayo nombre="Cayo de Sotavento"> 
-			<tesoro></tesoro>
+			<cofre tesoro=""></cofre>
 		</cayo>
 	</maquina>
 	<maquina id="2"> 
 		<isla nombre="Isla La Holandesa"> 
 			<sitio nombre="Puerto de La Reina"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 			<sitio nombre="Bahia del Buen Reposo"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 			<sitio nombre="Cueva de los Marineros"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 		</isla>
 		<isla nombre="Isla del Naufrago"> 
 			<sitio nombre="Bahia de la Esperanza"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 			<sitio nombre="Cueva del Bucanero"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 		</isla>
 	</maquina>
 	<maquina  id="3">
 		<isla nombre="Isla Tortuga"> 
 			<sitio nombre="Cueva de los Huesos"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 			<sitio nombre="Bahia del Buen Retiro"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 		</isla>
 		<isla nombre="Isla las Aves"> 
 			<sitio nombre="Bahia de las Flores"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 			<sitio nombre="Cementerio de Barcos"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 		</isla>
 		<cayo nombre="Cayo de Barlovento"> 
-			<tesoro></tesoro>
+			<cofre tesoro=""></cofre>
 		</cayo>
 	</maquina>
 	<maquina id="4"> 
 		<isla nombre="La Gran Isla de la Española"> 
 			<sitio nombre="Puerto Rico"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 			<sitio nombre="Puerto de las Ballenas"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 			<sitio nombre="Bahia del Tesoro Perdido"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 			<sitio nombre="Cueva del Pirata"> 
-				<tesoro></tesoro>
-				<tesoro></tesoro>
+				<cofre tesoro=""></cofre>
+				<cofre tesoro=""></cofre>
 			</sitio>
 		</isla>
 		<cayo nombre="Cayo de los Pelicanos"> 
-			<tesoro></tesoro>
+			<cofre tesoro=""></cofre>
 		</cayo>
 	</maquina>
 </maquinas>
