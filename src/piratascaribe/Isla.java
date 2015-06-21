@@ -48,6 +48,7 @@ public class Isla implements Serializable{
         if (sitios!=null){
             this.sitios = sitios;
         }
+        else
             System.out.println("Error Isla: setSitios 'sitios' es null");
     }
     

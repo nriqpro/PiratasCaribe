@@ -114,7 +114,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
         for (int i = 0 ; i < islas.size() ; i++){
             for (int j = 0 ; j < islas.get(i).getSitios().size() ; j++){
                 
-                for (int k = 0 ; k  < islas.get(i).getSitios().get(j).getBarcos().size() ; k++){
+                for (int k = 0 ; islas.get(i).getSitios().get(j).getBarcos()!=null && k  < islas.get(i).getSitios().get(j).getBarcos().size() ; k++){
                     
                     if (islas.get(i).getSitios().get(j).getBarcos().get(k).getName().equalsIgnoreCase(nombreBarco)){
                         /*System.out.println("En la isla "+islas.get(i).getNombre() +" sitio "+ islas.get(i).getSitios().get(j).getNombre());
@@ -181,7 +181,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                                 if (sitios.get(j).getNombre().equalsIgnoreCase(mapa.getNombreSitio())){
                                     
                                     System.out.println("Lo he ubicado en el sitio: "+sitios.get(j).getNombre());
-                                    if (sitios.get(j).getBarcos().size() >= 1){ //hay mas de dos barcos encallados 
+                                    if (sitios.get(j).getBarcos()!=null && sitios.get(j).getBarcos().size() >= 1){ //hay mas de dos barcos encallados 
                                         //verificar que faccion son
                                         //si son diferentes pelear
                                         //si sn 3 barcos pelear de una

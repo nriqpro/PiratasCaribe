@@ -21,12 +21,11 @@ import org.xml.sax.SAXException;
  */
 public class XMLParser {
     public Isla islat = new Isla();
-    public Sitio sitiot = new Sitio();
     public Cayo cayot = new Cayo();
     public Barco barcotemp;
-    public ArrayList<Sitio> sitiostemp = new ArrayList();
-    public ArrayList<Isla> islastemp = new ArrayList();
-    public ArrayList<Cayo> cayostemp = new ArrayList();
+    public ArrayList<Sitio> sitiostemp = new ArrayList<>();
+    public ArrayList<Isla> islastemp = new ArrayList<>();
+    public ArrayList<Cayo> cayostemp = new ArrayList<>();
     
      public void leerBarcos(int idBarco) {
  
@@ -105,6 +104,7 @@ public class XMLParser {
                                                 if(nSitio.getNodeType()==Node.ELEMENT_NODE){
                                                     Element eSitio = (Element) nSitio;
                                                     System.out.println("Nombre "+ eSitio.getTagName()+ ": "+eSitio.getAttribute("nombre"));
+                                                    Sitio sitiot = new Sitio();
                                                     sitiot.setNombre(eSitio.getAttribute("nombre"));
                                                     sitiot.setCofre(listarTesoros(nSitio));
                                                     sitiostemp.add(sitiot);
