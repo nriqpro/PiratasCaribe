@@ -19,6 +19,8 @@ public interface InterfazBarco extends Remote{
      
      public String getName()throws RemoteException;
     public Integer getnTripulacion()throws RemoteException;
+     public void setnRaciones(Integer nRaciones)throws RemoteException;
+     public Integer getnRaciones() throws RemoteException;
 
     public void setnTripulacion(Integer nTripulacion) throws RemoteException;
     public Integer getnAmmo() throws RemoteException;

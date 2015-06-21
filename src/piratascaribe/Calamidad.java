@@ -31,6 +31,18 @@ public class Calamidad implements Serializable{
         return nombre;
     }
 
+    public Integer getResta_trip() {
+        return resta_trip;
+    }
+
+    public Integer getResta_racion() {
+        return resta_racion;
+    }
+
+    public Integer getResta_ammo() {
+        return resta_ammo;
+    }
+
     
     
     public Boolean ocurreCalamidad(){

@@ -78,15 +78,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
            ubicarBarco(barco);
 //           barco.marcarMapa()
            izarVelas(barco.getName());
-           int i = barco.getSiguienteDestino();
-           if (i >= 0){
-                System.out.println("Siguiente destino:"+ barco.getMapas().get(i).getNombreIsla());
-                System.out.println("partir");
-                
-                barco.partir();
-           }else{
-               System.out.println("He visitado todos mis lugares, me regreso al inicio");
-           }
+          
           //  System.out.println("Siguiente destino:"+barco.getSiguienteDestino());
         }
         catch(Exception e){
@@ -124,9 +116,20 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                 
                 for (int k = 0 ; k  < islas.get(i).getSitios().get(j).getBarcos().size() ; k++){
                     
-                    if (islas.get(i).getSitios().get(j).getBarcos().get(k).getName().equals(nombreBarco)){
-                        System.out.println("En la isla "+islas.get(i).getNombre() +" sitio "+ islas.get(i).getSitios().get(j).getNombre());
+                    if (islas.get(i).getSitios().get(j).getBarcos().get(k).getName().equalsIgnoreCase(nombreBarco)){
+                        /*System.out.println("En la isla "+islas.get(i).getNombre() +" sitio "+ islas.get(i).getSitios().get(j).getNombre());
                     System.out.println("\t barco: "+ islas.get(i).getSitios().get(j).getBarcos().get(k).getName());
+                        islas.get(i).getSitios().get(j).getBarcos().remove(k);*/
+                        InterfazBarco barco = islas.get(i).getSitios().get(j).getBarcos().get(k);
+                        
+                        int x = barco.getSiguienteDestino();//ACOMODAR
+                        if (x >= 0){
+                             System.out.println("Siguiente destino:"+ barco.getMapas().get(x).getNombreIsla());
+                             System.out.println("partir");
+                             barco.partir();
+                        }else{
+                            System.out.println("He visitado todos mis lugares, me regreso al inicio");
+                        }
                         islas.get(i).getSitios().get(j).getBarcos().remove(k);
                         return;
                     }
@@ -136,9 +139,22 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
         
         for (int i = 0 ; i < cayos.size() ; i++){
             for (int j = 0 ; j < cayos.get(i).getBarcos().size() ; j++){
-                    if (cayos.get(i).getBarcos().get(j).getName().equals(nombreBarco)){
-                        System.out.println("En el cayo "+ cayos.get(i).getNombre());
+                    if (cayos.get(i).getBarcos().get(j).getName().equalsIgnoreCase(nombreBarco)){
+                        /*System.out.println("En el cayo "+ cayos.get(i).getNombre());
                         System.out.println("\t barco: "+ cayos.get(i).getBarcos().get(j).getName());
+                        cayos.get(i).getBarcos().remove(j);*/
+                        
+                        InterfazBarco barco = cayos.get(i).getBarcos().get(j);
+                        
+                        int x = barco.getSiguienteDestino();
+                        if (x >= 0){
+                             System.out.println("Siguiente destino:"+ barco.getMapas().get(x).getNombreIsla());//ACOMODAR NO SOLO ISLA
+                             System.out.println("partir");
+                             barco.partir();
+                        }else{
+                            System.out.println("He visitado todos mis lugares, me regreso al inicio");
+                        }
+                        
                         cayos.get(i).getBarcos().remove(j);
                         return;
                     }
@@ -163,9 +179,9 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                             sitios = islas.get(i).getSitios();
                             for (int j = 0 ; j < sitios.size() ; j++){
                                 if (sitios.get(j).getNombre().equalsIgnoreCase(mapa.getNombreSitio())){
-                                    sitios.get(j).encallaBarco(barco);
+                                    
                                     System.out.println("Lo he ubicado en el sitio: "+sitios.get(j).getNombre());
-                                    if (sitios.get(j).getBarcos().size() > 1){ //hay mas de dos barcos encallados 
+                                    if (sitios.get(j).getBarcos().size() >= 1){ //hay mas de dos barcos encallados 
                                         //verificar que faccion son
                                         //si son diferentes pelear
                                         //si sn 3 barcos pelear de una
@@ -173,6 +189,25 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                                                 +this.nombre+"IMPLEMENTAR CODIGO PELEA");
                                         
                                     }
+                                    else{//ocurre calamidad solo ocurre calamidad si hay un solo barco
+                                        Calamidad calamidad =sitios.get(j).getCalamidad();
+                                        if (calamidad.ocurreCalamidad()){//true ocurre calamidad
+                                            System.out.println("Oh no! Ha ocurrido: " + calamidad.getNombre());
+                                            System.out.println("ELEMENTOS ORIGINALES");
+                                            System.out.println("Tripulacion: "+barco.getnTripulacion());
+                                            System.out.println("Ammo: "+barco.getnAmmo());
+                                            System.out.println("Raciones: "+barco.getnRaciones());
+                                            barco.setnAmmo( barco.getnAmmo() - calamidad.getResta_ammo());
+                                            barco.setnTripulacion(barco.getnTripulacion() - calamidad.getResta_trip());
+                                            barco.setnRaciones(barco.getnRaciones() - calamidad.getResta_racion());
+                                            System.out.println("ELEMENTOS LUEGO CALAMIDAD");
+                                            System.out.println("Tripulacion: "+barco.getnTripulacion());
+                                            System.out.println("Ammo: "+barco.getnAmmo());
+                                            System.out.println("Raciones: "+barco.getnRaciones());
+                                            
+                                        }
+                                    }
+                                    sitios.get(j).encallaBarco(barco);
                                 }
                             }
                         }
@@ -182,7 +217,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                     int i;
                     for ( i = 0 ; i < cayos.size() ; i++){
                         if (cayos.get(i).getNombre().equalsIgnoreCase(mapa.getNombreCayo())){
-                            cayos.get(i).encallaBarco(barco);
+                            
                              System.out.println("Lo he ubicado en el cayo: "+cayos.get(i).getNombre());
                             if (cayos.get(i).getBarcos().size() > 1){
                                 //verificar que faccion son
@@ -191,6 +226,25 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                                  System.out.println("Se han encontado dos barcos en la maquina(cayo): "
                                                 +this.nombre+"IMPLEMENTAR CODIGO PELEA");
                             }
+                                 else{//ocurre calamidad solo ocurre calamidad si hay un solo barco
+                                        Calamidad calamidad =cayos.get(i).getCalamidad();
+                                        if (calamidad.ocurreCalamidad()){//true ocurre calamidad
+                                            System.out.println("Oh no! Ha ocurrido: " + calamidad.getNombre());
+                                            System.out.println("ELEMENTOS ORIGINALES");
+                                            System.out.println("Tripulacion: "+barco.getnTripulacion());
+                                            System.out.println("Ammo: "+barco.getnAmmo());
+                                            System.out.println("Raciones: "+barco.getnRaciones());
+                                            barco.setnAmmo( barco.getnAmmo() - calamidad.getResta_ammo());
+                                            barco.setnTripulacion(barco.getnTripulacion() - calamidad.getResta_trip());
+                                            barco.setnRaciones(barco.getnRaciones() - calamidad.getResta_racion());
+                                            System.out.println("ELEMENTOS LUEGO CALAMIDAD");
+                                            System.out.println("Tripulacion: "+barco.getnTripulacion());
+                                            System.out.println("Ammo: "+barco.getnAmmo());
+                                            System.out.println("Raciones: "+barco.getnRaciones());
+                                            
+                                        }
+                                    }
+                            cayos.get(i).encallaBarco(barco);
                         }
                     }
                     if (i == cayos.size()){
