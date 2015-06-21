@@ -80,6 +80,16 @@ public class ClienteEjemplo {
             xml.leerMaquinas(numMaquina);
             m.setIslas(xml.islastemp);
             m.setCayos(xml.cayostemp);
+            for (int i =  0 ; i < m.getIslas().size() ; i++){
+                System.out.println("Nombre Isla: "+m.getIslas().get(i).getNombre());
+                for (int j = 0 ;  j < m.getIslas().get(i).getSitios().size() ; j++){
+                    System.out.println("\t "+m.getIslas().get(i).getSitios().get(j).getNombre());
+                }
+            }
+            
+            for (int i = 0 ; i < m.getCayos().size() ; i++){
+                System.out.println("Nombre Cayo: " + m.getCayos().get(i).getNombre());
+            }
             //System.out.println("Soy maquina: "+nombreMaquina);
             Naming.rebind("rmi://localhost:8000/"+m.getNombreMaquina(), m);
             System.out.println("Ahora esperare a que me llegue una consulta");
@@ -90,7 +100,7 @@ public class ClienteEjemplo {
                 /*bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
                 bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));*/
                 Mapa mapa1 = new Mapa("maquina1","Isla Nueva Esperanzas","Puerto Real","Cayo del Buen Viento",true);
-                Mapa mapa2 = new Mapa("maquina2","Isla La Holandesa","Puerto de La Reina","NULL",true);
+                Mapa mapa2 = new Mapa("maquina2","Isla del Naufrago","Puerto de La Reina","Cayo del Buen Viento",true);
 
                 bp.agregarMapa(mapa1);
                 bp.agregarMapa(mapa2);
