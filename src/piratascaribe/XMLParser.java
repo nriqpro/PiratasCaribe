@@ -23,6 +23,7 @@ public class XMLParser {
     public Isla islat;
     public Sitio sitiot;
     public Cayo cayot;
+    public Barco barcotemp;
     public ArrayList<Sitio> sitiostemp;
     public ArrayList<Isla> islastemp;
     public ArrayList<Cayo> cayostemp;
@@ -55,6 +56,12 @@ public class XMLParser {
                         System.out.println("Tripulacion : " + eElement.getElementsByTagName("tripulacion").item(0).getTextContent());
                         System.out.println("Municiones : " + eElement.getElementsByTagName("municiones").item(0).getTextContent());
                         System.out.println("Raciones : " + eElement.getElementsByTagName("raciones").item(0).getTextContent());
+                        barcotemp = new Barco(eElement.getElementsByTagName("nombre").item(0).getTextContent(),
+                                Boolean.parseBoolean(eElement.getElementsByTagName("pirata").item(0).getTextContent()),
+                                Integer.parseInt(eElement.getElementsByTagName("tripulacion").item(0).getTextContent()),
+                                Integer.parseInt(eElement.getElementsByTagName("raciones").item(0).getTextContent()),
+                                Integer.parseInt(eElement.getElementsByTagName("municiones").item(0).getTextContent()));
+                        barcotemp.setPuertoOrigen(eElement.getElementsByTagName("origen").item(0).getTextContent());
                         }
 		}
 	}
@@ -124,7 +131,7 @@ public class XMLParser {
              if(nCofre.getNodeType()==Node.ELEMENT_NODE){
                  Element eCofre = (Element) nCofre;
                  System.out.println("Tesoro: "+ eCofre.getAttribute("tesoro"));
-                 Tesoro tesorotemp = new Tesoro(eCofre.getAttribute("tesoro"),5);
+                 Tesoro tesorotemp = new Tesoro(eCofre.getAttribute("tesoro"));
                  cofretemp.agregarTesoro(tesorotemp);
              }
          }

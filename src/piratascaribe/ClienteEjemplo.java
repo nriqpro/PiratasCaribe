@@ -67,27 +67,33 @@ public class ClienteEjemplo {
         System.out.println("Epale soy cliente");
         String urlServer ="localhost";
         int puertoServer = 8000;
+        XMLParser xml = new XMLParser();
         
         try {
             InputStreamReader leer = new InputStreamReader(System.in);
             BufferedReader buff = new BufferedReader(leer);
-            System.out.print("Escriba el texto: ");
+            System.out.print("Escriba el id: ");
             String nombreMaquina = buff.readLine();
+            int numMaquina = Integer.parseInt(nombreMaquina);
             System.out.println("Soy maquina: "+nombreMaquina);
-            Maquina m = new Maquina(nombreMaquina,8001);
+            Maquina m = new Maquina(numMaquina,8001);
+            xml.leerMaquinas(numMaquina);
+            m.setIslas(xml.islastemp);
+            m.setCayos(xml.cayostemp);
             //System.out.println("Soy maquina: "+nombreMaquina);
             Naming.rebind("rmi://localhost:8000/"+m.getNombreMaquina(), m);
             System.out.println("Ahora esperare a que me llegue una consulta");
             
-            if (nombreMaquina.equalsIgnoreCase("maquina1")){
-                Barco bp = new Barco("Venganza_Errante",true,10,10,10);
-                bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
+            if (numMaquina==1){
+                xml.leerBarcos(1);
+                Barco bp = xml.barcotemp;
+                /*bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
                 bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));
                 Mapa mapa1 = new Mapa("maquina1","Isla1","Sitio1","Cayo1",true);
                 Mapa mapa2 = new Mapa("maquina2","Isla1","Sitio2","Cayo2",true);
 
                 bp.agregarMapa(mapa1);
-                bp.agregarMapa(mapa2);
+                bp.agregarMapa(mapa2);*/
                 String URLregistro = "rmi://localhost:"+ puertoRMI +"/"+bp.getName();
                 Naming.rebind(URLregistro, bp);
                 bp.partir();

@@ -25,6 +25,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     private Integer nTripulacionOriginal;
     private Integer nRacionesOriginal;
     private Integer nAmmoOriginal;
+    private String maquinaOrigen;
     private ArrayList<Mapa> mapas;
      private static String visitado = "visitado";
     private static String no_visitado = "no_visitado";
@@ -52,6 +53,14 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         else
             this.cofre = new Cofre(50);
                 
+    }
+
+    public void setMaquinaOrigen(String maquinaOrigen) {
+        this.maquinaOrigen = maquinaOrigen;
+    }
+
+    public void setPuertoOrigen(String puertoOrigen) {
+        this.puertoOrigen = puertoOrigen;
     }
     
 

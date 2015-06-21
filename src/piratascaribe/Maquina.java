@@ -33,6 +33,14 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
     private static String actual = "actual";
     private static String siguiente = "siguiente";
     private ArrayList<ArrayList<String>> maquinas;
+
+    public void setIslas(ArrayList<Isla> islas) {
+        this.islas = islas;
+    }
+
+    public void setCayos(ArrayList<Cayo> cayos) {
+        this.cayos = cayos;
+    }
     
     public Maquina (int id,Integer numPuertoRMI) throws RemoteException{
         
