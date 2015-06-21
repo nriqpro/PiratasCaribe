@@ -1,0 +1,29 @@
+<barcos>
+	<barco id="1">
+		<nombre>La Venganza Errante</nombre>
+		<pirata> true </pirata>
+		<origen>Puerto Real</origen>
+		<destino></destino>
+		<tripulacion></tripulacion>
+		<municiones></municiones>
+		<raciones></raciones>
+	</barco>
+	<barco id="2">
+		<nombre>El Invencible</nombre>
+		<pirata> false </pirata>
+		<origen>Puerto de la Reina</origen>
+		<destino></destino>
+		<tripulacion></tripulacion>
+		<municiones></municiones>
+		<raciones></raciones>
+	</barco>
+	<barco id="3">
+		<nombre>El Interceptor</nombre>
+		<pirata> false </pirata>
+		<origen>Puerto de la Reina</origen>
+		<destino></destino>
+		<tripulacion></tripulacion>
+		<municiones></municiones>
+		<raciones></raciones>
+	</barco>
+</barcos>

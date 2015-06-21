@@ -1,9 +1,0 @@
-<barco> nombre="La Venganza Errante"
-	<pirata> true </pirata>
-	<origen> lugar="Puerto Real"</origen>
-	<destino> lugar=""</destino>
-	<tripulacion></tripulacion>
-	<municiones></municiones>
-	<raciones></raciones>
-</barco>
-
