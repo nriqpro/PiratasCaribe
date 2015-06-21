@@ -21,7 +21,6 @@ import org.xml.sax.SAXException;
  */
 public class XMLParser {
     public Barco barcotemp;
-    public ArrayList<Sitio> sitiostemp = new ArrayList<>();
     public ArrayList<Isla> islastemp = new ArrayList<>();
     public ArrayList<Cayo> cayostemp = new ArrayList<>();
     
@@ -97,6 +96,7 @@ public class XMLParser {
                                     cayot.setCofre(listarTesoros(nLugar));
                                     cayostemp.add(cayot);
                                 }else{
+                                    ArrayList<Sitio> sitiostemp = new ArrayList<>();
                                     NodeList nSitios = nLugar.getChildNodes();
                                             for(int j=0;j<nSitios.getLength();j++){
                                                 Node nSitio = nSitios.item(j);
