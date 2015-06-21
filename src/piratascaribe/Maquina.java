@@ -69,11 +69,12 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
            //hacer aqui procedimiento para dibujar interfaz barco moviendose a destino
            ubicarBarco(barco);
 //           barco.marcarMapa()
+           izarVelas(barco.getName());
            int i = barco.getSiguienteDestino();
            if (i >= 0){
                 System.out.println("Siguiente destino:"+ barco.getMapas().get(i).getNombreIsla());
                 System.out.println("partir");
-                izarVelas(barco.getName());
+                
                 barco.partir();
            }else{
                System.out.println("He visitado todos mis lugares, me regreso al inicio");
@@ -108,8 +109,35 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
             System.out.println("Error en Maquina: addCayo 'cayos' o 'cayo' es null");
     }
     
-    public void izarVelas(String nombreBarco ){
-        System.out.println();
+    public void izarVelas(String nombreBarco ) throws RemoteException{
+        System.out.println("Debo izarVelas: "+nombreBarco);
+        for (int i = 0 ; i < islas.size() ; i++){
+            for (int j = 0 ; j < islas.get(i).getSitios().size() ; j++){
+                
+                for (int k = 0 ; k  < islas.get(i).getSitios().get(j).getBarcos().size() ; k++){
+                    
+                    if (islas.get(i).getSitios().get(j).getBarcos().get(k).getName().equals(nombreBarco)){
+                        System.out.println("En la isla "+islas.get(i).getNombre() +" sitio "+ islas.get(i).getSitios().get(j).getNombre());
+                    System.out.println("\t barco: "+ islas.get(i).getSitios().get(j).getBarcos().get(k).getName());
+                        islas.get(i).getSitios().get(j).getBarcos().remove(k);
+                        return;
+                    }
+                }
+            }
+        }
+        
+        for (int i = 0 ; i < cayos.size() ; i++){
+            for (int j = 0 ; j < cayos.get(i).getBarcos().size() ; j++){
+                    if (cayos.get(i).getBarcos().get(j).getName().equals(nombreBarco)){
+                        System.out.println("En el cayo "+ cayos.get(i).getNombre());
+                        System.out.println("\t barco: "+ cayos.get(i).getBarcos().get(j).getName());
+                        cayos.get(i).getBarcos().remove(j);
+                        return;
+                    }
+                
+            }
+        }
+        //System.out.println();
     }
     public void ubicarBarco(InterfazBarco barco) throws RemoteException{
         try{
