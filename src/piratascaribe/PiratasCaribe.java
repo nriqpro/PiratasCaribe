@@ -25,6 +25,7 @@ public class PiratasCaribe {
     public static void main(String[] args) {
         String URLregistro;
         int puertoRMI=8000;
+        String urlServer = "localhost";
        // Map<String,String> nodos;
         try{
             //codigo que permite obtener el valor del numero del puerto 
@@ -32,15 +33,22 @@ public class PiratasCaribe {
             arrancarRegistro(puertoRMI);
             
             //registrar el objeto bajo el nombre "ejemplo"
-            Barco bp = new Barco("Venganza_Errante",true,10,10,10);
+          /*  Barco bp = new Barco("Venganza_Errante",true,10,10,10);
             bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
             bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));
-            Mapa mapa = new Mapa("Maquina1","Isla","Sitio1","Cayo1",true);
+            Mapa mapa = new Mapa("maquina1","Isla1","Sitio1","Cayo1",true);
+           
             bp.agregarMapa(mapa);
-            System.out.println("Mapa antes de:"+bp.getMapas().get(0).getNombreMaquina());
             URLregistro = "rmi://localhost:"+ puertoRMI +"/"+bp.getName();
-            Naming.rebind(URLregistro, bp);
+            Naming.rebind(URLregistro, bp);*/
+            
+           //InterfazMaquina m = (InterfazMaquina) 
+            
             System.out.println("Servidor Ejemplo Preparado ya he enviado el barco");
+           /* ClienteEjemplo cliente = new ClienteEjemplo();
+            // cliente.ejecutar();
+            cliente.partir("rmi://"+urlServer+":"+puertoRMI+"/"+bp.getName());*/
+            
         }
         catch (Exception e){
             System.out.println("Excepcion en ServidorEjemplo.main: "+ e);
@@ -57,9 +65,8 @@ public class PiratasCaribe {
                 System.out.println("No ha ocurido nada");
         }*/
         
-        ClienteEjemplo cliente = new ClienteEjemplo();
-        cliente.ejecutar();
-        cliente.partir();
+        
+        
     }
     
     private static void arrancarRegistro (int puertoRMI)throws RemoteException{
@@ -68,12 +75,16 @@ public class PiratasCaribe {
             registro.list();
             //El metodo anterior lanza una excepcion
             //Si el registro no existe
+            System.out.println("Se ha arrancado el registro en el Server");
         }
         catch (RemoteException e){
             //No existe un registro valido en este puerto 
             System.out.println("El registro RMI no se puede localizar en el puerto: "+puertoRMI);
             Registry registro = LocateRegistry.createRegistry(puertoRMI);
             System.out.println("Registro RMI creado en el puerto: "+ puertoRMI);
+            while(true){}
+                
+
         }
     }
     

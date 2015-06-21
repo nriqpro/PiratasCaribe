@@ -5,9 +5,12 @@
  */
 package piratascaribe;
 
+import java.net.MalformedURLException;
 import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -139,16 +142,42 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     }
     
     @Override
-    public int marcarMapa() throws RemoteException{
+    public int marcarMapa(int i) throws RemoteException{
        // return "No Implementado";
-        for (int i = 0 ; i < mapas.size() ; i++){
+        
+        if (i < mapas.size() ){
+            mapas.get(i).setEstado(visitado);
+            return 1;
+        }
+        else {
+            return -1;
+        }
+        /*for (int i = 0 ; i < mapas.size() ; i++){
             if (mapas.get(i).getEstado().equalsIgnoreCase(actual)){
                     mapas.get(i).setEstado(visitado);
                     return 1;
             }
  
+        }*/
+
+    }
+    
+    @Override
+    public void partir() throws RemoteException{
+        String urlServer = "localhost";
+        int puertoServer = 8000;
+       InterfazMaquina machine;
+       //Thread.sleep((long) (10 * 1000.0));
+        try {
+            Thread.sleep((long) (5 * 1000.0));
+            machine = (InterfazMaquina)Naming.lookup("rmi://"+urlServer+":"+puertoServer+"/"+mapas.get(this.getSiguienteDestino()).getNombreMaquina());
+            machine.recibirBarco(this.getName());
+        } catch (Exception e) {
+            System.out.println("Error en Barco : partir()");
+            e.printStackTrace();
         }
-        return -1;
+     
+     
     }
     
    

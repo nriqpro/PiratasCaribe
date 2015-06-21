@@ -16,7 +16,7 @@ import java.rmi.registry.Registry;
  */
 public class ClienteEjemplo {
     
-    private int puertoRMI = 8000;
+    private static int puertoRMI = 8000;
     private String nombreNodo;
     private String numPuerto;
     private String URLRegistro = "rmi://localhost:"+puertoRMI+"/Venganza_Errante";
@@ -28,13 +28,12 @@ public class ClienteEjemplo {
     //de la interfaz remoto - reemplazar localhost por el nombre
     // del nodo del objeto remoto.
     
-    public void ejecutar(){
+   /* public void ejecutar(){
         try{
             InterfazBarco h = (InterfazBarco) Naming.lookup(this.URLRegistro);
             //invocar el o los metodos remotos
             
-           /* String mensaje = h.metodoEj1();
-            System.out.println(mensaje);*/
+      
             
             h.imprimirCofre();
 
@@ -48,16 +47,58 @@ public class ClienteEjemplo {
     
         
         //posible definicion de otros metodos de la clase
-    }
+    }*/
   
-    public void partir() {
+    public void partir(String url) {
         try{
-            InterfazBarco barco = (InterfazBarco) Naming.lookup("rmi://localhost:8000/Venganza_Errante");
+           // String urlServer ="rmi://localhost:8000/Venganza_Errante";
+            InterfazBarco barco = (InterfazBarco) Naming.lookup(url);
             System.out.println("partir");
-            System.out.println("Siguiente destino:"+barco.getSiguienteDestino());
+            int i = barco.getSiguienteDestino();
+            System.out.println("Siguiente destino:"+ barco.getMapas().get(i).getNombreIsla());
+            Naming.rebind(url, barco);
+            
         }
         catch(Exception e){
             e.printStackTrace();
         }
     }
+    public static void main(String[] args) {
+        System.out.println("Epale soy cliente");
+        String urlServer ="localhost";
+        int puertoServer = 8000;
+        
+        try {
+            InputStreamReader leer = new InputStreamReader(System.in);
+            BufferedReader buff = new BufferedReader(leer);
+            System.out.print("Escriba el texto: ");
+            String nombreMaquina = buff.readLine();
+            System.out.println("Soy maquina: "+nombreMaquina);
+            Maquina m = new Maquina(nombreMaquina,8001);
+            //System.out.println("Soy maquina: "+nombreMaquina);
+            Naming.rebind("rmi://localhost:8000/"+m.getNombreMaquina(), m);
+            System.out.println("Ahora esperare a que me llegue una consulta");
+            
+            if (nombreMaquina.equalsIgnoreCase("maquina1")){
+                Barco bp = new Barco("Venganza_Errante",true,10,10,10);
+                bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
+                bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));
+                Mapa mapa1 = new Mapa("maquina1","Isla1","Sitio1","Cayo1",true);
+                Mapa mapa2 = new Mapa("maquina2","Isla1","Sitio2","Cayo2",true);
+
+                bp.agregarMapa(mapa1);
+                bp.agregarMapa(mapa2);
+                String URLregistro = "rmi://localhost:"+ puertoRMI +"/"+bp.getName();
+                Naming.rebind(URLregistro, bp);
+                bp.partir();
+                
+                
+            }
+            
+        }catch(Exception e){
+            System.out.println("Error en Maquina ");
+            e.printStackTrace();
+        }
+    }
 }
+

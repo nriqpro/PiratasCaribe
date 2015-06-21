@@ -5,11 +5,13 @@
  */
 package piratascaribe;
 
+import java.io.Serializable;
+
 /**
  *
  * @author user
  */
-public class Mapa {
+public class Mapa implements Serializable {
     
     private String maquina;
     private String isla;
@@ -19,6 +21,11 @@ public class Mapa {
     private String estado; // visitado: ya visito el lugar y no debe volver, actual: esta situado actualmente en este lugar, 
                            //siguiente: lugar de destino, para que la maquina receptora pueda enviarlo a la ubicacon correspondiente (sitio/cayo).
                            //no visitado: lugar no visitado
+    
+    private static String visitado = "visitado";
+    private static String no_visitado = "no_visitado";
+    private static String actual = "actual";
+    private static String siguiente = "siguiente";
 
     public Mapa(String maquina, String isla, String sitio, String cayo, Boolean tipoLugar) {
         this.maquina = maquina;
@@ -26,7 +33,7 @@ public class Mapa {
         this.sitio = sitio;
         this.cayo = cayo;
         this.tipoLugar = tipoLugar;
-        this.estado = "no visitado";
+        this.estado = no_visitado;
     }
     
     public Boolean esIsla(){

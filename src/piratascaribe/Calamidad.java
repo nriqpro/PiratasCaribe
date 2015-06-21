@@ -5,20 +5,21 @@
  */
 package piratascaribe;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  *
  * @author user
  */
-public class Calamidad {
+public class Calamidad implements Serializable{
     private String nombre;
-    private Float probabilidad;
+    private Double probabilidad;
     private Integer resta_trip;
     private Integer resta_racion;
     private Integer resta_ammo;
 
-    public Calamidad(String nombre, Float probabilidad, Integer resta_trip, Integer resta_racion, Integer resta_ammo) {
+    public Calamidad(String nombre, Double probabilidad, Integer resta_trip, Integer resta_racion, Integer resta_ammo) {
         this.nombre = nombre;
         this.probabilidad = probabilidad;
         this.resta_trip = resta_trip;

@@ -5,13 +5,14 @@
  */
 package piratascaribe;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author user
  */
-public class Isla {
+public class Isla implements Serializable{
     private String nombre;
    // private String maquina;
     private ArrayList<Sitio> sitios;
