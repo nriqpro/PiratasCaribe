@@ -77,31 +77,33 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         
     }
 
+    
     public String getName() {
         return nombre;
     }
-    public Integer getnTripulacion() {
+    @Override
+    public Integer getnTripulacion() throws RemoteException {
         return nTripulacion;
     }
 
-    public Integer getnRaciones() {
+    public Integer getnRaciones() throws RemoteException {
         return nRaciones;
     }
 
-    public void setnRaciones(Integer nRaciones) {
+    public void setnRaciones(Integer nRaciones) throws RemoteException{
         this.nRaciones = nRaciones;
     }
 
     
-    public void setnTripulacion(Integer nTripulacion) {
+    public void setnTripulacion(Integer nTripulacion)throws RemoteException {
         this.nTripulacion = nTripulacion;
     }
 
-    public Integer getnAmmo() {
+    public Integer getnAmmo() throws RemoteException {
         return nAmmo;
     }
 
-    public void setnAmmo(Integer nAmmo) {
+    public void setnAmmo(Integer nAmmo) throws RemoteException{
         this.nAmmo = nAmmo;
     }
 
