@@ -1,6 +1,6 @@
 <barcos>
 	<barco id="1">
-		<nombre>La Venganza Errante</nombre>
+		<nombre>La_Venganza_Errante</nombre>
 		<pirata> true </pirata>
 		<origen>Puerto Real</origen>
 		<destino></destino>
@@ -9,7 +9,7 @@
 		<raciones>50</raciones>
 	</barco>
 	<barco id="2">
-		<nombre>El Invencible</nombre>
+		<nombre>El_Invencible</nombre>
 		<pirata> false </pirata>
 		<origen>Puerto de la Reina</origen>
 		<destino></destino>
@@ -18,7 +18,7 @@
 		<raciones>30</raciones>
 	</barco>
 	<barco id="3">
-		<nombre>El Interceptor</nombre>
+		<nombre>El_Interceptor</nombre>
 		<pirata> false </pirata>
 		<origen>Puerto de la Reina</origen>
 		<destino></destino>
