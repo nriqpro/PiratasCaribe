@@ -91,7 +91,7 @@ public class ClienteEjemplo {
                 System.out.println("Nombre Cayo: " + m.getCayos().get(i).getNombre());
             }
             //System.out.println("Soy maquina: "+nombreMaquina);
-            Naming.rebind("rmi://localhost:8000/"+m.getNombreMaquina(), m);
+            Naming.rebind("rmi://192.168.0.105:8000/"+m.getNombreMaquina(), m);
             System.out.println("Ahora esperare a que me llegue una consulta");
             
             if (numMaquina==1){
