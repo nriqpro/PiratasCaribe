@@ -48,6 +48,14 @@ public class Cayo implements Serializable{
             System.out.println("Error en Cayo: encallaBarco 'cayos' o 'cayo' null");
         
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCofre(Cofre cofre) {
+        this.cofre = cofre;
+    }
     
     
 }

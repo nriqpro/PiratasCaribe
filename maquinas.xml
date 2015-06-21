@@ -2,23 +2,23 @@
 	<maquina id="1"> 
 		<isla nombre="Isla Nueva Esperanzas"> 
 			<sitio nombre="Puerto Real"> 
-				<cofre tesoro=""></cofre>
-				<cofre tesoro=""></cofre>
+				<cofre tesoro="Barra de Oro"></cofre>
+				<cofre tesoro="Bolsa de Perlas"></cofre>
 			</sitio>
 			<sitio nombre="Cala de los Martires"> 
-				<cofre tesoro=""></cofre>
-				<cofre tesoro=""></cofre>
+				<cofre tesoro="Cofre de Piedras Preciosas"></cofre>
+				<cofre tesoro="Cofre de Joyas"></cofre>
 			</sitio>
 			<sitio nombre="Playa de las Perlas"> 
-				<cofre tesoro=""></cofre>
-				<cofre tesoro=""></cofre>
+				<cofre tesoro="Barra de Plata"></cofre>
+				<cofre tesoro="Bolsa de Monedas de Oro"></cofre>
 			</sitio>
 		</isla>
 		<cayo nombre="Cayo del Buen Viento"> 
-			<cofre tesoro=""></cofre>
+			<cofre tesoro="Cofre de Piedras Preciosas"></cofre>
 		</cayo>
 		<cayo nombre="Cayo de Sotavento"> 
-			<cofre tesoro=""></cofre>
+			<cofre tesoro="Barra de Oro"></cofre>
 		</cayo>
 	</maquina>
 	<maquina id="2"> 

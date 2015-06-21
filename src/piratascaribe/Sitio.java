@@ -49,6 +49,14 @@ public class Sitio implements Serializable {
             System.out.println("Error en Sitio: encallaBarco 'barcos' o 'barco' null");
         
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCofre(Cofre cofre) {
+        this.cofre = cofre;
+    }
     
 
     

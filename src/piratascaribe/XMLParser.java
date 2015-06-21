@@ -5,6 +5,7 @@
 package piratascaribe;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,6 +20,13 @@ import org.xml.sax.SAXException;
  * @author John
  */
 public class XMLParser {
+    public Isla islat;
+    public Sitio sitiot;
+    public Cayo cayot;
+    public ArrayList<Sitio> sitiostemp;
+    public ArrayList<Isla> islastemp;
+    public ArrayList<Cayo> cayostemp;
+    
      public void leerBarcos(int idBarco) {
  
     try {
@@ -72,7 +80,7 @@ public class XMLParser {
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 			Element eElement = (Element) nNode;
                         if(Integer.parseInt(eElement.getAttribute("id"))==idMaquina){
-			System.out.println("Barco id : " + eElement.getAttribute("id"));
+			System.out.println("Maquina id : " + eElement.getAttribute("id"));
                         NodeList nLugares = nNode.getChildNodes();
                         for(int i=0;i<nLugares.getLength();i++){
                             Node nLugar = nLugares.item(i);
@@ -80,7 +88,9 @@ public class XMLParser {
                                 Element eLugar = (Element) nLugar;
                                 System.out.println("Nombre "+eLugar.getTagName()+": "+eLugar.getAttribute("nombre"));
                                 if("cayo".equals(eLugar.getTagName())){
-                                    listarTesoros(nLugar);
+                                    cayot.setNombre(eLugar.getAttribute("nombre"));
+                                    cayot.setCofre(listarTesoros(nLugar));
+                                    cayostemp.add(cayot);
                                 }else{
                                     NodeList nSitios = nLugar.getChildNodes();
                                             for(int j=0;j<nSitios.getLength();j++){
@@ -88,9 +98,14 @@ public class XMLParser {
                                                 if(nSitio.getNodeType()==Node.ELEMENT_NODE){
                                                     Element eSitio = (Element) nSitio;
                                                     System.out.println("Nombre "+ eSitio.getTagName()+ ": "+eSitio.getAttribute("nombre"));
-                                                    listarTesoros(nSitio);
+                                                    sitiot.setNombre(eSitio.getAttribute("nombre"));
+                                                    sitiot.setCofre(listarTesoros(nSitio));
+                                                    sitiostemp.add(sitiot);
                                                 }
                                             }
+                                            islat.setNombre(eLugar.getAttribute("nombre"));
+                                            islat.setSitios(sitiostemp);
+                                            islastemp.add(islat);
                                 }
                             }
                         }
@@ -101,14 +116,18 @@ public class XMLParser {
     }
      }
      
-     public void listarTesoros(Node nodo){
+     public Cofre listarTesoros(Node nodo){
+         Cofre cofretemp = new Cofre(10000);
          NodeList lista = nodo.getChildNodes();
          for(int i=0; i<lista.getLength();i++){
              Node nCofre = lista.item(i);
              if(nCofre.getNodeType()==Node.ELEMENT_NODE){
                  Element eCofre = (Element) nCofre;
                  System.out.println("Tesoro: "+ eCofre.getAttribute("tesoro"));
+                 Tesoro tesorotemp = new Tesoro(eCofre.getAttribute("tesoro"),5);
+                 cofretemp.agregarTesoro(tesorotemp);
              }
          }
+         return cofretemp;
      }
 }
