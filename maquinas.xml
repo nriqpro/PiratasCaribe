@@ -11,7 +11,7 @@
 			</sitio>
 			<sitio nombre="Playa de las Perlas"> 
 				<cofre tesoro="Barra de Plata"></cofre>
-				<cofre tesoro="Mapa"></cofre>
+				<cofre tesoro="Mapa">Puerto de la Reina</cofre>
 			</sitio>
 		</isla>
 		<cayo nombre="Cayo del Buen Viento"> 
@@ -39,7 +39,7 @@
 		<isla nombre="Isla del Naufrago"> 
 			<sitio nombre="Bahia de la Esperanza"> 
 				<cofre tesoro="Barra de Oro"></cofre>
-				<cofre tesoro="Mapa"></cofre>
+				<cofre tesoro="Mapa">Cueva de los Huesos</cofre>
 			</sitio>
 			<sitio nombre="Cueva del Bucanero"> 
 				<cofre tesoro="Cofre de Piedras Preciosas"></cofre>
@@ -50,7 +50,7 @@
 	<maquina  id="3">
 		<isla nombre="Isla Tortuga"> 
 			<sitio nombre="Cueva de los Huesos"> 
-				<cofre tesoro="Mapa"></cofre>
+				<cofre tesoro="Mapa">Puerto de las Ballenas</cofre>
 				<cofre tesoro="Cofre de Piedras Preciosas"></cofre>
 			</sitio>
 			<sitio nombre="Bahia del Buen Retiro"> 
@@ -60,7 +60,7 @@
 		</isla>
 		<isla nombre="Isla las Aves"> 
 			<sitio nombre="Bahia de las Flores"> 
-				<cofre tesoro="Mapa"></cofre>
+				<cofre tesoro="Mapa">Cayo de los Pelicanos</cofre>
 				<cofre tesoro="Cofre de Piedras Preciosas"></cofre>
 			</sitio>
 			<sitio nombre="Cementerio de Barcos"> 
@@ -83,7 +83,7 @@
 				<cofre tesoro="Cofre de Piedras Preciosas"></cofre>
 			</sitio>
 			<sitio nombre="Bahia del Tesoro Perdido"> 
-				<cofre tesoro="Mapa"></cofre>
+				<cofre tesoro="Mapa">Cala de los Martires</cofre>
 				<cofre tesoro="Bolsa de Monedas de Oro"></cofre>
 			</sitio>
 			<sitio nombre="Cueva del Pirata"> 

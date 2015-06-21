@@ -20,8 +20,6 @@ import org.xml.sax.SAXException;
  * @author John
  */
 public class XMLParser {
-    public Isla islat = new Isla();
-    public Cayo cayot = new Cayo();
     public Barco barcotemp;
     public ArrayList<Sitio> sitiostemp = new ArrayList<>();
     public ArrayList<Isla> islastemp = new ArrayList<>();
@@ -94,6 +92,7 @@ public class XMLParser {
                                 Element eLugar = (Element) nLugar;
                                 System.out.println("Nombre "+eLugar.getTagName()+": "+eLugar.getAttribute("nombre"));
                                 if("cayo".equals(eLugar.getTagName())){
+                                    Cayo cayot = new Cayo();
                                     cayot.setNombre(eLugar.getAttribute("nombre"));
                                     cayot.setCofre(listarTesoros(nLugar));
                                     cayostemp.add(cayot);
@@ -103,13 +102,14 @@ public class XMLParser {
                                                 Node nSitio = nSitios.item(j);
                                                 if(nSitio.getNodeType()==Node.ELEMENT_NODE){
                                                     Element eSitio = (Element) nSitio;
-                                                    System.out.println("Nombre "+ eSitio.getTagName()+ ": "+eSitio.getAttribute("nombre"));
+                                                    System.out.println("    Nombre "+ eSitio.getTagName()+ ": "+eSitio.getAttribute("nombre"));
                                                     Sitio sitiot = new Sitio();
                                                     sitiot.setNombre(eSitio.getAttribute("nombre"));
                                                     sitiot.setCofre(listarTesoros(nSitio));
                                                     sitiostemp.add(sitiot);
                                                 }
                                             }
+                                            Isla islat = new Isla();
                                             islat.setNombre(eLugar.getAttribute("nombre"));
                                             islat.setSitios(sitiostemp);
                                             islastemp.add(islat);
@@ -130,7 +130,10 @@ public class XMLParser {
              Node nCofre = lista.item(i);
              if(nCofre.getNodeType()==Node.ELEMENT_NODE){
                  Element eCofre = (Element) nCofre;
-                 System.out.println("Tesoro: "+ eCofre.getAttribute("tesoro"));
+                 System.out.println("       Tesoro: "+ eCofre.getAttribute("tesoro"));
+            //     if("Mapa".equals(eCofre.getAttribute("tesoro"))){
+              //       System.out.println("Destino del Mapa: "+eCofre.getElementsByTagName("cofre").item(0).getTextContent());
+                // }
                  Tesoro tesorotemp = new Tesoro(eCofre.getAttribute("tesoro"));
                  cofretemp.agregarTesoro(tesorotemp);
              }
