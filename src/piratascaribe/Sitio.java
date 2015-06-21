@@ -26,7 +26,7 @@ public class Sitio implements Serializable {
         this.barcos = new ArrayList<InterfazBarco>();
     }
     public Sitio(){
-        
+        this.barcos = new ArrayList<InterfazBarco>();
     }
 
     public String getNombre() {
