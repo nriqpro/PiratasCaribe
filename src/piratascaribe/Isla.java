@@ -21,6 +21,9 @@ public class Isla implements Serializable{
         this.nombre = nombre;
         this.sitios = new ArrayList<Sitio>();
     }
+    public Isla(){
+        
+    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
