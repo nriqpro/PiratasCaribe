@@ -20,13 +20,13 @@ import org.xml.sax.SAXException;
  * @author John
  */
 public class XMLParser {
-    public Isla islat;
-    public Sitio sitiot;
-    public Cayo cayot;
+    public Isla islat = new Isla();
+    public Sitio sitiot = new Sitio();
+    public Cayo cayot = new Cayo();
     public Barco barcotemp;
-    public ArrayList<Sitio> sitiostemp;
-    public ArrayList<Isla> islastemp;
-    public ArrayList<Cayo> cayostemp;
+    public ArrayList<Sitio> sitiostemp = new ArrayList();
+    public ArrayList<Isla> islastemp = new ArrayList();
+    public ArrayList<Cayo> cayostemp = new ArrayList();
     
      public void leerBarcos(int idBarco) {
  

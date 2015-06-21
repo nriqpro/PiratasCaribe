@@ -25,7 +25,9 @@ public class Cayo implements Serializable{
         this.calamidad = calamidad;
         this.barcos = new ArrayList<InterfazBarco>();
     }
-
+    public Cayo(){
+        
+    }
     public String getNombre() {
         return nombre;
     }

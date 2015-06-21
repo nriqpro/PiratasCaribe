@@ -22,8 +22,11 @@ public class Sitio implements Serializable {
     public Sitio(String nombre, Cofre cofre, Calamidad calamidad){
         this.nombre = nombre;
         this.cofre = cofre;
-        this.calamidad = calamidad;
+        //this.calamidad = calamidad;
         this.barcos = new ArrayList<InterfazBarco>();
+    }
+    public Sitio(){
+        
     }
 
     public String getNombre() {
