@@ -104,7 +104,7 @@ public class ClienteEjemplo {
 
                 bp.agregarMapa(mapa1);
                 bp.agregarMapa(mapa2);
-                String URLregistro = "rmi://localhost:"+ puertoRMI +"/"+bp.getName();
+                String URLregistro = "rmi://192.168.0.105:"+ puertoRMI +"/"+bp.getName();
                 Naming.rebind(URLregistro, bp);
                 bp.partir();
                 
