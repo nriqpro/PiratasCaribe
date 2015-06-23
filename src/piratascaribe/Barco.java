@@ -184,7 +184,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     
     @Override
     public void partir() throws RemoteException{
-        String urlServer = "192.168.0.105";
+        String urlServer = "192.168.0.114";
         int puertoServer = 8000;
        InterfazMaquina machine;
        //Thread.sleep((long) (10 * 1000.0));

@@ -16,10 +16,10 @@ import java.rmi.registry.Registry;
  */
 public class ClienteEjemplo {
     
-    private static int puertoRMI = 8000;
+   /* private static int puertoRMI = 8000;
     private String nombreNodo;
-    private String numPuerto;
-    private String URLRegistro = "rmi://localhost:"+puertoRMI+"/Venganza_Errante";
+    private String numPuerto;*/
+   // private String URLRegistro = "rmi://192.168.0.114:"+puertoRMI+"/Venganza_Errante";
     //Codigo que permite obtner el nombre del nodo 
     //y el numero de puerto del registro
     
@@ -65,8 +65,9 @@ public class ClienteEjemplo {
     }
     public static void main(String[] args) {
         System.out.println("Epale soy cliente");
-        String urlServer ="localhost";
+        String ipServer ="192.168.1.102";
         int puertoServer = 8000;
+        
         XMLParser xml = new XMLParser();
         
         try {
@@ -91,7 +92,10 @@ public class ClienteEjemplo {
                 System.out.println("Nombre Cayo: " + m.getCayos().get(i).getNombre());
             }
             //System.out.println("Soy maquina: "+nombreMaquina);
-            Naming.rebind("rmi://192.168.0.105:8000/"+m.getNombreMaquina(), m);
+            //Naming.rebind("rmi://192.168.0.114:8000/"+m.getNombreMaquina(), m);
+            Registry registro = LocateRegistry.getRegistry(ipServer, puertoServer);
+            String urlServer =  "rmi://"+ipServer+":"+puertoServer+"/";
+            registro.rebind(urlServer+m.getNombre(), m);
             System.out.println("Ahora esperare a que me llegue una consulta");
             
             if (numMaquina==1){
@@ -104,8 +108,11 @@ public class ClienteEjemplo {
 
                 bp.agregarMapa(mapa1);
                 bp.agregarMapa(mapa2);
-                String URLregistro = "rmi://192.168.0.105:"+ puertoRMI +"/"+bp.getName();
-                Naming.rebind(URLregistro, bp);
+                //String URLregistro = "rmi://192.168.0.114:"+ puertoRMI +"/"+bp.getName();
+              // Naming.rebind(URLregistro, bp);
+                //Registry registro = LocateRegistry.getRegistry(ipServer, puertoRMI);
+                //String urlServer =  "rmi://"+ipServer+":"+puertoServer+"/"+m.getNombre();
+                registro.rebind(urlServer+bp.getName(), m);
                 bp.partir();
                 
                 

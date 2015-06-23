@@ -16,6 +16,7 @@ public interface InterfazMaquina extends Remote {
 
     
     // public void recibirBarco (String maquinaOrigen);
+    public String getNombre() throws RemoteException;
      public void recibirBarco (String nombreBarco)throws RemoteException;
     
 

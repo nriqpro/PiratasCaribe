@@ -17,55 +17,46 @@ import java.util.Map;
  *
  * @author user
  */
-public class PiratasCaribe {
-   // private Map<String,String> nodos;
-    /**
-     * @param args the command line arguments
-     */
+public class PiratasCaribe implements InterfazServidor {
+        static int puertoServer=8000;
+        String ipServer = "192.168.1.102";
+        String urlServer = "rmi://"+ipServer+":"+puertoServer+"/";
     public static void main(String[] args) {
-        String URLregistro;
-        int puertoRMI=8000;
-        String urlServer = "192.168.0.105";
+       // String URLregistro;
+        //int puertoServer=8000;
+       /* String ipServer = "192.168.1.102";
+        String urlServer = "rmi://"+ipServer+":"+puertoServer+"/";*/
        // Map<String,String> nodos;
-        try{
-            //codigo que permite obtener el valor del numero del puerto 
-            //ImplEjemplo objExportado = new ImplEjemplo();
-            arrancarRegistro(puertoRMI);
-            
-            //registrar el objeto bajo el nombre "ejemplo"
-          /*  Barco bp = new Barco("Venganza_Errante",true,10,10,10);
-            bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
-            bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));
-            Mapa mapa = new Mapa("maquina1","Isla1","Sitio1","Cayo1",true);
-           
-            bp.agregarMapa(mapa);
-            URLregistro = "rmi://localhost:"+ puertoRMI +"/"+bp.getName();
-            Naming.rebind(URLregistro, bp);*/
-            
-           //InterfazMaquina m = (InterfazMaquina) 
-            
-            System.out.println("Servidor Ejemplo Preparado ya he enviado el barco");
-           /* ClienteEjemplo cliente = new ClienteEjemplo();
-            // cliente.ejecutar();
-            cliente.partir("rmi://"+urlServer+":"+puertoRMI+"/"+bp.getName());*/
-            
+        try{    
+            arrancarRegistro(puertoServer);
+            System.out.println("Servidor Ejemplo Preparado ya he enviado el barco");      
         }
         catch (Exception e){
             System.out.println("Excepcion en ServidorEjemplo.main: "+ e);
+        } 
+    }
+    
+    @Override
+    public void registroRebind(Remote objeto,int tipo) throws RemoteException{
+        try {
+            switch (tipo){
+                case 1:
+                    InterfazBarco barco= (InterfazBarco)objeto;
+                    Naming.rebind(urlServer+barco.getName(),barco);
+                    break;
+                case 2:
+                    InterfazMaquina maquina = (InterfazMaquina) objeto;
+                    Naming.rebind(urlServer+maquina.getNombre(),maquina);
+                    break;
+                default:
+                    System.out.println("registroRebind entro en default metodo no implementado para tipo:" + tipo);
+                    break;
+
+            }
+        }catch (Exception e){
+            System.out.println("Error en PiratasCaribe(servidor): registroRebind");
+            e.printStackTrace();
         }
-       // TODO code application logic here
-       /* ArrayList<String> ejemplo = new ArrayList<String>();
-        ejemplo.add("Uno");
-        System.out.println("Hola mundo piratas "+ejemplo.get(0));
-        Calamidad c = new Calamidad("Crak",new Float(0.1),-10,-10,-10);
-        for (int i = 0 ; i < 10 ; i++){
-            if (c.ocurreCalamidad())
-                System.out.println("Calamidad: "+c.getNombre()+"ha ocurrido");
-            else
-                System.out.println("No ha ocurido nada");
-        }*/
-        
-        
         
     }
     
