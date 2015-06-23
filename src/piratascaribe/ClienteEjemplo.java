@@ -93,9 +93,12 @@ public class ClienteEjemplo {
             }
             //System.out.println("Soy maquina: "+nombreMaquina);
             //Naming.rebind("rmi://192.168.0.114:8000/"+m.getNombreMaquina(), m);
-            Registry registro = LocateRegistry.getRegistry(ipServer, puertoServer);
+           /* Registry registro = LocateRegistry.getRegistry(ipServer, puertoServer);
             String urlServer =  "rmi://"+ipServer+":"+puertoServer+"/";
-            registro.rebind(urlServer+m.getNombre(), m);
+            registro.rebind(urlServer+m.getNombre(), m);*/
+            String urlServer =  "rmi://"+ipServer+":"+puertoServer+"/";
+            InterfazServidor is = (InterfazServidor)Naming.lookup(urlServer+"server");
+            is.registroRebind(m, 2);
             System.out.println("Ahora esperare a que me llegue una consulta");
             
             if (numMaquina==1){
@@ -105,14 +108,11 @@ public class ClienteEjemplo {
                 bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));*/
                 Mapa mapa1 = new Mapa("maquina1","Isla Nueva Esperanzas","Puerto Real","Cayo del Buen Viento",true);
                 Mapa mapa2 = new Mapa("maquina2","Isla La Holandesa","Puerto de La Reina","Cayo del Buen Viento",true);
-
+                
                 bp.agregarMapa(mapa1);
                 bp.agregarMapa(mapa2);
-                //String URLregistro = "rmi://192.168.0.114:"+ puertoRMI +"/"+bp.getName();
-              // Naming.rebind(URLregistro, bp);
-                //Registry registro = LocateRegistry.getRegistry(ipServer, puertoRMI);
-                //String urlServer =  "rmi://"+ipServer+":"+puertoServer+"/"+m.getNombre();
-                registro.rebind(urlServer+bp.getName(), m);
+                is.registroRebind(bp, 1);
+              //  registro.rebind(urlServer+bp.getName(), m);
                 bp.partir();
                 
                 

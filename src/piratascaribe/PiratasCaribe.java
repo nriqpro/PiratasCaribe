@@ -22,14 +22,15 @@ public class PiratasCaribe implements InterfazServidor {
         String ipServer = "192.168.1.102";
         String urlServer = "rmi://"+ipServer+":"+puertoServer+"/";
     public static void main(String[] args) {
-       // String URLregistro;
-        //int puertoServer=8000;
-       /* String ipServer = "192.168.1.102";
-        String urlServer = "rmi://"+ipServer+":"+puertoServer+"/";*/
-       // Map<String,String> nodos;
-        try{    
+       
+        
+        
+        try{   
+            
             arrancarRegistro(puertoServer);
-            System.out.println("Servidor Ejemplo Preparado ya he enviado el barco");      
+            System.out.println("Servidor Ejemplo Preparado ya he enviado el barco");
+            PiratasCaribe pc = new PiratasCaribe();
+            Naming.rebind("rmi://192.168.1.102:8000/server",pc);
         }
         catch (Exception e){
             System.out.println("Excepcion en ServidorEjemplo.main: "+ e);
