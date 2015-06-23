@@ -84,8 +84,9 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
     @Override 
      public void recibirBarco (String nombreBarco) throws RemoteException{
          try{
+           String urlServer = "rmi://192.168.1.102:8000/";
            System.out.println("He recibido el barco: "+nombreBarco+" en mis Aguas");
-           String urlObjeto ="rmi://192.168.0.114:8000/" + nombreBarco; 
+           String urlObjeto =urlServer + nombreBarco; 
            Registry registro = LocateRegistry.getRegistry(8000);
            InterfazBarco barco = (InterfazBarco) Naming.lookup(urlObjeto);
            //hacer aqui procedimiento para dibujar interfaz barco moviendose a destino

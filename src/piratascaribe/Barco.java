@@ -184,13 +184,14 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     
     @Override
     public void partir() throws RemoteException{
-        String urlServer = "192.168.0.114";
+        String ipServer = "192.168.1.102";
         int puertoServer = 8000;
+        String urlServer = "rmi://"+ipServer+":"+puertoServer+"/";
        InterfazMaquina machine;
        //Thread.sleep((long) (10 * 1000.0));
         try {
             Thread.sleep((long) (5 * 1000.0));
-            machine = (InterfazMaquina)Naming.lookup("rmi://"+urlServer+":"+puertoServer+"/"+mapas.get(this.getSiguienteDestino()).getNombreMaquina());
+            machine = (InterfazMaquina)Naming.lookup(urlServer+mapas.get(this.getSiguienteDestino()).getNombreMaquina());
             machine.recibirBarco(this.getName());
         } catch (Exception e) {
             System.out.println("Error en Barco : partir()");
