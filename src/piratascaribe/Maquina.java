@@ -94,6 +94,8 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
            Registry registroLocal = LocateRegistry.getRegistry(g.getPuerto(nombre));
            registroLocal.rebind(barco.getName(),barco);
            //hacer aqui procedimiento para dibujar interfaz barco moviendose a destino
+           barco.setMaquinaActual(this.nombre);
+           barco.setMaquinaAnterior(nombreMaquinaAnterior);
            ubicarBarco(barco);
 //           barco.marcarMapa()
            izarVelas(barco.getName());
