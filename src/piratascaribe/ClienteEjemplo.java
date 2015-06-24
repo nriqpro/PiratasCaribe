@@ -65,8 +65,6 @@ public class ClienteEjemplo {
     }
     public static void main(String[] args) {
         System.out.println("Epale soy cliente");
-        System.setProperty("java.rmi.server.hostname","192.168.1.102");
-        System.setProperty("java.rmi.server.hostname","192.168.1.105");
        /* String ipServer ="192.168.1.102";
         int puertoServer = 8000;*/
         
