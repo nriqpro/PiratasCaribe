@@ -221,6 +221,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
             Thread.sleep((long) (5 * 1000.0));
             Registry registroRemoto = LocateRegistry.getRegistry(g.getIp(maquinaSiguiente),g.getPuerto(maquinaSiguiente));
             InterfazMaquina m = (InterfazMaquina) registroRemoto.lookup(maquinaSiguiente);
+            System.out.println("nombre maquina "+m.getNombre());
             m.recibirBarco(this.getName(),maquinaActual);
             
             

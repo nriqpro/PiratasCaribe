@@ -67,6 +67,7 @@ public class ClienteEjemplo {
         System.out.println("Epale soy cliente");
        /* String ipServer ="192.168.1.102";
         int puertoServer = 8000;*/
+       
         
         XMLParser xml = new XMLParser();
         
@@ -79,6 +80,10 @@ public class ClienteEjemplo {
             System.out.println("Soy maquina: "+nombreMaquina);
             GestorRMI g = new GestorRMI();
             Maquina m = new Maquina(numMaquina,g.getPuerto("maquina"+numMaquina));
+            
+            System.setProperty("java.rmi.server.hostname",g.getIp(m.getNombre()));
+             
+             
             xml.leerMaquinas(numMaquina);
             m.setIslas(xml.islastemp);
             m.setCayos(xml.cayostemp);
