@@ -52,12 +52,13 @@ public class XMLParser {
                         System.out.println("Tripulacion : " + eElement.getElementsByTagName("tripulacion").item(0).getTextContent());
                         System.out.println("Municiones : " + eElement.getElementsByTagName("municiones").item(0).getTextContent());
                         System.out.println("Raciones : " + eElement.getElementsByTagName("raciones").item(0).getTextContent());
-                        barcotemp = new Barco(eElement.getElementsByTagName("nombre").item(0).getTextContent(),
+                        this.barcotemp = new Barco(eElement.getElementsByTagName("nombre").item(0).getTextContent(),
                                 Boolean.parseBoolean(eElement.getElementsByTagName("pirata").item(0).getTextContent()),
                                 Integer.parseInt(eElement.getElementsByTagName("tripulacion").item(0).getTextContent()),
                                 Integer.parseInt(eElement.getElementsByTagName("raciones").item(0).getTextContent()),
                                 Integer.parseInt(eElement.getElementsByTagName("municiones").item(0).getTextContent()));
-                        barcotemp.setPuertoOrigen(eElement.getElementsByTagName("origen").item(0).getTextContent());
+                        this.barcotemp.setPuertoOrigen(eElement.getElementsByTagName("origen").item(0).getTextContent());
+                        System.out.println("No Llega");
                         }
 		}
 	}
