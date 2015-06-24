@@ -65,8 +65,8 @@ public class ClienteEjemplo {
     }
     public static void main(String[] args) {
         System.out.println("Epale soy cliente");
-        String ipServer ="192.168.1.102";
-        int puertoServer = 8000;
+       /* String ipServer ="192.168.1.102";
+        int puertoServer = 8000;*/
         
         XMLParser xml = new XMLParser();
         
@@ -77,7 +77,8 @@ public class ClienteEjemplo {
             String nombreMaquina = buff.readLine();
             int numMaquina = Integer.parseInt(nombreMaquina);
             System.out.println("Soy maquina: "+nombreMaquina);
-            Maquina m = new Maquina(numMaquina,8001);
+            GestorRMI g = new GestorRMI();
+            Maquina m = new Maquina(numMaquina,g.getPuerto("maquina"+numMaquina));
             xml.leerMaquinas(numMaquina);
             m.setIslas(xml.islastemp);
             m.setCayos(xml.cayostemp);
@@ -93,12 +94,13 @@ public class ClienteEjemplo {
             }
             //System.out.println("Soy maquina: "+nombreMaquina);
             //Naming.rebind("rmi://192.168.0.114:8000/"+m.getNombreMaquina(), m);
-           /* Registry registro = LocateRegistry.getRegistry(ipServer, puertoServer);
-            String urlServer =  "rmi://"+ipServer+":"+puertoServer+"/";
-            registro.rebind(urlServer+m.getNombre(), m);*/
-            String urlServer =  "rmi://"+ipServer+":"+puertoServer+"/";
-            InterfazServidor is = (InterfazServidor)Naming.lookup(urlServer+"server");
-            is.registroRebind(m, 2);
+            Registry registro = LocateRegistry.createRegistry(g.getPuerto(m.getNombre()));
+           // Registry registro = LocateRegistry.getRegistry(g.getIp(m.getNombre()), g.getPuerto(m.getNombre()));
+            String urlServer =  "rmi://"+g.getIp(m.getNombre())+":"+g.getPuerto(m.getNombre())+"/";
+           //registro.rebind(urlServer+m.getNombre(), m);*/
+            registro.rebind(/*urlServer+*/m.getNombre(), m);
+           /* InterfazServidor is = (InterfazServidor)registro.lookup("server");
+            is.registroRebind(m, 2);*/
             System.out.println("Ahora esperare a que me llegue una consulta");
             
             if (numMaquina==1){
@@ -111,13 +113,24 @@ public class ClienteEjemplo {
                 
                 bp.agregarMapa(mapa1);
                 bp.agregarMapa(mapa2);
-                is.registroRebind(bp, 1);
+                registro.rebind(/*urlServer+*/bp.getName(), bp);
               //  registro.rebind(urlServer+bp.getName(), m);
+                
+                Registry registrom2 = LocateRegistry.getRegistry(g.getIp("maquina2"),g.getPuerto("maquina2"));
+                System.out.println("Imprimo Los Objetos Guardados En Maquina 2");
+                String[] names = registrom2.list();
+                for (int i = 0; i < names.length; i++)
+			System.out.println(names[i]);
+                bp.setMaquinaActual(m.getNombre());
+                bp.setMaquinaAnterior(m.getNombre());
                 bp.partir();
                 
                 
             }
-            
+            String[] names = registro.list();
+            System.out.println("Imprimo Los Objetos Guardados");
+                for (int i = 0; i < names.length; i++)
+			System.out.println(names[i]);
         }catch(Exception e){
             System.out.println("Error en Maquina ");
             e.printStackTrace();

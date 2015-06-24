@@ -17,7 +17,7 @@ import java.util.Map;
  *
  * @author user
  */
-public class PiratasCaribe implements InterfazServidor {
+public class PiratasCaribe {
         static int puertoServer=8000;
         String ipServer = "192.168.1.102";
         String urlServer = "rmi://"+ipServer+":"+puertoServer+"/";
@@ -28,16 +28,17 @@ public class PiratasCaribe implements InterfazServidor {
         try{   
             
             arrancarRegistro(puertoServer);
-            System.out.println("Servidor Ejemplo Preparado ya he enviado el barco");
-            PiratasCaribe pc = new PiratasCaribe();
-            Naming.rebind("rmi://192.168.1.102:8000/server",pc);
+         //   System.out.println("Servidor Ejemplo Preparado ya he enviado el barco");
+            
+            
+            
         }
         catch (Exception e){
             System.out.println("Excepcion en ServidorEjemplo.main: "+ e);
         } 
     }
     
-    @Override
+   /* @Override
     public void registroRebind(Remote objeto,int tipo) throws RemoteException{
         try {
             switch (tipo){
@@ -59,7 +60,7 @@ public class PiratasCaribe implements InterfazServidor {
             e.printStackTrace();
         }
         
-    }
+    }*/
     
     private static void arrancarRegistro (int puertoRMI)throws RemoteException{
         try{
@@ -74,6 +75,10 @@ public class PiratasCaribe implements InterfazServidor {
             System.out.println("El registro RMI no se puede localizar en el puerto: "+puertoRMI);
             Registry registro = LocateRegistry.createRegistry(puertoRMI);
             System.out.println("Registro RMI creado en el puerto: "+ puertoRMI);
+           // Barco b = new Barco();
+         /*   Servidor pc = new Servidor("192.168.1.102",8000);
+            registro.rebind("rmi://192.168.1.102:8000/server",pc);*/
+            System.out.println("list: "+ registro.list().toString());
             while(true){}
                 
 

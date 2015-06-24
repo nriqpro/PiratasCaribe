@@ -7,6 +7,8 @@ package piratascaribe;
 
 import java.net.MalformedURLException;
 import java.rmi.*;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,6 +28,9 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     private Integer nRacionesOriginal;
     private Integer nAmmoOriginal;
     private String maquinaOrigen;
+    
+    private String maquinaAnterior;
+    private String maquinaActual;
     private ArrayList<Mapa> mapas;
      private static String visitado = "visitado";
     private static String no_visitado = "no_visitado";
@@ -123,6 +128,26 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     public void setnTripulacionOriginal(Integer nTripulacionOriginal) {
         this.nTripulacionOriginal = nTripulacionOriginal;
     }
+
+    public String getMaquinaAnterior() {
+        return maquinaAnterior;
+    }
+
+    public void setMaquinaAnterior(String maquinaAnterior) {
+        this.maquinaAnterior = maquinaAnterior;
+    }
+
+    public String getMaquinaActual() {
+        return maquinaActual;
+    }
+
+    public void setMaquinaActual(String maquinaActual) {
+        this.maquinaActual = maquinaActual;
+    }
+
+  
+    
+    
     
     public Cofre getCofre(){
         return this.cofre;
@@ -184,15 +209,22 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     
     @Override
     public void partir() throws RemoteException{
-        String ipServer = "192.168.1.102";
+      /*  String ipServer = "192.168.1.102";
         int puertoServer = 8000;
-        String urlServer = "rmi://"+ipServer+":"+puertoServer+"/";
-       InterfazMaquina machine;
+        String urlServer = "rmi://"+ipServer+":"+puertoServer+"/";*/
+       //InterfazMaquina machine;
        //Thread.sleep((long) (10 * 1000.0));
         try {
+            String maquinaAct = this.maquinaActual;
+            GestorRMI g = new  GestorRMI();
+            String maquinaSiguiente = mapas.get(this.getSiguienteDestino()).getNombreMaquina();
             Thread.sleep((long) (5 * 1000.0));
-            machine = (InterfazMaquina)Naming.lookup(urlServer+mapas.get(this.getSiguienteDestino()).getNombreMaquina());
-            machine.recibirBarco(this.getName());
+            Registry registroRemoto = LocateRegistry.getRegistry(g.getIp(maquinaSiguiente),g.getPuerto(maquinaSiguiente));
+            InterfazMaquina m = (InterfazMaquina) registroRemoto.lookup(maquinaSiguiente);
+            m.recibirBarco(this.getName(),maquinaActual);
+            
+            
+            
         } catch (Exception e) {
             System.out.println("Error en Barco : partir()");
             e.printStackTrace();
