@@ -44,6 +44,7 @@ public class XMLParser {
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 			Element eElement = (Element) nNode;
                         if(Integer.parseInt(eElement.getAttribute("id"))==idBarco){
+                        System.out.println("Prueba : " + eElement.getTagName());
 			System.out.println("Barco id : " + eElement.getAttribute("id"));
 			System.out.println("Nombre : " + eElement.getElementsByTagName("nombre").item(0).getTextContent());
 			System.out.println("Pirata : " + eElement.getElementsByTagName("pirata").item(0).getTextContent());
@@ -68,7 +69,7 @@ public class XMLParser {
      public void leerMaquinas(int idMaquina){
          try {
  
-	File fXmlFile = new File("maquinas.xml");
+	File fXmlFile = new File("maquinas1.xml");
 	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	Document doc = dBuilder.parse(fXmlFile);
@@ -131,12 +132,27 @@ public class XMLParser {
              Node nCofre = lista.item(i);
              if(nCofre.getNodeType()==Node.ELEMENT_NODE){
                  Element eCofre = (Element) nCofre;
-                 System.out.println("       Tesoro: "+ eCofre.getAttribute("tesoro"));
-            //     if("Mapa".equals(eCofre.getAttribute("tesoro"))){
-              //       System.out.println("Destino del Mapa: "+eCofre.getElementsByTagName("cofre").item(0).getTextContent());
-                // }
-                 Tesoro tesorotemp = new Tesoro(eCofre.getAttribute("tesoro"));
-                 cofretemp.agregarTesoro(tesorotemp);
+                 NodeList testemp = eCofre.getElementsByTagName("tesoro");
+                 for(int j=0;j<testemp.getLength();j++){
+                     System.out.println("Tesoro: "+testemp.item(j).getTextContent());
+                     Tesoro tesorotemp = new Tesoro(testemp.item(j).getTextContent());
+                     cofretemp.agregarTesoro(tesorotemp);
+                 }
+                 NodeList maptemp = eCofre.getElementsByTagName("mapa");
+                 for(int j=0;j<maptemp.getLength();j++){
+                     Node nMapa = maptemp.item(j);
+                     if(nMapa.getNodeType()==Node.ELEMENT_NODE){
+                         Element eMapa = (Element) nMapa;
+                         System.out.println("Destino Mapa: "+eMapa.getElementsByTagName("destino").item(0).getTextContent());
+                         if(eMapa.getElementsByTagName("destino").item(0).getTextContent().startsWith("Cayo")){
+                             Mapa maptest = new Mapa(eMapa.getElementsByTagName("destino").item(0).getTextContent(),eMapa.getElementsByTagName("maquina").item(0).getTextContent());
+                             System.out.println("Esto es un Cayo: "+maptest.getNombreCayo() + " en maquina: " + maptest.getNombreMaquina());
+                         }else{
+                             Mapa maptest = new Mapa(eMapa.getElementsByTagName("destino").item(0).getTextContent(),eMapa.getElementsByTagName("isla").item(0).getTextContent(),eMapa.getElementsByTagName("maquina").item(0).getTextContent());
+                             System.out.println("Esto es una isla: "+maptest.getNombreIsla() + " en maquina: " + maptest.getNombreMaquina());
+                         }
+                     }
+                 }
              }
          }
          return cofretemp;
