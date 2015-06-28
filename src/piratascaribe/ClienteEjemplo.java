@@ -122,14 +122,17 @@ public class ClienteEjemplo {
                 registro.rebind(/*urlServer+*/bp.getName(), bp);
               //  registro.rebind(urlServer+bp.getName(), m);
                 
-                Registry registrom2 = LocateRegistry.getRegistry(g.getIp("maquina2"),g.getPuerto("maquina2"));
+               /* Registry registrom2 = LocateRegistry.getRegistry(g.getIp("maquina2"),g.getPuerto("maquina2"));
                 System.out.println("Imprimo Los Objetos Guardados En Maquina 2");
+                
                 String[] names = registrom2.list();
-                for (int i = 0; i < names.length; i++)
-			System.out.println(names[i]);
+                for (int i = 0; i <
+                names.length; i++)
+			System.out.println(names[i]);*/
                 bp.setMaquinaActual(m.getNombre());
                 bp.setMaquinaAnterior(m.getNombre());
                 bp.partir();
+                registro.unbind(bp.getName());
                 
                 
             }

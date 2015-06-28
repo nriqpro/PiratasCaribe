@@ -5,13 +5,14 @@
  */
 package piratascaribe;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author user
  */
-public class Cofre {
+public class Cofre implements Serializable{
     private Integer capacidad;
     private ArrayList<Tesoro> tesoros;
     private ArrayList<Mapa> mapas;

@@ -48,5 +48,17 @@ public interface InterfazBarco extends Remote{
     public String getMaquinaActual() throws RemoteException;
 
     public void setMaquinaActual(String maquinaActual) throws RemoteException;
+    
+    public Boolean getPirata() throws RemoteException;
+
+    public Integer getnRacionesOriginal() throws RemoteException;
+
+    public String getPuertoOrigen() throws RemoteException;
+    
+    public Integer getnAmmoOriginal() throws RemoteException;
+
+    public String getMaquinaOrigen() throws RemoteException ;
+    
+    
 
 }

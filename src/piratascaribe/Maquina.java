@@ -88,17 +88,25 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
            String urlServer = "rmi://"+g.getIp(nombreMaquinaAnterior)+":"+g.getPuerto(nombreMaquinaAnterior)+"/";
            System.out.println("He recibido el barco: "+nombreBarco+" en mis Aguas");
            //String urlObjeto =urlServer + nombreBarco; 
+           //Ubico la referencia en el registro remoto
            Registry registroRemoto = LocateRegistry.getRegistry(g.getIp(nombreMaquinaAnterior),g.getPuerto(nombreMaquinaAnterior));
            InterfazBarco barco = (InterfazBarco) registroRemoto.lookup(nombreBarco);
            
+           //Añado el objeto a mi registro local
            Registry registroLocal = LocateRegistry.getRegistry(g.getPuerto(nombre));
-           registroLocal.rebind(barco.getName(),barco);
+           Barco b = new Barco();
+           b.copiarBarco(barco);
+           registroLocal.rebind(b.getName(),b);
+          
+           //Elimino la referencia en la maquina anterior
+          /* InterfazMaquina m = (InterfazMaquina) registroRemoto.lookup(nombreMaquinaAnterior);
+           m.eliminarReferenciaBarco(nombreBarco, nombreMaquinaAnterior);*/
            //hacer aqui procedimiento para dibujar interfaz barco moviendose a destino
-           barco.setMaquinaActual(this.nombre);
-           barco.setMaquinaAnterior(nombreMaquinaAnterior);
-           ubicarBarco(barco);
+           b.setMaquinaActual(this.nombre);
+           b.setMaquinaAnterior(nombreMaquinaAnterior);
+           ubicarBarco(b);
 //           barco.marcarMapa()
-           izarVelas(barco.getName());
+           izarVelas(b.getName());
            System.out.println("El barco ha partido");
           
           //  System.out.println("Siguiente destino:"+barco.getSiguienteDestino());
@@ -107,6 +115,18 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
             System.out.println("Error en Maquina: recibirBarco()");
             e.printStackTrace();
         }
+     }
+     
+     @Override 
+     public void eliminarReferenciaBarco (String nombreBarco, String nombreMaquinaAnterior) throws RemoteException{
+         try{
+          GestorRMI g = new GestorRMI();
+          Registry registroRemoto = LocateRegistry.getRegistry(g.getIp(nombreMaquinaAnterior),g.getPuerto(nombreMaquinaAnterior));
+          registroRemoto.unbind(nombreBarco);
+         }catch (Exception e){
+             System.out.println("Error Maquina: eliminarReferenciaBarco ");
+             e.printStackTrace();
+         }
      }
      
      public String getNombreMaquina(){
@@ -166,7 +186,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                         System.out.println("\t barco: "+ cayos.get(i).getBarcos().get(j).getName());
                         cayos.get(i).getBarcos().remove(j);*/
                         
-                        InterfazBarco barco = cayos.get(i).getBarcos().get(j);
+                        Barco barco = cayos.get(i).getBarcos().get(j);
                         
                         int x = barco.getSiguienteDestino();
                         if (x >= 0){
@@ -185,7 +205,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
         }
         //System.out.println();
     }
-    public void ubicarBarco(InterfazBarco barco) throws RemoteException{
+    public void ubicarBarco(Barco barco) throws RemoteException{
         try{
             int sigDest = barco.getSiguienteDestino();
             Mapa mapa;

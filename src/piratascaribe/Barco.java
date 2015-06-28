@@ -40,6 +40,10 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     private Cofre cofre;
     private String puertoOrigen;
     //private ArrayList<Kapa> mapas;
+    
+    public Barco() throws RemoteException{
+        
+    }
 
     public Barco(String nombre, Boolean pirata, Integer nTripulacionOriginal, Integer nRacionesOriginal, Integer nAmmoOriginal) throws RemoteException{
         this.nombre = nombre;
@@ -206,6 +210,28 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         }*/
 
     }
+
+    public Boolean getPirata() throws RemoteException{
+        return pirata;
+    }
+
+    public Integer getnRacionesOriginal() throws RemoteException{
+        return nRacionesOriginal;
+    }
+
+    public String getPuertoOrigen() throws RemoteException {
+        return puertoOrigen;
+    }
+
+    public Integer getnAmmoOriginal() throws RemoteException{
+        return nAmmoOriginal;
+    }
+
+    public String getMaquinaOrigen() throws RemoteException {
+        return maquinaOrigen;
+    }
+    
+    
     
     @Override
     public void partir() throws RemoteException{
@@ -232,6 +258,24 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         }
      
      
+    }
+    
+    public void copiarBarco (InterfazBarco barco) throws RemoteException{
+        this.nombre = barco.getName();
+        this.pirata = barco.getPirata();
+        this.nTripulacion = barco.getnTripulacion();
+        this.nRaciones = barco.getnRaciones();
+        this.nAmmo = barco.getnAmmo();
+        this.nTripulacionOriginal = barco.getnTripulacionOriginal();
+        this.nRacionesOriginal = barco.getnRacionesOriginal();
+        this.nAmmoOriginal = barco.getnAmmoOriginal();
+        this.maquinaOrigen = barco.getMaquinaOrigen();
+
+        this.maquinaAnterior = barco.getMaquinaAnterior();
+        this.maquinaActual = barco.getMaquinaActual();
+        this.mapas = barco.getMapas();
+        this.cofre = barco.getCofre();
+        this.puertoOrigen = barco.getPuertoOrigen();
     }
     
    
