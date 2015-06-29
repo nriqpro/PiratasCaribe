@@ -139,7 +139,7 @@ public class ClienteEjemplo {
                 Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
                 
                 Mapa mapa2 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
-              //  Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
+                Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
                 Mapa mapa4 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");
                 Mapa mapa5 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
               
@@ -147,7 +147,7 @@ public class ClienteEjemplo {
                 bp.agregarMapa(mapa1);
                    //System.out.println("Error Agregar mapa");
                 bp.agregarMapa(mapa2);
-             //   bp.agregarMapa(mapa3);
+                bp.agregarMapa(mapa3);
                 bp.agregarMapa(mapa4);
                 bp.agregarMapa(mapa5);
                
@@ -164,7 +164,7 @@ public class ClienteEjemplo {
 			System.out.println(names[i]);*/
                 bp.setMaquinaActual(m.getNombre());
                 bp.setMaquinaAnterior(m.getNombre());
-                //bp.partir();
+                bp.partir();
                 registro.unbind(bp.getName());
                 
                 
