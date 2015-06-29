@@ -87,15 +87,30 @@ public class ClienteEjemplo {
             xml.leerMaquinas(numMaquina);
             m.setIslas(xml.islastemp);
             m.setCayos(xml.cayostemp);
+            System.out.println("El tamanio de las islas: "+m.getIslas().size() + " y cayos es de : : "+ m.getCayos().size());
             for (int i =  0 ; i < m.getIslas().size() ; i++){
                 System.out.println("Nombre Isla: "+m.getIslas().get(i).getNombre());
                 for (int j = 0 ;  j < m.getIslas().get(i).getSitios().size() ; j++){
                     System.out.println("\t "+m.getIslas().get(i).getSitios().get(j).getNombre());
+                    for (int k = 0 ; k < m.getIslas().get(i).getSitios().get(j).getCofre().getMapas().size() ; k++){
+                        System.out.println("\t\tMapas : cayo " + m.getIslas().get(i).getSitios().get(j).getCofre().getMapas().get(k).getNombreCayo()
+                                                        +" o sitio " + m.getIslas().get(i).getSitios().get(j).getCofre().getMapas().get(k).getNombreSitio());
+                    }
+                    for (int k = 0 ; k < m.getIslas().get(i).getSitios().get(j).getCofre().getTesoros().size() ; k++){
+                        System.out.println("\t\tTesoro : " + m.getIslas().get(i).getSitios().get(j).getCofre().getTesoros().get(k).getNombre());
+                    }
                 }
             }
             
             for (int i = 0 ; i < m.getCayos().size() ; i++){
                 System.out.println("Nombre Cayo: " + m.getCayos().get(i).getNombre());
+                for (int j = 0 ; j < m.getCayos().get(i).getCofre().getMapas().size() ; j++){
+                    System.out.println("\t Mapas: cayo" + m.getCayos().get(i).getCofre().getMapas().get(j).getNombreCayo() +
+                                                " o sitio " + m.getCayos().get(i).getCofre().getMapas().get(j).getNombreSitio());
+                }
+                for (int j = 0 ; j < m.getCayos().get(i).getCofre().getTesoros().size() ; j++){
+                    System.out.println("\t Tesoros: " + m.getCayos().get(i).getCofre().getTesoros().get(j).getNombre());
+                }
             }
             //System.out.println("Soy maquina: "+nombreMaquina);
             //Naming.rebind("rmi://192.168.0.114:8000/"+m.getNombreMaquina(), m);

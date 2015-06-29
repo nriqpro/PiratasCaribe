@@ -20,11 +20,11 @@ public class GestorRMI {
         ips = new HashMap<String,String>();
         puertos =  new HashMap<String,Integer>();
         
-        ips.put("server", "192.168.0.108");
-        ips.put("maquina1", "192.168.0.108");
-        ips.put("maquina2", "192.168.0.108");
-        ips.put("maquina3", "192.168.0.108");
-        ips.put("maquina4", "192.168.0.108");
+        ips.put("server", "192.168.1.102");
+        ips.put("maquina1", "192.168.1.102");
+        ips.put("maquina2", "192.168.1.102");
+        ips.put("maquina3", "192.168.1.102");
+        ips.put("maquina4", "192.168.1.102");
         
         puertos.put("server", 8000);
         puertos.put("maquina1", 8001);

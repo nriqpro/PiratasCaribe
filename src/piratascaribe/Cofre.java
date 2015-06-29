@@ -37,6 +37,14 @@ public class Cofre implements Serializable{
     public ArrayList<Tesoro> getTesoros(){
         return tesoros;
     }
+
+    public ArrayList<Mapa> getMapas() {
+        return mapas;
+    }
+
+    public void setMapas(ArrayList<Mapa> mapas) {
+        this.mapas = mapas;
+    }
     
     public Integer getPeso(){
         Integer peso = new Integer(0);
