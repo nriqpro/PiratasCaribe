@@ -141,7 +141,7 @@ public class ClienteEjemplo {
                 Mapa mapa2 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
                 Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
                 Mapa mapa4 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");
-                Mapa mapa5 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
+               // Mapa mapa5 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
               
                 System.out.println("cayo: "+mapa2.getNombreCayo() + "mapa boolean: "+ mapa2.esIsla());
                 bp.agregarMapa(mapa1);
@@ -149,7 +149,7 @@ public class ClienteEjemplo {
                 bp.agregarMapa(mapa2);
                 bp.agregarMapa(mapa3);
                 bp.agregarMapa(mapa4);
-                bp.agregarMapa(mapa5);
+               // bp.agregarMapa(mapa5);
                
                 //System.out.println("Cliente Ejemplo: " + bp.getMapas().get(bp.getSiguienteDestino()).getNombreSitio() + "Siguiente destino :"+ bp.getSiguienteDestino());
                 registro.rebind(/*urlServer+*/bp.getName(), bp);

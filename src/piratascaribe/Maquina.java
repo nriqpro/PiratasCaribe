@@ -159,11 +159,8 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                 for (int k = 0 ; islas.get(i).getSitios().get(j).getBarcos()!=null && k  < islas.get(i).getSitios().get(j).getBarcos().size() ; k++){
                     
                     if (islas.get(i).getSitios().get(j).getBarcos().get(k).getName().equalsIgnoreCase(nombreBarco)){
-                        /*System.out.println("En la isla "+islas.get(i).getNombre() +" sitio "+ islas.get(i).getSitios().get(j).getNombre());
-                    System.out.println("\t barco: "+ islas.get(i).getSitios().get(j).getBarcos().get(k).getName());
-                        islas.get(i).getSitios().get(j).getBarcos().remove(k);*/
-                        InterfazBarco barco = islas.get(i).getSitios().get(j).getBarcos().get(k);
-                        
+                        Barco barco = islas.get(i).getSitios().get(j).getBarcos().get(k);
+                        islas.get(i).getSitios().get(j).getBarcos().remove(k);
                         int x = barco.getSiguienteDestino();//ACOMODAR
                         if (x >= 0){
                              System.out.println("Siguiente destino:"+ barco.getMapas().get(x).getNombreIsla());
@@ -171,8 +168,9 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                              barco.partir();
                         }else{
                             System.out.println("He visitado todos mis lugares, me regreso al inicio");
+                            //barco.partir(barco.getMaquinaOrigen(),barco.getPuertoOrigen());
                         }
-                        islas.get(i).getSitios().get(j).getBarcos().remove(k);
+                        
                         return;
                     }
                 }
