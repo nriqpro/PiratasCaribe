@@ -44,8 +44,10 @@ public class Cayo implements Serializable{
         return barcos;
     }
     public void encallaBarco (Barco barco){
-        if (barcos!=null && barco!= null)
+        if (barcos!=null && barco!= null){
             this.barcos.add(barco);
+            //barco.cargarCofre(this.cofre);
+        }
         else
             System.out.println("Error en Cayo: encallaBarco 'barcos' o 'barco' null");
         
