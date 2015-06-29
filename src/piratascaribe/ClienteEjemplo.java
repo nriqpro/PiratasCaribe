@@ -129,15 +129,11 @@ public class ClienteEjemplo {
            /* InterfazServidor is = (InterfazServidor)registro.lookup("server");
             is.registroRebind(m, 2);*/
             System.out.println("Ahora esperare a que me llegue una consulta");
-            if (numMaquina==2){
-                maquina2 maquinaInterfaz = new maquina2();
-                maquinaInterfaz.setVisible(true);
-            }
+           
             if (numMaquina==1){
                 xml.leerBarcos(1);
                 Barco bp = xml.barcotemp;
-                maquina1 maquinaInterfaz = new maquina1();
-                maquinaInterfaz.setVisible(true);
+              
                // Barco bp = new Barco("La_Venganza_Errante",true,20,100,50);
                 /*bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
                 bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));*/

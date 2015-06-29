@@ -33,6 +33,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
     private static String actual = "actual";
     private static String siguiente = "siguiente";
     private ArrayList<ArrayList<String>> maquinas;
+    private Object maquinaInterfaz;
 
     public void setIslas(ArrayList<Isla> islas) {
         this.islas = islas;
@@ -55,6 +56,13 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
         Cofre cof = new Cofre(10000);
       
         Calamidad c = new Calamidad("Kraken",1.0,10,10,10);
+        switch (id){
+            case 1: maquinaInterfaz = new maquina1(); ((maquina1)maquinaInterfaz).setVisible(true); break;
+            case 2: maquinaInterfaz = new maquina2(); ((maquina2)maquinaInterfaz).setVisible(true);break;
+          //  case 3: maquinaInterfaz = new maquina3(); ((maquina3)maquinaInterfaz).setVisible(true);break;
+          //  case 4: maquinaInterfaz = new maquina4(); ((maquina4)maquinaInterfaz).setVisible(true);break;
+        }
+        
        /* Isla is = new Isla("Isla1");
         is.addSitio(new Sitio("Sitio1",cof,c));
         is.addSitio(new Sitio("Sitio2",cof,c));
