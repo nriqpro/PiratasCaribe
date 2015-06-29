@@ -8,7 +8,7 @@
 					<mapa>
 						<destino>Bahia de la Esperanza</destino>
 						<isla>Isla del Naufrago</isla>
-						<maquina>2</maquina>
+						<machine>2</machine>
 					</mapa>
 				</cofre>
 			</sitio>
@@ -17,7 +17,7 @@
 					<tesoro>Bolsa de Perlas</tesoro>
 					<mapa>
 						<destino>Cayo de los Pelicanos</destino>
-						<maquina>4</maquina>
+						<machine>4</machine>
 					</mapa>
 				</cofre>
 			</sitio>
@@ -33,7 +33,7 @@
 					<mapa>
 						<destino>Cala de los Martires</destino>
 						<isla>Isla Nueva Esperanzas</isla>
-						<maquina>1</maquina>
+						<machine>1</machine>
 					</mapa>
 				</cofre>
 		</cayo>
@@ -48,9 +48,6 @@
 			<sitio nombre="Puerto de La Reina"> 
 				<cofre>
 					<tesoro>Bolsa de Monedas de Oro</tesoro>
-					<mapa>
-						<destino>Playa de las Perlas</destino>
-					</mapa>
 				</cofre>
 			</sitio>
 			<sitio nombre="Bahia del Buen Reposo">
@@ -59,16 +56,13 @@
 					<mapa>
 						<destino>Cala de los Martires</destino>
 						<isla>Isla Nueva Esperanzas</isla>
-						<maquina>1</maquina>
+						<machine>1</machine>
 					</mapa>
 				</cofre>
 			</sitio>
 			<sitio nombre="Cueva de los Marineros">
 			<cofre>
 					<tesoro>Cofre de Joyas</tesoro>
-					<mapa>
-						<destino></destino>
-					</mapa>
 				</cofre>
 			</sitio>
 		</isla>
@@ -76,17 +70,11 @@
 			<sitio nombre="Bahia de la Esperanza"> 
 				<cofre>
 					<tesoro>Barra de Plata</tesoro>
-					<mapa>
-						<destino></destino>
-					</mapa>
 				</cofre>
 			</sitio>
 			<sitio nombre="Cueva del Bucanero"> 
 				<cofre>
 					<tesoro>Corazon de la Princesa</tesoro>
-					<mapa>
-						<destino></destino>
-					</mapa>
 				</cofre>
 			</sitio>
 		</isla>
@@ -104,9 +92,6 @@
 			<sitio nombre="Bahia del Buen Retiro"> 
 				<cofre>
 					<tesoro>Barra de Oro</tesoro>
-					<mapa>
-						<destino>Cueva de los Marineros</destino>
-					</mapa>
 				</cofre>
 			</sitio>
 		</isla>
@@ -114,27 +99,18 @@
 			<sitio nombre="Bahia de las Flores"> 
 				<cofre>
 					<tesoro>Bolsa de Perlas</tesoro>
-					<mapa>
-						<destino>Cueva de los Huesos</destino>
-					</mapa>
 				</cofre>
 			</sitio>
 			<sitio nombre="Cementerio de Barcos"> 
 				<cofre>
 					<tesoro>Barra de Plata</tesoro>
-					<mapa>
-						<destino></destino>
-					</mapa>
 				</cofre>
 			</sitio>
 		</isla>
 		<cayo nombre="Cayo de Barlovento"> 
 			<cofre>
 					<tesoro>Cofre de Joyas</tesoro>
-					<mapa>
-						<destino></destino>
-					</mapa>
-				</cofre>
+			</cofre>
 		</cayo>
 	</maquina>
 	<maquina id="4"> 
@@ -142,33 +118,21 @@
 			<sitio nombre="Puerto Rico"> 
 				<cofre>
 					<tesoro>Barra de Oro</tesoro>
-					<mapa>
-						<destino></destino>
-					</mapa>
 				</cofre>
 			</sitio>
 			<sitio nombre="Puerto de las Ballenas"> 
 				<cofre>
 					<tesoro>Cofre de Piedras Preciosas</tesoro>
-					<mapa>
-						<destino></destino>
-					</mapa>
 				</cofre>
 			</sitio>
 			<sitio nombre="Bahia del Tesoro Perdido"> 
 				<cofre>
 					<tesoro>Bolsa de Perlas</tesoro>
-					<mapa>
-						<destino></destino>
-					</mapa>
 				</cofre>
 			</sitio>
 			<sitio nombre="Cueva del Pirata"> 
 				<cofre>
 					<tesoro>Cofre de Joyas</tesoro>
-					<mapa>
-						<destino></destino>
-					</mapa>
 				</cofre>
 			</sitio>
 		</isla>
@@ -178,7 +142,7 @@
 					<mapa>
 						<destino>Bahia de las Flores</destino>
 						<isla>Isla las Aves</isla>
-						<maquina>3</maquina>
+						<machine>3</machine>
 					</mapa>
 				</cofre>
 		</cayo>

@@ -145,10 +145,10 @@ public class XMLParser {
                          Element eMapa = (Element) nMapa;
                          System.out.println("Destino Mapa: "+eMapa.getElementsByTagName("destino").item(0).getTextContent());
                          if(eMapa.getElementsByTagName("destino").item(0).getTextContent().startsWith("Cayo")){
-                             Mapa maptest = new Mapa(eMapa.getElementsByTagName("destino").item(0).getTextContent(),eMapa.getElementsByTagName("maquina").item(0).getTextContent());
+                             Mapa maptest = new Mapa(eMapa.getElementsByTagName("destino").item(0).getTextContent(),eMapa.getElementsByTagName("machine").item(0).getTextContent());
                              System.out.println("Esto es un Cayo: "+maptest.getNombreCayo() + " en maquina: " + maptest.getNombreMaquina());
                          }else{
-                             Mapa maptest = new Mapa(eMapa.getElementsByTagName("destino").item(0).getTextContent(),eMapa.getElementsByTagName("isla").item(0).getTextContent(),eMapa.getElementsByTagName("maquina").item(0).getTextContent());
+                             Mapa maptest = new Mapa(eMapa.getElementsByTagName("destino").item(0).getTextContent(),eMapa.getElementsByTagName("isla").item(0).getTextContent(),eMapa.getElementsByTagName("machine").item(0).getTextContent());
                              System.out.println("Esto es una isla: "+maptest.getNombreIsla() + " en maquina: " + maptest.getNombreMaquina());
                          }
                      }
