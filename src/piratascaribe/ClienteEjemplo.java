@@ -99,6 +99,9 @@ public class ClienteEjemplo {
                     for (int k = 0 ; k < m.getIslas().get(i).getSitios().get(j).getCofre().getTesoros().size() ; k++){
                         System.out.println("\t\tTesoro : " + m.getIslas().get(i).getSitios().get(j).getCofre().getTesoros().get(k).getNombre());
                     }
+                    for (int k = 0 ; k < m.getIslas().get(i).getSitios().get(j).getBarcos().size() ; k++){
+                        System.out.println("\t\tBarcos: "+m.getIslas().get(i).getSitios().get(j).getBarcos().get(k).getName());
+                    }
                 }
             }
             
@@ -111,6 +114,10 @@ public class ClienteEjemplo {
                 for (int j = 0 ; j < m.getCayos().get(i).getCofre().getTesoros().size() ; j++){
                     System.out.println("\t Tesoros: " + m.getCayos().get(i).getCofre().getTesoros().get(j).getNombre());
                 }
+                for (int j = 0 ;  j < m.getCayos().get(i).getBarcos().size() ; j++){
+                    System.out.println("\t Barcos: " + m.getCayos().get(i).getBarcos().get(j).getName());
+                }
+                
             }
             //System.out.println("Soy maquina: "+nombreMaquina);
             //Naming.rebind("rmi://192.168.0.114:8000/"+m.getNombreMaquina(), m);
@@ -132,11 +139,19 @@ public class ClienteEjemplo {
                 Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
                 
                 Mapa mapa2 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
+              //  Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
+                Mapa mapa4 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");
+                Mapa mapa5 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
+              
                 System.out.println("cayo: "+mapa2.getNombreCayo() + "mapa boolean: "+ mapa2.esIsla());
-               if ( bp.agregarMapa(mapa1)==-1)
-                   System.out.println("Error Agregar mapa");
+                bp.agregarMapa(mapa1);
+                   //System.out.println("Error Agregar mapa");
                 bp.agregarMapa(mapa2);
-                System.out.println("Cliente Ejemplo: " + bp.getMapas().get(bp.getSiguienteDestino()).getNombreSitio() + "Siguiente destino :"+ bp.getSiguienteDestino());
+             //   bp.agregarMapa(mapa3);
+                bp.agregarMapa(mapa4);
+                bp.agregarMapa(mapa5);
+               
+                //System.out.println("Cliente Ejemplo: " + bp.getMapas().get(bp.getSiguienteDestino()).getNombreSitio() + "Siguiente destino :"+ bp.getSiguienteDestino());
                 registro.rebind(/*urlServer+*/bp.getName(), bp);
               //  registro.rebind(urlServer+bp.getName(), m);
                 
@@ -149,7 +164,7 @@ public class ClienteEjemplo {
 			System.out.println(names[i]);*/
                 bp.setMaquinaActual(m.getNombre());
                 bp.setMaquinaAnterior(m.getNombre());
-                bp.partir();
+                //bp.partir();
                 registro.unbind(bp.getName());
                 
                 

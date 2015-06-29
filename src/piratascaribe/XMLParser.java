@@ -59,7 +59,7 @@ public class XMLParser {
                                 Integer.parseInt(eElement.getElementsByTagName("raciones").item(0).getTextContent()),
                                 Integer.parseInt(eElement.getElementsByTagName("municiones").item(0).getTextContent()));
                         this.barcotemp.setPuertoOrigen(eElement.getElementsByTagName("origen").item(0).getTextContent());
-                        System.out.println("No Llega");
+                       // System.out.println("No Llega");
                         }
 		}
 	}

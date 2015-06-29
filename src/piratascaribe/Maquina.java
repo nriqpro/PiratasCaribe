@@ -270,7 +270,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                         if (cayos.get(i).getNombre().equalsIgnoreCase(mapa.getNombreCayo())){
                             
                              System.out.println("Lo he ubicado en el cayo: "+cayos.get(i).getNombre());
-                            if (cayos.get(i).getBarcos().size() > 1){
+                            if ( cayos.get(i).getBarcos()!=null && cayos.get(i).getBarcos().size() > 1){
                                 //verificar que faccion son
                                  //si son diferentes pelear
                                  //si sn 3 barcos pelear de una
@@ -279,7 +279,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                             }
                                  else{//ocurre calamidad solo ocurre calamidad si hay un solo barco
                                         Calamidad calamidad =cayos.get(i).getCalamidad();
-                                        if (calamidad.ocurreCalamidad()){//true ocurre calamidad
+                                        if (calamidad!=null && calamidad.ocurreCalamidad()){//true ocurre calamidad
                                             System.out.println("Oh no! Ha ocurrido: " + calamidad.getNombre());
                                             System.out.println("ELEMENTOS ORIGINALES");
                                             System.out.println("Tripulacion: "+barco.getnTripulacion());

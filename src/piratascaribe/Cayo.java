@@ -47,7 +47,7 @@ public class Cayo implements Serializable{
         if (barcos!=null && barco!= null)
             this.barcos.add(barco);
         else
-            System.out.println("Error en Cayo: encallaBarco 'cayos' o 'cayo' null");
+            System.out.println("Error en Cayo: encallaBarco 'barcos' o 'barco' null");
         
     }
 
