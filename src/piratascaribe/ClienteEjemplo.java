@@ -129,12 +129,14 @@ public class ClienteEjemplo {
                // Barco bp = new Barco("La_Venganza_Errante",true,20,100,50);
                 /*bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
                 bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));*/
-                Mapa mapa1 = new Mapa("1","Isla Nuevas Esperanzas","Puerto Real");
+                Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
                 
-                Mapa mapa2 = new Mapa("2","Cayo del Buen Viento");
-                
-                bp.agregarMapa(mapa1);
+                Mapa mapa2 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
+                System.out.println("cayo: "+mapa2.getNombreCayo() + "mapa boolean: "+ mapa2.esIsla());
+               if ( bp.agregarMapa(mapa1)==-1)
+                   System.out.println("Error Agregar mapa");
                 bp.agregarMapa(mapa2);
+                System.out.println("Cliente Ejemplo: " + bp.getMapas().get(bp.getSiguienteDestino()).getNombreSitio() + "Siguiente destino :"+ bp.getSiguienteDestino());
                 registro.rebind(/*urlServer+*/bp.getName(), bp);
               //  registro.rebind(urlServer+bp.getName(), m);
                 

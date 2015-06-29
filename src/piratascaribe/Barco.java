@@ -178,14 +178,6 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         for (int i = 0 ; i < mapas.size() ; i++){
             if (mapas.get(i).getEstado().equalsIgnoreCase(no_visitado))
                     return i;
-          /*  if (mapas.get(i).esIsla()){// si es isla devuelve el nombre de la isla
-                if (mapas.get(i).getEstado().equalsIgnoreCase("no visitado"))
-                    return i;
-            }
-            else{// si es cayo devuelve el nombre
-                if (mapas.get(i).getEstado().equalsIgnoreCase("no visitado"))
-                    return i;
-            }*/
         }
         return -1;
     }
@@ -244,6 +236,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
             String maquinaAct = this.maquinaActual;
             GestorRMI g = new  GestorRMI();
             String maquinaSiguiente = mapas.get(this.getSiguienteDestino()).getNombreMaquina();
+            System.out.println("Maquina Siguiente : " + maquinaSiguiente + "Mapas sitio "+ mapas.get(getSiguienteDestino()).getNombreSitio()+ "Cayo " + mapas.get(getSiguienteDestino()).getNombreCayo());
             Thread.sleep((long) (5 * 1000.0));
             Registry registroRemoto = LocateRegistry.getRegistry(g.getIp(maquinaSiguiente),g.getPuerto(maquinaSiguiente));
             InterfazMaquina m = (InterfazMaquina) registroRemoto.lookup(maquinaSiguiente);

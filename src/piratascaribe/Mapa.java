@@ -30,21 +30,21 @@ public class Mapa implements Serializable {
     public Mapa(String cayo, String maquina) {
         this.maquina="maquina"+maquina;
         this.cayo=cayo;
-        this.tipoLugar = false;
+        this.tipoLugar = new Boolean(false);
         this.estado = no_visitado;
     }
     public Mapa(String sitio, String isla, String maquina){
         this.maquina="maquina"+maquina;
         this.isla=isla;
         this.sitio=sitio;
-        this.tipoLugar= true;
+        this.tipoLugar= new Boolean(true);
         this.estado = no_visitado;
     }
     
 
     public void setIsla(String isla) {
         this.isla = isla;
-        this.tipoLugar = true;
+        this.tipoLugar = new Boolean(true);
     }
     
     public Boolean esIsla(){

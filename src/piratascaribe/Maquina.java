@@ -209,7 +209,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
         try{
             int sigDest = barco.getSiguienteDestino();
             Mapa mapa;
-            System.out.println("El siguiente destino que tiene el barco es: " + barco.getMapas().get(sigDest).getNombreSitio());
+            System.out.println("El siguiente destino que tiene el barco es:" + barco.getMapas().get(sigDest).getNombreSitio());
             for (int i = 0 ; i < islas.size() ; i++){
                 for (int j = 0 ; j < islas.get(i).getSitios().size() ; j++){
                     System.out.println(islas.get(i).getNombre()+"/"+islas.get(i).getSitios().get(j).getNombre());
