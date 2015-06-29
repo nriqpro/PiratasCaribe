@@ -106,6 +106,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
            b.setMaquinaAnterior(nombreMaquinaAnterior);
            ubicarBarco(b);
 //           barco.marcarMapa()
+           
            izarVelas(b.getName());
            System.out.println("El barco ha partido");
           
@@ -166,9 +167,13 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                              System.out.println("Siguiente destino:"+ barco.getMapas().get(x).getNombreIsla());
                              System.out.println("partir");
                              barco.partir();
+                        }else if (barco.getMapaOrigen().getNombreMaquina().equalsIgnoreCase(this.nombre)){
+                            System.out.println("He retornado a mi origen hacer algo...");
+                            
+                            
                         }else{
                             System.out.println("He visitado todos mis lugares, me regreso al inicio");
-                            //barco.partir(barco.getMaquinaOrigen(),barco.getPuertoOrigen());
+                            barco.partirOrigen();
                         }
                         
                         return;
@@ -207,12 +212,13 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
         try{
             int sigDest = barco.getSiguienteDestino();
             Mapa mapa;
-            System.out.println("El siguiente destino que tiene el barco es:" + barco.getMapas().get(sigDest).getNombreSitio());
+         
+            /*System.out.println("El siguiente destino que tiene el barco es:" + barco.getMapas().get(sigDest).getNombreSitio());
             for (int i = 0 ; i < islas.size() ; i++){
                 for (int j = 0 ; j < islas.get(i).getSitios().size() ; j++){
                     System.out.println(islas.get(i).getNombre()+"/"+islas.get(i).getSitios().get(j).getNombre());
                 }
-            }
+            }*/
             //System.out.println("Debo ubicarlo en ");
             if (sigDest >= 0){//encontro destino con exito
                 barco.marcarMapa(sigDest);//marcamos el sitio donde estabamos anteriormente como visitado
@@ -228,7 +234,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                             sitios = islas.get(i).getSitios();
                             for (int j = 0 ; j < sitios.size() ; j++){
                                 if (sitios.get(j).getNombre().equalsIgnoreCase(mapa.getNombreSitio())){
-                                    
+
                                     System.out.println("Lo he ubicado en el sitio: "+sitios.get(j).getNombre());
                                     if (sitios.get(j).getBarcos()!=null && sitios.get(j).getBarcos().size() >= 1){ //hay mas de dos barcos encallados 
                                         //verificar que faccion son
@@ -236,7 +242,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                                         //si sn 3 barcos pelear de una
                                         System.out.println("Se han encontado dos barcos en la maquina(isla): "
                                                 +this.nombre+"IMPLEMENTAR CODIGO PELEA");
-                                        
+
                                     }
                                     else{//ocurre calamidad solo ocurre calamidad si hay un solo barco
                                         Calamidad calamidad =sitios.get(j).getCalamidad();
@@ -253,7 +259,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                                             System.out.println("Tripulacion: "+barco.getnTripulacion());
                                             System.out.println("Ammo: "+barco.getnAmmo());
                                             System.out.println("Raciones: "+barco.getnRaciones());
-                                            
+
                                         }
                                     }
                                     sitios.get(j).encallaBarco(barco);
@@ -261,12 +267,12 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                             }
                         }
                     }
-              
+
                 }else{
                     int i;
                     for ( i = 0 ; i < cayos.size() ; i++){
                         if (cayos.get(i).getNombre().equalsIgnoreCase(mapa.getNombreCayo())){
-                            
+
                              System.out.println("Lo he ubicado en el cayo: "+cayos.get(i).getNombre());
                             if ( cayos.get(i).getBarcos()!=null && cayos.get(i).getBarcos().size() > 1){
                                 //verificar que faccion son
@@ -290,7 +296,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                                             System.out.println("Tripulacion: "+barco.getnTripulacion());
                                             System.out.println("Ammo: "+barco.getnAmmo());
                                             System.out.println("Raciones: "+barco.getnRaciones());
-                                            
+
                                         }
                                     }
                             cayos.get(i).encallaBarco(barco);
@@ -300,8 +306,31 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                         System.out.println("Error en Maquina: Nombre de Cayo no se logra ubicar en esta maquina");
                     }
                 }
-              
+
             }else{ //no encontro destino
+                if (barco.getMapaOrigen().esIsla()){
+                    for (int i = 0 ; islas!=null && i < islas.size() ; i++){
+                        if (islas.get(i).getNombre().equalsIgnoreCase(barco.getMapaOrigen().getNombreIsla())){
+                            for (int j = 0 ; islas.get(i).getSitios()!=null && j < islas.get(i).getSitios().size() ; j++){
+                                if (islas.get(i).getSitios().get(j).getNombre().equalsIgnoreCase(barco.getMapaOrigen().getNombreSitio())){
+                                    islas.get(i).getSitios().get(j).encallaBarco(barco);
+                                    System.out.println("Lo he ubicado en sitio origen: "+islas.get(i).getSitios().get(j).getNombre());
+                                   
+                                }
+                            }
+                        }
+                    }
+                }
+                else{
+                    for (int i = 0 ; cayos!=null && i < cayos.size() ; i++){
+                        if (cayos.get(i).getNombre().equalsIgnoreCase(barco.getMapaOrigen().getNombreCayo())){
+                            cayos.get(i).encallaBarco(barco);
+                            System.out.println("Lo he ubicado en el cayo origen: "+cayos.get(i).getNombre());
+                           
+                        }
+                    }
+                    
+                }
                 System.out.println("Error Maquina: ubicarBarco no se ha encontrado siguente destino");
             }
             

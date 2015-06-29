@@ -32,13 +32,14 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     private String maquinaAnterior;
     private String maquinaActual;
     private ArrayList<Mapa> mapas;
-     private static String visitado = "visitado";
+    private static String visitado = "visitado";
     private static String no_visitado = "no_visitado";
     private static String actual = "actual";
     private static String siguiente = "siguiente";
     
     private Cofre cofre;
     private String puertoOrigen;
+    private Mapa mapaOrigen;
     //private ArrayList<Kapa> mapas;
     
     public Barco() throws RemoteException{
@@ -63,7 +64,17 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
             this.cofre = new Cofre(50);
                 
     }
+    @Override
+    public Mapa getMapaOrigen() {
+        return mapaOrigen;
+    }
 
+    public void setMapaOrigen(Mapa mapaOrigen) {
+        this.mapaOrigen = mapaOrigen;
+    }
+
+    
+    
     public void setMaquinaOrigen(String maquinaOrigen) {
         this.maquinaOrigen = maquinaOrigen;
     }
@@ -224,7 +235,6 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     }
     
     
-    
     @Override
     public void partir() throws RemoteException{
       /*  String ipServer = "192.168.1.102";
@@ -253,6 +263,34 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
      
     }
     
+    @Override
+    public void partirOrigen() throws RemoteException{
+      /*  String ipServer = "192.168.1.102";
+        int puertoServer = 8000;
+        String urlServer = "rmi://"+ipServer+":"+puertoServer+"/";*/
+       //InterfazMaquina machine;
+       //Thread.sleep((long) (10 * 1000.0));
+        try {
+            String maquinaAct = this.maquinaActual;
+            GestorRMI g = new  GestorRMI();
+            String maquinaSiguiente = this.mapaOrigen.getNombreMaquina();
+            System.out.println("Maquina Siguiente : " + maquinaSiguiente + "Mapas sitio "+ mapaOrigen.getNombreSitio()+ "Cayo " + mapaOrigen.getNombreCayo());
+            Thread.sleep((long) (5 * 1000.0));
+            Registry registroRemoto = LocateRegistry.getRegistry(g.getIp(maquinaSiguiente),g.getPuerto(maquinaSiguiente));
+            InterfazMaquina m = (InterfazMaquina) registroRemoto.lookup(maquinaSiguiente);
+            System.out.println("nombre maquina " + m.getNombre());
+            m.recibirBarco(this.getName(),maquinaActual);
+            
+            
+            
+        } catch (Exception e) {
+            System.out.println("Error en Barco : partir()");
+            e.printStackTrace();
+        }
+     
+     
+    }
+    
     public void copiarBarco (InterfazBarco barco) throws RemoteException{
         this.nombre = barco.getName();
         this.pirata = barco.getPirata();
@@ -263,6 +301,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         this.nRacionesOriginal = barco.getnRacionesOriginal();
         this.nAmmoOriginal = barco.getnAmmoOriginal();
         this.maquinaOrigen = barco.getMaquinaOrigen();
+        this.mapaOrigen = barco.getMapaOrigen();
 
         this.maquinaAnterior = barco.getMaquinaAnterior();
         this.maquinaActual = barco.getMaquinaActual();

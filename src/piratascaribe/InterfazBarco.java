@@ -41,6 +41,8 @@ public interface InterfazBarco extends Remote{
     public int marcarMapa(int i) throws RemoteException;
     public void partir() throws RemoteException;
     
+      public void partirOrigen() throws RemoteException;
+    
     public String getMaquinaAnterior() throws RemoteException;
 
     public void setMaquinaAnterior(String maquinaAnterior) throws RemoteException;
@@ -58,6 +60,8 @@ public interface InterfazBarco extends Remote{
     public Integer getnAmmoOriginal() throws RemoteException;
 
     public String getMaquinaOrigen() throws RemoteException ;
+    
+    public Mapa getMapaOrigen() throws RemoteException;
     
     
 
