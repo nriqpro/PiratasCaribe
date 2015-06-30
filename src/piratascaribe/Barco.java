@@ -28,7 +28,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     private Integer nRacionesOriginal;
     private Integer nAmmoOriginal;
     private String maquinaOrigen;
-    
+    public Boolean enRetirada;
     private String maquinaAnterior;
     private String maquinaActual;
     private ArrayList<Mapa> mapas;
@@ -55,6 +55,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         this.nAmmo =nAmmoOriginal;
         this.nTripulacion = nTripulacionOriginal;
         this.nRaciones = nRacionesOriginal;
+        this.enRetirada=false;
         this.mapas = new ArrayList<Mapa>();
         if (pirata){
             //crear cofree con capacidad 100

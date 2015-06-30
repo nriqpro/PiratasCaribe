@@ -127,6 +127,7 @@ public class XMLParser {
      
      public Cofre listarTesoros(Node nodo){
          Cofre cofretemp = new Cofre(10000);
+         ArrayList<Mapa> mapaslist = new ArrayList<>();
          NodeList lista = nodo.getChildNodes();
          for(int i=0; i<lista.getLength();i++){
              Node nCofre = lista.item(i);
@@ -146,13 +147,14 @@ public class XMLParser {
                          System.out.println("Destino Mapa: "+eMapa.getElementsByTagName("destino").item(0).getTextContent());
                          if(eMapa.getElementsByTagName("destino").item(0).getTextContent().startsWith("Cayo")){
                              Mapa maptest = new Mapa(eMapa.getElementsByTagName("destino").item(0).getTextContent(),eMapa.getElementsByTagName("machine").item(0).getTextContent());
-                             System.out.println("Esto es un Cayo: "+maptest.getNombreCayo() + " en maquina: " + maptest.getNombreMaquina());
-                         }else{
+                             mapaslist.add(maptest);
+                             }else{
                              Mapa maptest = new Mapa(eMapa.getElementsByTagName("destino").item(0).getTextContent(),eMapa.getElementsByTagName("isla").item(0).getTextContent(),eMapa.getElementsByTagName("machine").item(0).getTextContent());
-                             System.out.println("Esto es una isla: "+maptest.getNombreIsla() + " en maquina: " + maptest.getNombreMaquina());
-                         }
+                             mapaslist.add(maptest);
+                             }
                      }
                  }
+                 cofretemp.setMapas(mapaslist);
              }
          }
          return cofretemp;
