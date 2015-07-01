@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class maquina2 extends javax.swing.JFrame {
     private static final long serialVersionUID = 1L;
-    private Map coordenadas = new HashMap<String,Coordenada>();
+     private Map<String,Coordenada> coordenadas = new HashMap<String,Coordenada>();
     
     public maquina2() {
         initComponents();
@@ -18,7 +18,7 @@ public class maquina2 extends javax.swing.JFrame {
      */
                             
     private void initComponents() {
-        this.setTitle("Maquina 1");
+        this.setTitle("Maquina 2");
         PuertodeLaReina = new javax.swing.JLabel();
         BahiadelaEsperanza = new javax.swing.JLabel();
         CuevadelosMarineros = new javax.swing.JLabel();
@@ -69,7 +69,7 @@ public class maquina2 extends javax.swing.JFrame {
         });
     }*/
 
-    public Map getCoordenadas (){
+    public Map<String,Coordenada> getCoordenadas (){
         return coordenadas;
     }
     // Variables declaration - do not modify                     

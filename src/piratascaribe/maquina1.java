@@ -15,7 +15,7 @@ import java.util.Map;
 public class maquina1 extends javax.swing.JFrame {
     
     
-    private Map coordenadas = new HashMap<String,Coordenada>();
+    private Map<String,Coordenada> coordenadas = new HashMap<String,Coordenada>();
     
     
     public maquina1() {
@@ -96,9 +96,11 @@ public class maquina1 extends javax.swing.JFrame {
            // new maquina1().setVisible(true);
       //  });
     //}
-    public Map getCoordenadas (){
+    public Map<String,Coordenada> getCoordenadas (){
         return coordenadas;
     }
+    
+    
     // Variables declaration - do not modify                     
     private javax.swing.JLabel IslaNuevaEsperanzas;
     private javax.swing.JLabel PuertoReal;

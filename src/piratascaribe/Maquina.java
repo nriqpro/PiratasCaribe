@@ -65,8 +65,8 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                 maquinaInterfaz = new maquina2();
                 ((maquina2) maquinaInterfaz).setVisible(true);
                 break;
-            //  case 3: maquinaInterfaz = new maquina3(); ((maquina3)maquinaInterfaz).setVisible(true);break;
-            //  case 4: maquinaInterfaz = new maquina4(); ((maquina4)maquinaInterfaz).setVisible(true);break;
+              case 3: maquinaInterfaz = new maquina3(); ((maquina3)maquinaInterfaz).setVisible(true);break;
+              case 4: maquinaInterfaz = new maquina4(); ((maquina4)maquinaInterfaz).setVisible(true);break;
         }
 
         /* Isla is = new Isla("Isla1");
@@ -252,6 +252,24 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                                 if (sitios.get(j).getNombre().equalsIgnoreCase(mapa.getNombreSitio())) {
 
                                     System.out.println("Lo he ubicado en el sitio: " + sitios.get(j).getNombre());
+                                    
+                                    switch (id) {
+                                    case 1:
+                                        
+                                      System.out.println("Que tiene como coordenadas X:" + 
+                                             ((maquina1)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getX() + ", Y: "+
+                                             ((maquina1)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getY() ); break;
+                                    case 2:
+                                        System.out.println("Que tiene como coordenadas X:" + 
+                                             ((maquina2)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getX() + ", Y: "+
+                                             ((maquina2)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getY() ); break;
+                                      case 3:  System.out.println("Que tiene como coordenadas X:" + 
+                                             ((maquina3)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getX() + ", Y: "+
+                                             ((maquina3)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getY() ); break;
+                                      case 4: System.out.println("Que tiene como coordenadas X:" + 
+                                             ((maquina4)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getX() + ", Y: "+
+                                             ((maquina4)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getY() ); break;
+                                }
                                     if (sitios.get(j).getBarcos() != null && sitios.get(j).getBarcos().size() >= 1) { //hay mas de dos barcos encallados 
                                         System.out.println("Se han encontado dos barcos en la maquina(isla): "
                                                 + this.nombre);
