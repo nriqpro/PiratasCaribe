@@ -5,6 +5,7 @@
  */
 package piratascaribe;
 
+import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,6 +16,8 @@ import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.HashMap;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -33,7 +36,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
     private static String actual = "actual";
     private static String siguiente = "siguiente";
     private ArrayList<ArrayList<String>> maquinas;
-    private Object maquinaInterfaz;
+    private MaquinaGui maquinaInterfaz;
 
     public void setIslas(ArrayList<Isla> islas) {
         this.islas = islas;
@@ -56,18 +59,9 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
         Cofre cof = new Cofre(10000);
 
         Calamidad c = new Calamidad("Kraken", 1.0, 10, 10, 10);
-        switch (id) {
-            case 1:
-                maquinaInterfaz = new maquina1();
-                ((maquina1) maquinaInterfaz).setVisible(true);
-                break;
-            case 2:
-                maquinaInterfaz = new maquina2();
-                ((maquina2) maquinaInterfaz).setVisible(true);
-                break;
-              case 3: maquinaInterfaz = new maquina3(); ((maquina3)maquinaInterfaz).setVisible(true);break;
-              case 4: maquinaInterfaz = new maquina4(); ((maquina4)maquinaInterfaz).setVisible(true);break;
-        }
+        
+        maquinaInterfaz = new MaquinaGui(id);
+        maquinaInterfaz.setVisible(true);
 
         /* Isla is = new Isla("Isla1");
          is.addSitio(new Sitio("Sitio1",cof,c));
@@ -118,11 +112,14 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
             //hacer aqui procedimiento para dibujar interfaz barco moviendose a destino
             b.setMaquinaActual(this.nombre);
             b.setMaquinaAnterior(nombreMaquinaAnterior);
-            ubicarBarco(b);
+            
+            Runnable hg =new HiloGui(b);
+            new Thread(hg).start();
+           /* ubicarBarco(b);
 //           barco.marcarMapa()
 
             izarVelas(b.getName());
-            System.out.println("El barco ha partido");
+            System.out.println("El barco ha partido");*/
 
             //  System.out.println("Siguiente destino:"+barco.getSiguienteDestino());
         } catch (Exception e) {
@@ -178,9 +175,15 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                         Barco barco = islas.get(i).getSitios().get(j).getBarcos().get(k);
                         islas.get(i).getSitios().get(j).getBarcos().remove(k);
                         int x = barco.getSiguienteDestino();//ACOMODAR
+                        
+                        //borramos el barco
+                        borrarBarcoGui(barco.getName());
+                        
+                        //maquinaInterfaz.remo
                         if (x >= 0) {
                             System.out.println("Siguiente destino:" + barco.getMapas().get(x).getNombreIsla());
                             System.out.println("partir");
+                            
                             barco.partir();
                         } else if (barco.getMapaOrigen().getNombreMaquina().equalsIgnoreCase(this.nombre)) {
                             System.out.println("He retornado a mi origen hacer algo...");
@@ -190,6 +193,8 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                             System.out.println("He visitado todos mis lugares, me regreso al inicio");
                             barco.partirOrigen();
                         }
+                        
+                        
 
                         return;
                     }
@@ -205,7 +210,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                      cayos.get(i).getBarcos().remove(j);*/
 
                     Barco barco = cayos.get(i).getBarcos().get(j);
-
+                    borrarBarcoGui(barco.getName());
                     int x = barco.getSiguienteDestino();
                     if (x >= 0) {
                         System.out.println("Siguiente destino:" + barco.getMapas().get(x).getNombreIsla());//ACOMODAR NO SOLO ISLA
@@ -251,25 +256,13 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                             for (int j = 0; j < sitios.size(); j++) {
                                 if (sitios.get(j).getNombre().equalsIgnoreCase(mapa.getNombreSitio())) {
 
-                                    System.out.println("Lo he ubicado en el sitio: " + sitios.get(j).getNombre());
+                                   /* System.out.println("Lo he ubicado en el sitio: " + sitios.get(j).getNombre());
+                                    System.out.println("Que tiene como coordenadas:  X: "+maquinaInterfaz.getCoordenadas().get(sitios.get(j).getNombre()).getX()
+                                                        +" Y: " + maquinaInterfaz.getCoordenadas().get(sitios.get(j).getNombre()).getY());*/
                                     
-                                    switch (id) {
-                                    case 1:
-                                        
-                                      System.out.println("Que tiene como coordenadas X:" + 
-                                             ((maquina1)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getX() + ", Y: "+
-                                             ((maquina1)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getY() ); break;
-                                    case 2:
-                                        System.out.println("Que tiene como coordenadas X:" + 
-                                             ((maquina2)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getX() + ", Y: "+
-                                             ((maquina2)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getY() ); break;
-                                      case 3:  System.out.println("Que tiene como coordenadas X:" + 
-                                             ((maquina3)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getX() + ", Y: "+
-                                             ((maquina3)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getY() ); break;
-                                      case 4: System.out.println("Que tiene como coordenadas X:" + 
-                                             ((maquina4)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getX() + ", Y: "+
-                                             ((maquina4)maquinaInterfaz).getCoordenadas().get(sitios.get(j).getNombre()).getY() ); break;
-                                }
+                                    //pintamos el barco en la interfaz grafica..
+                                    pintarBarco(barco.getName() , maquinaInterfaz.getCoordenadas().get(sitios.get(j).getNombre()).getX() ,maquinaInterfaz.getCoordenadas().get(sitios.get(j).getNombre()).getY());
+                                    
                                     if (sitios.get(j).getBarcos() != null && sitios.get(j).getBarcos().size() >= 1) { //hay mas de dos barcos encallados 
                                         System.out.println("Se han encontado dos barcos en la maquina(isla): "
                                                 + this.nombre);
@@ -319,6 +312,8 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                         if (cayos.get(i).getNombre().equalsIgnoreCase(mapa.getNombreCayo())) {
 
                             System.out.println("Lo he ubicado en el cayo: " + cayos.get(i).getNombre());
+                            
+                            pintarBarco(barco.getName() , maquinaInterfaz.getCoordenadas().get(cayos.get(i).getNombre()).getX() , maquinaInterfaz.getCoordenadas().get(cayos.get(i).getNombre()).getY());
                             if (cayos.get(i).getBarcos() != null && cayos.get(i).getBarcos().size() > 1) {
                                 if (cayos.get(i).getBarcos().size() == 3) {
                                     if (cayos.get(i).getBarcos().get(0).enRetirada != true) {
@@ -437,6 +432,59 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                 b2.partirOrigen();
             }
             System.out.println("Combate Finalizado!");
+        }
+    }
+    
+    private void pintarBarco(String nombreBarco , int x , int y){
+        JLabel BarcoImg = new JLabel();
+        BarcoImg.setName(nombreBarco);
+        if (nombreBarco.equalsIgnoreCase("La_Venganza_Errante")){
+            BarcoImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/venganzaerrante.png")));
+
+        }
+            else if (nombreBarco.equalsIgnoreCase("El_Invencible")){
+                BarcoImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/invencible.png")));
+            }
+                else if (nombreBarco.equalsIgnoreCase("El_Interceptor")){
+                    BarcoImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/interceptor.png")));
+                }
+
+                BarcoImg.setBounds(x+10
+                        , y, 130, 120);
+                maquinaInterfaz.getContentPane().add(BarcoImg, 0);
+                maquinaInterfaz.revalidate();
+                maquinaInterfaz.repaint();
+    }
+    
+    private void borrarBarcoGui(String nombreBarco){
+        Component c[] = maquinaInterfaz.getContentPane().getComponents();
+        for (int index = 0 ; c!=null && index < c.length ; index++){
+            if (c[index].getName()!=null && c[index].getName().equalsIgnoreCase(nombreBarco)){
+                //System.out.println("Component he encontrado el barco: " +b);
+                maquinaInterfaz.remove(c[index]);
+                maquinaInterfaz.revalidate();
+                maquinaInterfaz.repaint();
+            }
+
+        }
+        
+    }
+    
+    private class HiloGui implements Runnable {
+        Barco b;
+        public HiloGui(Barco barco) {
+            this.b = barco;
+        }
+
+        public void run() {
+            try{
+               ubicarBarco(b);
+               Thread.sleep((long) (5 * 1000.0));
+               izarVelas(b.getName());
+               System.out.println("El barco ha partido");
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
     }
 }

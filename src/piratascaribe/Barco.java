@@ -248,7 +248,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
             GestorRMI g = new  GestorRMI();
             String maquinaSiguiente = mapas.get(this.getSiguienteDestino()).getNombreMaquina();
             System.out.println("Maquina Siguiente : " + maquinaSiguiente + "Mapas sitio "+ mapas.get(getSiguienteDestino()).getNombreSitio()+ "Cayo " + mapas.get(getSiguienteDestino()).getNombreCayo());
-            Thread.sleep((long) (5 * 1000.0));
+            Thread.sleep((long) (2 * 1000.0));
             Registry registroRemoto = LocateRegistry.getRegistry(g.getIp(maquinaSiguiente),g.getPuerto(maquinaSiguiente));
             InterfazMaquina m = (InterfazMaquina) registroRemoto.lookup(maquinaSiguiente);
             System.out.println("nombre maquina "+m.getNombre());

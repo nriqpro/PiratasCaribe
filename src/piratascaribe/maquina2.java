@@ -1,5 +1,6 @@
 package piratascaribe;
 
+import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,6 +74,11 @@ public class maquina2 extends javax.swing.JFrame {
         });
     }*/
 
+    
+    /*@Override
+    public void paint(Graphics g){
+        super.paint(g);
+    }*/
     public Map<String,Coordenada> getCoordenadas (){
         return coordenadas;
     }
