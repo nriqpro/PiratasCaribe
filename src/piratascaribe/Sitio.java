@@ -29,6 +29,10 @@ public class Sitio implements Serializable {
         this.barcos = new ArrayList<Barco>();
     }
 
+    public void setCalamidad(Calamidad calamidad) {
+        this.calamidad = calamidad;
+    }
+
     public String getNombre() {
         return nombre;
     }

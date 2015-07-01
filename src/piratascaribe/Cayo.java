@@ -39,6 +39,10 @@ public class Cayo implements Serializable{
     public Calamidad getCalamidad() {
         return calamidad;
     }
+
+    public void setCalamidad(Calamidad calamidad) {
+        this.calamidad = calamidad;
+    }
     
     public ArrayList<Barco> getBarcos(){
         return barcos;

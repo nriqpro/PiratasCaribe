@@ -96,6 +96,10 @@ public class XMLParser {
                                     Cayo cayot = new Cayo();
                                     cayot.setNombre(eLugar.getAttribute("nombre"));
                                     cayot.setCofre(listarTesoros(nLugar));
+                                    Calamidad calamidad = cargarCalamidad(nLugar);
+                                    if(calamidad!=null){
+                                                        cayot.setCalamidad(calamidad);
+                                                    }
                                     cayostemp.add(cayot);
                                 }else{
                                     ArrayList<Sitio> sitiostemp = new ArrayList<>();
@@ -108,6 +112,10 @@ public class XMLParser {
                                                     Sitio sitiot = new Sitio();
                                                     sitiot.setNombre(eSitio.getAttribute("nombre"));
                                                     sitiot.setCofre(listarTesoros(nSitio));
+                                                    Calamidad calamidad = cargarCalamidad(nSitio);
+                                                    if(calamidad!=null){
+                                                        sitiot.setCalamidad(calamidad);
+                                                    }
                                                     sitiostemp.add(sitiot);
                                                 }
                                             }
@@ -158,5 +166,25 @@ public class XMLParser {
              }
          }
          return cofretemp;
+     }
+     public Calamidad cargarCalamidad(Node nodo){
+         Calamidad calamidad;
+         Element entrada = (Element) nodo;
+         NodeList lista = entrada.getElementsByTagName("calamidad");
+         for(int i=0; i<lista.getLength();i++){
+             Node nCalamidad = lista.item(i);
+             if(nCalamidad.getNodeType()==Node.ELEMENT_NODE){
+                 Element eCalamidad = (Element) nCalamidad;
+                                 System.out.println("Calamidad: "+eCalamidad.getAttribute("nombre"));
+                                 String cNombre = eCalamidad.getAttribute("nombre");
+                                 Double cProb = Double.parseDouble(eCalamidad.getElementsByTagName("probabilidad").item(0).getTextContent());
+                                 Integer cTropas = Integer.parseInt(eCalamidad.getElementsByTagName("tropas").item(0).getTextContent());
+                                 Integer cAmmo = Integer.parseInt(eCalamidad.getElementsByTagName("municiones").item(0).getTextContent());
+                                 Integer cRaciones = Integer.parseInt(eCalamidad.getElementsByTagName("raciones").item(0).getTextContent());
+                                 calamidad = new Calamidad(cNombre,cProb/10,cTropas,cRaciones,cAmmo);
+                                 return calamidad;
+             }
+         }
+         return null;
      }
 }

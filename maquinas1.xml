@@ -42,6 +42,12 @@
 				</cofre>
 		</cayo>
 		<cayo nombre="Cayo de Sotavento"> 
+			<calamidad nombre="Tormenta">
+					<probabilidad>20</probabilidad>
+					<tropas>10</tropas>
+					<municiones>0</municiones>
+					<raciones>10</raciones>
+			</calamidad>
 			<cofre>
 					<tesoro>Cofre de Piedras Preciosas</tesoro>
 				</cofre>
@@ -60,7 +66,13 @@
 				</cofre>
 			</sitio>
 			<sitio nombre="Cueva de los Marineros">
-			<cofre>
+				<calamidad nombre="Emboscada de Piratas">
+					<probabilidad>20</probabilidad>
+					<tropas>10</tropas>
+					<municiones>5</municiones>
+					<raciones>20</raciones>
+				</calamidad>
+				<cofre>
 					<tesoro>Cofre de Joyas</tesoro>
 					<mapa>
 						<destino>Cayo de Barlovento</destino>
@@ -91,6 +103,12 @@
 				</cofre>
 			</sitio>
 			<sitio nombre="Cueva del Bucanero"> 
+				<calamidad nombre="Emboscada de Piratas">
+					<probabilidad>40</probabilidad>
+					<tropas>10</tropas>
+					<municiones>5</municiones>
+					<raciones>20</raciones>
+				</calamidad>
 				<cofre>
 					<tesoro>Corazon de la Princesa</tesoro>
 					<mapa>
@@ -109,6 +127,12 @@
 	<maquina  id="3">
 		<isla nombre="Isla Tortuga"> 
 			<sitio nombre="Cueva de los Huesos"> 
+				<calamidad nombre="Ataque de Esqueletos">
+					<probabilidad>30</probabilidad>
+					<tropas>20</tropas>
+					<municiones>10</municiones>
+					<raciones>0</raciones>
+			</calamidad>
 				<cofre>
 					<tesoro>Bolsa de Monedas de Oro</tesoro>
 				</cofre>
@@ -125,7 +149,13 @@
 					<tesoro>Bolsa de Perlas</tesoro>
 				</cofre>
 			</sitio>
-			<sitio nombre="Cementerio de Barcos"> 
+			<sitio nombre="Cementerio de Barcos">
+				<calamidad nombre="Huracan">
+					<probabilidad>60</probabilidad>
+					<tropas>30</tropas>
+					<municiones>30</municiones>
+					<raciones>30</raciones>
+				</calamidad> 
 				<cofre>
 					<tesoro>Barra de Plata</tesoro>
 					<mapa>
@@ -141,6 +171,12 @@
 			</sitio>
 		</isla>
 		<cayo nombre="Cayo de Barlovento"> 
+			<calamidad nombre="Tormenta">
+					<probabilidad>20</probabilidad>
+					<tropas>10</tropas>
+					<municiones>0</municiones>
+					<raciones>10</raciones>
+			</calamidad>
 			<cofre>
 					<tesoro>Cofre de Joyas</tesoro>
 					<mapa>
@@ -168,7 +204,13 @@
 					<tesoro>Cofre de Piedras Preciosas</tesoro>
 				</cofre>
 			</sitio>
-			<sitio nombre="Bahia del Tesoro Perdido"> 
+			<sitio nombre="Bahia del Tesoro Perdido">
+				<calamidad nombre="Huracan">
+					<probabilidad>40</probabilidad>
+					<tropas>30</tropas>
+					<municiones>30</municiones>
+					<raciones>30</raciones>
+				</calamidad> 
 				<cofre>
 					<tesoro>Bolsa de Perlas</tesoro>
 					<mapa>
@@ -184,6 +226,12 @@
 				</cofre>
 			</sitio>
 			<sitio nombre="Cueva del Pirata"> 
+				<calamidad nombre="Emboscada de Piratas">
+					<probabilidad>60</probabilidad>
+					<tropas>10</tropas>
+					<municiones>5</municiones>
+					<raciones>20</raciones>
+				</calamidad>
 				<cofre>
 					<tesoro>Cofre de Joyas</tesoro>
 					<mapa>
@@ -199,6 +247,12 @@
 			</sitio>
 		</isla>
 		<cayo nombre="Cayo de los Pelicanos"> 
+			<calamidad nombre="Pelicanos roban tu comida">
+					<probabilidad>50</probabilidad>
+					<tropas>0</tropas>
+					<municiones>0</municiones>
+					<raciones>30</raciones>
+			</calamidad>
 			<cofre>
 					<tesoro>Cofre de Piedras Preciosas</tesoro>
 				</cofre>
