@@ -39,19 +39,23 @@ public class maquina2 extends javax.swing.JFrame {
         BahiadelaEsperanza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/m2-esperanza.png"))); // NOI18N
         getContentPane().add(BahiadelaEsperanza);
         BahiadelaEsperanza.setBounds(180, 230, 90, 110);
-        coordenadas.put("Bahia del Buen Reposo", new Coordenada(180,230));
+        coordenadas.put("Bahia de la Esperanza", new Coordenada(180,230));
+        
         CuevadelosMarineros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/m2-cuevamarinero.png"))); // NOI18N
         getContentPane().add(CuevadelosMarineros);
         CuevadelosMarineros.setBounds(480, 70, 100, 80);
         coordenadas.put("Cueva de los Marineros", new Coordenada(480,70));
+        
         CuevadelBucanero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/m2-cuevabucanero.png"))); // NOI18N
         getContentPane().add(CuevadelBucanero);
         CuevadelBucanero.setBounds(90, 450, 93, 90);
         coordenadas.put("Cueva del Bucanero", new Coordenada(90,450));
+        
         BahiadelBuenReposo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/m2-reposo.png"))); // NOI18N
         getContentPane().add(BahiadelBuenReposo);
         BahiadelBuenReposo.setBounds(540, 230, 100, 80);
         coordenadas.put("Bahia del Buen Reposo", new Coordenada(540,230));
+        
         IslaLaHolandesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/maquina2.png"))); // NOI18N
         getContentPane().add(IslaLaHolandesa);
         IslaLaHolandesa.setBounds(0, 0, 800, 600);
