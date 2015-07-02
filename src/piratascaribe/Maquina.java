@@ -185,7 +185,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                             barco.imprimirContenido();
                             barco.imprimirOriginales();
                             barco.partirOrigen();
-                            islas.get(i).getSitios().get(j).getBarcos().remove(k);
+                            islas.get(i).getSitios().get(j).getBarcos().remove(barco);
                             return;
                             
                         }
@@ -227,7 +227,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                         }
                         
                        // borrarBarcoGui(barco.getName());
-                        islas.get(i).getSitios().get(j).getBarcos().remove(k);
+                        islas.get(i).getSitios().get(j).getBarcos().remove(barco);
                         return;
                     }
                 }
@@ -248,7 +248,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                             barco.imprimirContenido();
                             barco.imprimirOriginales();
                             barco.partirOrigen();
-                            cayos.get(i).getBarcos().remove(j);
+                            cayos.get(i).getBarcos().remove(barco);
                             return;
                             
                         }
@@ -277,7 +277,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                             barco.partirOrigen();
                         }
 
-                    cayos.get(i).getBarcos().remove(j);
+                    cayos.get(i).getBarcos().remove(barco);
                     return;
                 }
 
@@ -345,11 +345,11 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                                               //  combate(sitios.get(j).getBarcos().get(0), barco);
                                             }
                                             if (barco.enRetirada != true && sitios.get(j).getBarcos().get(1).enRetirada != true) {
-                                              //  combate(sitios.get(j).getBarcos().get(1), sitios.get(j).getBarcos().get(2));
+                                             //   combate(sitios.get(j).getBarcos().get(1), sitios.get(j).getBarcos().get(2));
                                             }
                                         } else {
                                             if (sitios.get(j).getBarcos().get(0).enRetirada != true) {
-                                               // combate(sitios.get(j).getBarcos().get(0), barco);
+                                             //   combate(sitios.get(j).getBarcos().get(0), barco);
                                             }
                                         }
 
@@ -392,10 +392,10 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                                       //  combate(cayos.get(i).getBarcos().get(0), barco);
                                     }
                                     if (barco.enRetirada != true && cayos.get(i).getBarcos().get(1).enRetirada != true) {
-                                       // combate(cayos.get(i).getBarcos().get(1), barco);
+                                      //  combate(cayos.get(i).getBarcos().get(1), barco);
                                     }
                                 } else {
-                                   // combate(cayos.get(i).getBarcos().get(0), barco);
+                                  //  combate(cayos.get(i).getBarcos().get(0), barco);
                                 }
                                 System.out.println("Se han encontado dos barcos en la maquina(cayo): "
                                         + this.nombre + "IMPLEMENTAR CODIGO PELEA");
