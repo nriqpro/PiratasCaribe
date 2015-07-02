@@ -416,6 +416,8 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                     b2.partir();
                 }
             } else {
+                Sfx cannon = new Sfx("combate.wav");
+                cannon.play();
                 int aux;
                 if (b1.getnTripulacion() > b2.getnTripulacion()) {
                     aux = b1.getnTripulacion() - b2.getnTripulacion();

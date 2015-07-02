@@ -124,8 +124,8 @@ public class ClienteEjemplo {
             registro.rebind(/*urlServer+*/m.getNombre(), m);
             System.out.println("Ahora esperare a que me llegue una consulta");
             String audioPath = "musica"+numMaquina+".wav";
-            Sonido musica = new Sonido(audioPath);
-            musica.play();
+            Musica musica = new Musica(audioPath);
+            //musica.play();
             if (numMaquina==1){
                 xml.leerBarcos(1);
                 Barco bp = xml.barcotemp;
@@ -138,14 +138,12 @@ public class ClienteEjemplo {
                 Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
                 //Mapa mapa2 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
                 Mapa mapa21 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
-<<<<<<< HEAD
                 Mapa mapa3 = new Mapa("Cayo de los Pelicanos","4");
                 Mapa mapa4 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");
-=======
-                Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
-                Mapa mapa4 = new Mapa("Cayo de Sotavento","1");
+                //Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
+                //Mapa mapa4 = new Mapa("Cayo de Sotavento","1");
                 Mapa mapa5 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");
->>>>>>> origin/master
+
                // Mapa mapa5 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
               
                 //System.out.println("cayo: "+mapa2.getNombreCayo() + "mapa boolean: "+ mapa2.esIsla());

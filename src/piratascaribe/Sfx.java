@@ -3,32 +3,26 @@
  * and open the template in the editor.
  */
 package piratascaribe;
+
 import java.io.File;
 import java.io.IOException;
- 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineEvent;
-import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
-import javax.sound.sampled.UnsupportedAudioFileException;
- 
+
 /**
- * This is an example program that demonstrates how to play back an audio file
- * using the Clip in Java Sound API.
- * @author www.codejava.net
  *
+ * @author John
  */
-public class Sonido implements Runnable 
+public class Sfx implements Runnable 
 {
 
     private String fileLocation;
 
-    public Sonido(String file) { 
+    public Sfx(String file) { 
         this.fileLocation=file;
     }
 
@@ -41,12 +35,10 @@ public class Sonido implements Runnable
     @Override
     public void run()
     {
-        while(true){
             playSound(fileLocation);
-        }
     }
 
-    private void playSound(String fileName) 
+    public void playSound(String fileName) 
     {
         File soundFile = new File(fileName);
         AudioInputStream audioInputStream = null;
