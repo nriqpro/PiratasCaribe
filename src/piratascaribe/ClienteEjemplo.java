@@ -155,7 +155,7 @@ public class ClienteEjemplo {
                 registro.rebind(/*urlServer+*/bp.getName(), bp);
                 bp.setMaquinaActual(m.getNombre());
                 bp.setMaquinaAnterior(m.getNombre());
-               // bp.partir();
+                bp.partir();
               //  registro.unbind(bp.getName());
                 
                 
@@ -195,12 +195,12 @@ public class ClienteEjemplo {
                 br1.setMaquinaActual(m.getNombre());
                 br1.setMaquinaAnterior(m.getNombre());
                 
-                registro.rebind(br1.getName(), br1);
+                registro.rebind(br2.getName(), br2);
                 br2.setMaquinaActual(m.getNombre());
                 br2.setMaquinaAnterior(m.getNombre());
                 
                 br2.partir(); //INTERCEPTOR
-              //  br1.partir(); //INVENCIBLE
+                br1.partir(); //INVENCIBLE
                 //Thread.sleep((long) (4 * 1000.0));
                // registro.unbind(br1.getName());
             }
