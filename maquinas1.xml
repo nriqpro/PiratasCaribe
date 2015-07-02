@@ -103,11 +103,11 @@
 				</cofre>
 			</sitio>
 			<sitio nombre="Cueva del Bucanero"> 
-				<calamidad nombre="Emboscada de Piratas">
+				<calamidad nombre="Kraken">
 					<probabilidad>40</probabilidad>
-					<tropas>10</tropas>
-					<municiones>5</municiones>
-					<raciones>20</raciones>
+					<tropas>30</tropas>
+					<municiones>10</municiones>
+					<raciones>30</raciones>
 				</calamidad>
 				<cofre>
 					<tesoro>Corazon de la Princesa</tesoro>
