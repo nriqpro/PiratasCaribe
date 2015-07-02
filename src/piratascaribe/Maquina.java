@@ -104,11 +104,15 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
             Registry registroLocal = LocateRegistry.getRegistry(g.getPuerto(nombre));
             Barco b = new Barco();
             b.copiarBarco(barco);
+            
             registroLocal.rebind(b.getName(), b);
-
+            b.imprimirTRA();
             //Elimino la referencia en la maquina anterior
-          /* InterfazMaquina m = (InterfazMaquina) registroRemoto.lookup(nombreMaquinaAnterior);
-             m.eliminarReferenciaBarco(nombreBarco, nombreMaquinaAnterior);*/
+            if (!nombreMaquinaAnterior.equalsIgnoreCase(this.nombre)){
+                System.out.println("Hola soy maquina " + this.nombre + "y debo eliminar la refenrecia de: "+nombreMaquinaAnterior);
+             InterfazMaquina m = (InterfazMaquina) registroRemoto.lookup(nombreMaquinaAnterior);
+             m.eliminarReferenciaBarco(nombreBarco, nombreMaquinaAnterior);
+            }
             //hacer aqui procedimiento para dibujar interfaz barco moviendose a destino
             b.setMaquinaActual(this.nombre);
             b.setMaquinaAnterior(nombreMaquinaAnterior);

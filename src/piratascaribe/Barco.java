@@ -85,6 +85,11 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     }
     
 
+    public void imprimirTRA(){
+        System.out.println ("Numero Tripulacion: "+ this.nTripulacion);
+        System.out.println ("Numero Raciones: "+ this.nRaciones);
+        System.out.println ("Numero Ammo: "+ this.nAmmo);
+    }
     @Override
     public void imprimirCofre() throws RemoteException{
         
@@ -248,10 +253,13 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
             GestorRMI g = new  GestorRMI();
             String maquinaSiguiente = mapas.get(this.getSiguienteDestino()).getNombreMaquina();
             System.out.println("Maquina Siguiente : " + maquinaSiguiente + "Mapas sitio "+ mapas.get(getSiguienteDestino()).getNombreSitio()+ "Cayo " + mapas.get(getSiguienteDestino()).getNombreCayo());
-            Thread.sleep((long) (2 * 1000.0));
+            Thread.sleep((long) (3 * 1000.0));
             Registry registroRemoto = LocateRegistry.getRegistry(g.getIp(maquinaSiguiente),g.getPuerto(maquinaSiguiente));
             InterfazMaquina m = (InterfazMaquina) registroRemoto.lookup(maquinaSiguiente);
             System.out.println("nombre maquina "+m.getNombre());
+            this.nTripulacion = nTripulacion - 10;
+            this.nRaciones = nRaciones - 10;
+            this.nAmmo = nAmmo - 10;
             m.recibirBarco(this.getName(),maquinaActual);
             
             

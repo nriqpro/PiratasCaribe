@@ -119,15 +119,9 @@ public class ClienteEjemplo {
                 }
                 
             }
-            //System.out.println("Soy maquina: "+nombreMaquina);
-            //Naming.rebind("rmi://192.168.0.114:8000/"+m.getNombreMaquina(), m);
             Registry registro = LocateRegistry.createRegistry(g.getPuerto(m.getNombre()));
-           // Registry registro = LocateRegistry.getRegistry(g.getIp(m.getNombre()), g.getPuerto(m.getNombre()));
             String urlServer =  "rmi://"+g.getIp(m.getNombre())+":"+g.getPuerto(m.getNombre())+"/";
-           //registro.rebind(urlServer+m.getNombre(), m);*/
             registro.rebind(/*urlServer+*/m.getNombre(), m);
-           /* InterfazServidor is = (InterfazServidor)registro.lookup("server");
-            is.registroRebind(m, 2);*/
             System.out.println("Ahora esperare a que me llegue una consulta");
             String audioPath = "musica"+numMaquina+".wav";
             Sonido musica = new Sonido(audioPath);
@@ -135,46 +129,35 @@ public class ClienteEjemplo {
             if (numMaquina==1){
                 xml.leerBarcos(1);
                 Barco bp = xml.barcotemp;
+<<<<<<< HEAD
                 
                // Barco bp = new Barco("La_Venganza_Errante",true,20,100,50);
                 /*bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
                 bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));*/
+=======
+>>>>>>> origin/master
                 Mapa mapaOrigen = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
               //  Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
-                
-                Mapa mapa2 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
-                Mapa mapa21 = new Mapa("Bahia del Buen Reposo","Isla La Holandesa","2");
+                Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
+                //Mapa mapa2 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
+                Mapa mapa21 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
                 Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
                 Mapa mapa4 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");
                // Mapa mapa5 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
               
-                System.out.println("cayo: "+mapa2.getNombreCayo() + "mapa boolean: "+ mapa2.esIsla());
+                //System.out.println("cayo: "+mapa2.getNombreCayo() + "mapa boolean: "+ mapa2.esIsla());
                 bp.setMapaOrigen(mapaOrigen);
-               // bp.agregarMapa(mapa1);
-                   //System.out.println("Error Agregar mapa");
                 System.out.println("Mapa origen :" + bp.getMapaOrigen().getNombreMaquina());
                 
-                bp.agregarMapa(mapa2);
+                bp.agregarMapa(mapa1);
                 bp.agregarMapa(mapa21);
                 bp.agregarMapa(mapa3);
                 bp.agregarMapa(mapa4);
-               // bp.agregarMapa(mapa5);
-               
-                //System.out.println("Cliente Ejemplo: " + bp.getMapas().get(bp.getSiguienteDestino()).getNombreSitio() + "Siguiente destino :"+ bp.getSiguienteDestino());
                 registro.rebind(/*urlServer+*/bp.getName(), bp);
-              //  registro.rebind(urlServer+bp.getName(), m);
-                
-               /* Registry registrom2 = LocateRegistry.getRegistry(g.getIp("maquina2"),g.getPuerto("maquina2"));
-                System.out.println("Imprimo Los Objetos Guardados En Maquina 2");
-                
-                String[] names = registrom2.list();
-                for (int i = 0; i <
-                names.length; i++)
-			System.out.println(names[i]);*/
                 bp.setMaquinaActual(m.getNombre());
                 bp.setMaquinaAnterior(m.getNombre());
                 bp.partir();
-                registro.unbind(bp.getName());
+              //  registro.unbind(bp.getName());
                 
                 
             }
@@ -183,52 +166,44 @@ public class ClienteEjemplo {
                 Barco br1 = xml.barcotemp;
                 xml.leerBarcos(3);
                 Barco br2 = xml.barcotemp;
-               // Barco bp = new Barco("La_Venganza_Errante",true,20,100,50);
-                /*bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
-                bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));*/
                 Mapa mapaOrigen = new Mapa("Puerta de la Reina","Isla La Holandesa","2");
-              //  Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
+                Mapa mapa1 = new Mapa("Bahia del Buen Reposo","Isla La Holandesa","2");
                 
                 Mapa mapa2 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
-                Mapa mapa21 = new Mapa("Bahia del Buen Reposo","Isla La Holandesa","2");
+             //   Mapa mapa21 = new Mapa("Bahia del Buen Reposo","Isla La Holandesa","2");
+              //   Mapa mapa22 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
+              //  Mapa mapa23 = new Mapa("Bahia del Buen Reposo","Isla La Holandesa","2");
+               //  Mapa mapa24 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
+                //Mapa mapa25 = new Mapa("Bahia del Buen Reposo","Isla La Holandesa","2");
                 Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
                 Mapa mapa4 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");
                // Mapa mapa5 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
               
-                System.out.println("cayo: "+mapa2.getNombreCayo() + "mapa boolean: "+ mapa2.esIsla());
+             //   System.out.println("cayo: "+mapa2.getNombreCayo() + "mapa boolean: "+ mapa2.esIsla());
                 br1.setMapaOrigen(mapaOrigen);
                 br2.setMapaOrigen(mapaOrigen);
-               // bp.agregarMapa(mapa1);
-                   //System.out.println("Error Agregar mapa");
-                System.out.println("Mapa origen :" + br1.getMapaOrigen().getNombreMaquina());
-                System.out.println("Mapa origen :" + br2.getMapaOrigen().getNombreMaquina());
-                
-                br1.agregarMapa(mapa2);
-                br2.agregarMapa(mapa21);
-                br1.agregarMapa(mapa3);
-                br2.agregarMapa(mapa4);
-               // bp.agregarMapa(mapa5);
                
-                //System.out.println("Cliente Ejemplo: " + bp.getMapas().get(bp.getSiguienteDestino()).getNombreSitio() + "Siguiente destino :"+ bp.getSiguienteDestino());
-                registro.rebind(/*urlServer+*/br1.getName(), br1);
-                registro.rebind(/*urlServer+*/br2.getName(), br2);
-              //  registro.rebind(urlServer+bp.getName(), m);
+               //System.out.println("Mapa origen :" + br1.getMapaOrigen().getNombreMaquina());
+                    
                 
-               /* Registry registrom2 = LocateRegistry.getRegistry(g.getIp("maquina2"),g.getPuerto("maquina2"));
-                System.out.println("Imprimo Los Objetos Guardados En Maquina 2");
+              br1.agregarMapa(mapa1);
+              br1.agregarMapa(mapa2);
+              
+              br2.agregarMapa(mapa3);
+              br2.agregarMapa(mapa4);
                 
-                String[] names = registrom2.list();
-                for (int i = 0; i <
-                names.length; i++)
-			System.out.println(names[i]);*/
+                registro.rebind(br1.getName(), br1);
                 br1.setMaquinaActual(m.getNombre());
                 br1.setMaquinaAnterior(m.getNombre());
-                br1.partir();
-                registro.unbind(br1.getName());    
+                
+                registro.rebind(br1.getName(), br1);
                 br2.setMaquinaActual(m.getNombre());
                 br2.setMaquinaAnterior(m.getNombre());
+                
                 br2.partir();
-                registro.unbind(br2.getName());
+                br1.partir();
+                //Thread.sleep((long) (4 * 1000.0));
+               // registro.unbind(br1.getName());
             }
             String[] names = registro.list();
             System.out.println("Imprimo Los Objetos Guardados");
