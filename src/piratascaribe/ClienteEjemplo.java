@@ -137,7 +137,7 @@ public class ClienteEjemplo {
                 
                 //InputStreamReader leer = new InputStreamReader(System.in);
                 //BufferedReader buff = new BufferedReader(leer);
-                Mapa mapa = null;
+                /*Mapa mapa = null;
                 System.out.print("Escriba la primera maquina: ");
                 String machine = buff.readLine();
                 System.out.println("Te diriges a:  (1)sitio  (2)Cayo");
@@ -153,7 +153,7 @@ public class ClienteEjemplo {
                     System.out.print("Escriba el nombre del sitio: ");
                     String sitio = buff.readLine();
                     mapa = new Mapa(sitio,isla,machine);
-                }
+                }*/
                 
               //  Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
                // Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
@@ -173,10 +173,15 @@ public class ClienteEjemplo {
                 //bp.agregarMapa(mapa3);
              /*   bp.agregarMapa(mapa4);
                  bp.agregarMapa(mapa5);*/
-                registro.rebind(/*urlServer+*/bp.getName(), bp);
+              
+                registro.rebind(bp.getName(), bp);
+                Mapa mapa = new Mapa("Cayo de Barlovento","3");
+                 Mapa mapa11 = new Mapa("Cayo de Barlovento","3");
                 bp.setMaquinaActual(m.getNombre());
                 bp.setMaquinaAnterior(m.getNombre());
                 bp.agregarMapa(mapa);
+                bp.agregarMapa(mapa11);
+                //registro.rebind(bp.getName(), bp);
                 bp.partir();
               //  registro.unbind(bp.getName());
                 
@@ -205,7 +210,7 @@ public class ClienteEjemplo {
                 br2.setMapaOrigen(mapaOrigen);
                
                //System.out.println("Mapa origen :" + br1.getMapaOrigen().getNombreMaquina());
-                Mapa mapa1 = null;
+                /*Mapa mapa1 = null;
                 System.out.print("Escriba la primera maquina: de: " + br1.getName());
                 String machine1 = buff.readLine();
                 System.out.println("Te diriges a:  (1)sitio  (2)Cayo");
@@ -240,12 +245,15 @@ public class ClienteEjemplo {
                     System.out.print("Escriba el nombre del sitio: ");
                     String sitio2 = buff.readLine();
                     mapa2 = new Mapa(sitio2,isla2,machine2);
-                }
+                }*/
                     
-                
+              Mapa mapa1 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");
               br1.agregarMapa(mapa1);
              // br1.agregarMapa(mapa2);
-              
+            //  Maquina2/Isla del Naufrago/Cueva del Bucanero
+               Mapa mapa2 = new Mapa("Cueva del Bucanero","Isla del Naufrago","2");
+                Mapa mapa22 = new Mapa("Cayo de Barlovento","3");
+              br2.agregarMapa(mapa2);
               br2.agregarMapa(mapa2);
             //  br2.agregarMapa(mapa4);
                 

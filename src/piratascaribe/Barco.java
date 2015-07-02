@@ -359,6 +359,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
                if (cofre.getMapas().size() > 0)
                    cofre.eliminarMapa(cofre.getMapas().size()-1);
             }
+            cofreLugar.getTesoros().remove(corazon);
             if (cofre.poseeCorazon()>=0)
                 return 0;
         }

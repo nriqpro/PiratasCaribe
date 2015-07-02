@@ -342,14 +342,14 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                                                 + this.nombre);
                                         if (sitios.get(j).getBarcos().size() >= 2) {
                                             if (sitios.get(j).getBarcos().get(0).enRetirada != true) {
-                                              //  combate(sitios.get(j).getBarcos().get(0), barco);
+                                               // combate(sitios.get(j).getBarcos().get(0), barco);
                                             }
                                             if (barco.enRetirada != true && sitios.get(j).getBarcos().get(1).enRetirada != true) {
-                                             //   combate(sitios.get(j).getBarcos().get(1), sitios.get(j).getBarcos().get(2));
+                                              //  combate(sitios.get(j).getBarcos().get(1), sitios.get(j).getBarcos().get(2));
                                             }
                                         } else {
                                             if (sitios.get(j).getBarcos().get(0).enRetirada != true) {
-                                             //   combate(sitios.get(j).getBarcos().get(0), barco);
+                                                //(sitios.get(j).getBarcos().get(0), barco);
                                             }
                                         }
 
@@ -391,13 +391,13 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                             if (cayos.get(i).getBarcos() != null && cayos.get(i).getBarcos().size() >= 1) {
                                 if (cayos.get(i).getBarcos().size() >= 2) {
                                     if (cayos.get(i).getBarcos().get(0).enRetirada != true) {
-                                      //  combate(cayos.get(i).getBarcos().get(0), barco);
+                                       // combate(cayos.get(i).getBarcos().get(0), barco);
                                     }
                                     if (barco.enRetirada != true && cayos.get(i).getBarcos().get(1).enRetirada != true) {
                                       //  combate(cayos.get(i).getBarcos().get(1), barco);
                                     }
                                 } else {
-                                  //  combate(cayos.get(i).getBarcos().get(0), barco);
+                                   // combate(cayos.get(i).getBarcos().get(0), barco);
                                 }
                                 System.out.println("Se han encontado dos barcos en la maquina(cayo): "
                                         + this.nombre + "IMPLEMENTAR CODIGO PELEA");
