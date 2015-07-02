@@ -129,11 +129,13 @@ public class ClienteEjemplo {
            /* InterfazServidor is = (InterfazServidor)registro.lookup("server");
             is.registroRebind(m, 2);*/
             System.out.println("Ahora esperare a que me llegue una consulta");
-           
+            String audioPath = "musica"+numMaquina+".wav";
+            Sonido musica = new Sonido(audioPath);
+            musica.run();
             if (numMaquina==1){
                 xml.leerBarcos(1);
                 Barco bp = xml.barcotemp;
-              
+                
                // Barco bp = new Barco("La_Venganza_Errante",true,20,100,50);
                 /*bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
                 bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));*/
