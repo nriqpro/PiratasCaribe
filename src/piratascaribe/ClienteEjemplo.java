@@ -138,7 +138,7 @@ public class ClienteEjemplo {
                 Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
                 //Mapa mapa2 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
                 Mapa mapa21 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
-                Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
+                Mapa mapa3 = new Mapa("Cayo de los Pelicanos","4");
                 Mapa mapa4 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");
                // Mapa mapa5 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
               
@@ -172,7 +172,7 @@ public class ClienteEjemplo {
               //  Mapa mapa23 = new Mapa("Bahia del Buen Reposo","Isla La Holandesa","2");
                //  Mapa mapa24 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
                 //Mapa mapa25 = new Mapa("Bahia del Buen Reposo","Isla La Holandesa","2");
-                Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
+                Mapa mapa3 = new Mapa("Cayo de los Pelicanos","4");
                 Mapa mapa4 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");
                // Mapa mapa5 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
               
@@ -185,6 +185,8 @@ public class ClienteEjemplo {
                 
               br1.agregarMapa(mapa1);
               br1.agregarMapa(mapa2);
+              br1.agregarMapa(mapa3);
+              br1.agregarMapa(mapa4);
               
               br2.agregarMapa(mapa3);
               br2.agregarMapa(mapa4);
@@ -197,8 +199,8 @@ public class ClienteEjemplo {
                 br2.setMaquinaActual(m.getNombre());
                 br2.setMaquinaAnterior(m.getNombre());
                 
-              //  br2.partir();
-               // br1.partir();
+                //br2.partir();
+                br1.partir();
                 //Thread.sleep((long) (4 * 1000.0));
                // registro.unbind(br1.getName());
             }

@@ -28,7 +28,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     private Integer nRacionesOriginal;
     private Integer nAmmoOriginal;
     private String maquinaOrigen;
-    public Boolean enRetirada;
+    public  boolean enRetirada;
     private String maquinaAnterior;
     private String maquinaActual;
   //  private ArrayList<Mapa> mapas;
