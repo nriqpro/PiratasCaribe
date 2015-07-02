@@ -123,10 +123,16 @@ public class ClienteEjemplo {
             String urlServer =  "rmi://"+g.getIp(m.getNombre())+":"+g.getPuerto(m.getNombre())+"/";
             registro.rebind(/*urlServer+*/m.getNombre(), m);
             System.out.println("Ahora esperare a que me llegue una consulta");
-           
+            String audioPath = "musica"+numMaquina+".wav";
+            Sonido musica = new Sonido(audioPath);
+            musica.run();
             if (numMaquina==1){
                 xml.leerBarcos(1);
                 Barco bp = xml.barcotemp;
+                
+               // Barco bp = new Barco("La_Venganza_Errante",true,20,100,50);
+                /*bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
+                bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));*/
                 Mapa mapaOrigen = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
               //  Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
                 Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
