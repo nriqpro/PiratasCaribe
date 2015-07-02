@@ -129,13 +129,10 @@ public class ClienteEjemplo {
             if (numMaquina==1){
                 xml.leerBarcos(1);
                 Barco bp = xml.barcotemp;
-<<<<<<< HEAD
                 
                // Barco bp = new Barco("La_Venganza_Errante",true,20,100,50);
                 /*bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
                 bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));*/
-=======
->>>>>>> origin/master
                 Mapa mapaOrigen = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
               //  Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
                 Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
