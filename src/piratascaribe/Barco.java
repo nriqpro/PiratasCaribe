@@ -375,10 +375,10 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
             //para luego tomar los objetos mas livianos
             cofreLugar.getTesoros().addAll(cofre.getTesoros());
             cofre.getTesoros().clear();
-            System.out.println("IMPRIMO COFRE PROPIO VACIO");
+          /*  System.out.println("IMPRIMO COFRE PROPIO VACIO");
             cofre.imprimirTesoros();
             System.out.println("IMPRIMO COFRE LUGAR CON TODO");
-            cofreLugar.imprimirTesoros();
+            cofreLugar.imprimirTesoros();*/
             
             while (!cofreLugar.getTesoros().isEmpty() ){
                 int rest = 0;

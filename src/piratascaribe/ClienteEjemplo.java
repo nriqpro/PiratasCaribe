@@ -155,7 +155,7 @@ public class ClienteEjemplo {
                 registro.rebind(/*urlServer+*/bp.getName(), bp);
                 bp.setMaquinaActual(m.getNombre());
                 bp.setMaquinaAnterior(m.getNombre());
-                bp.partir();
+               // bp.partir();
               //  registro.unbind(bp.getName());
                 
                 
@@ -165,7 +165,7 @@ public class ClienteEjemplo {
                 Barco br1 = xml.barcotemp;
                 xml.leerBarcos(3);
                 Barco br2 = xml.barcotemp;
-                Mapa mapaOrigen = new Mapa("Puerta de la Reina","Isla La Holandesa","2");
+                Mapa mapaOrigen = new Mapa("Puerto de la Reina","Isla La Holandesa","2");
                 Mapa mapa1 = new Mapa("Bahia del Buen Reposo","Isla La Holandesa","2");
                 
                 Mapa mapa2 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
@@ -199,8 +199,8 @@ public class ClienteEjemplo {
                 br2.setMaquinaActual(m.getNombre());
                 br2.setMaquinaAnterior(m.getNombre());
                 
-                br2.partir();
-                br1.partir();
+                br2.partir(); //INTERCEPTOR
+              //  br1.partir(); //INVENCIBLE
                 //Thread.sleep((long) (4 * 1000.0));
                // registro.unbind(br1.getName());
             }
