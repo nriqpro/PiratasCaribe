@@ -313,16 +313,16 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                                     if (sitios.get(j).getBarcos() != null && sitios.get(j).getBarcos().size() >= 1) { //hay mas de dos barcos encallados 
                                         System.out.println("Se han encontado dos barcos en la maquina(isla): "
                                                 + this.nombre);
-                                        if (sitios.get(j).getBarcos().size() == 3) {
+                                        if (sitios.get(j).getBarcos().size() >= 2) {
                                             if (sitios.get(j).getBarcos().get(0).enRetirada != true) {
-                                                combate(sitios.get(j).getBarcos().get(0), sitios.get(j).getBarcos().get(2));
+                                                combate(sitios.get(j).getBarcos().get(0), barco);
                                             }
-                                            if (sitios.get(j).getBarcos().get(2).enRetirada != true && sitios.get(j).getBarcos().get(1).enRetirada != true) {
+                                            if (barco.enRetirada != true && sitios.get(j).getBarcos().get(1).enRetirada != true) {
                                                 combate(sitios.get(j).getBarcos().get(1), sitios.get(j).getBarcos().get(2));
                                             }
                                         } else {
                                             if (sitios.get(j).getBarcos().get(0).enRetirada != true) {
-                                                combate(sitios.get(j).getBarcos().get(0), sitios.get(j).getBarcos().get(1));
+                                                combate(sitios.get(j).getBarcos().get(0), barco);
                                             }
                                         }
 
@@ -359,16 +359,16 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                                     maquinaInterfaz.getCoordenadas().get(cayos.get(i).getNombre()).getX() + "  Y:"+
                                     maquinaInterfaz.getCoordenadas().get(cayos.get(i).getNombre()).getY());
                             pintarBarco(barco.getName() , maquinaInterfaz.getCoordenadas().get(cayos.get(i).getNombre()).getX() , maquinaInterfaz.getCoordenadas().get(cayos.get(i).getNombre()).getY());
-                            if (cayos.get(i).getBarcos() != null && cayos.get(i).getBarcos().size() > 1) {
-                                if (cayos.get(i).getBarcos().size() == 3) {
+                            if (cayos.get(i).getBarcos() != null && cayos.get(i).getBarcos().size() >= 1) {
+                                if (cayos.get(i).getBarcos().size() >= 2) {
                                     if (cayos.get(i).getBarcos().get(0).enRetirada != true) {
-                                        combate(cayos.get(i).getBarcos().get(0), cayos.get(i).getBarcos().get(2));
+                                        combate(cayos.get(i).getBarcos().get(0), barco);
                                     }
-                                    if (cayos.get(i).getBarcos().get(2).enRetirada != true && cayos.get(i).getBarcos().get(1).enRetirada != true) {
-                                        combate(cayos.get(i).getBarcos().get(1), cayos.get(i).getBarcos().get(2));
+                                    if (barco.enRetirada != true && cayos.get(i).getBarcos().get(1).enRetirada != true) {
+                                        combate(cayos.get(i).getBarcos().get(1), barco);
                                     }
                                 } else {
-                                    combate(cayos.get(i).getBarcos().get(0), cayos.get(i).getBarcos().get(1));
+                                    combate(cayos.get(i).getBarcos().get(0), barco);
                                 }
                                 System.out.println("Se han encontado dos barcos en la maquina(cayo): "
                                         + this.nombre + "IMPLEMENTAR CODIGO PELEA");
@@ -452,6 +452,8 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                     b2.partir();
                 }
             } else {
+                Sfx cannon = new Sfx("combate.wav");
+                cannon.play();
                 int aux;
                 if (b1.getnTripulacion() > b2.getnTripulacion()) {
                     aux = b1.getnTripulacion() - b2.getnTripulacion();
@@ -460,6 +462,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                 }
                 b1.setnTripulacion(b1.getnTripulacion() - (aux / 2));
                 b2.setnTripulacion(b2.getnTripulacion() - (aux / 2));
+                System.out.println(b1.getName()+" y "+b2.getName()+" han perdido "+(aux/2)+" tripulantes");
                 if (b1.getnAmmo() > b2.getnAmmo()) {
                     aux = b1.getnAmmo() - b2.getnAmmo();
                 } else {
@@ -467,12 +470,17 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                 }
                 b1.setnAmmo(b1.getnAmmo() - (aux / 2));
                 b2.setnAmmo(b2.getnAmmo() - (aux / 2));
+                System.out.println(b1.getName()+" y "+b2.getName()+" han perdido "+(aux/2)+" municiones");
+                System.out.println(b1.getName()+" ha quedado con "+b1.getnTripulacion()+" tripulantes");
+                System.out.println(b2.getName()+" ha quedado con "+b2.getnTripulacion()+" tripulantes");
             }
             if (3 * b1.getnTripulacion() <= b1.getnTripulacionOriginal()) {
+                System.out.println(b1.getName()+" ha sido derrotado!");
                 b1.enRetirada = true;
                 b1.partirOrigen();
             }
             if (3 * b2.getnTripulacion() <= b2.getnTripulacionOriginal()) {
+                System.out.println(b2.getName()+" ha sido derrotado!");
                 b2.enRetirada = true;
                 b2.partirOrigen();
             }
