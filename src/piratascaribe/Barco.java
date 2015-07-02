@@ -292,7 +292,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
          /*   this.nTripulacion = nTripulacion - 10;
             this.nRaciones = nRaciones - 10;
             this.nAmmo = nAmmo - 10;*/
-            m.recibirBarco(this.getName(),maquinaActual);
+            m.recibirBarco(this.getName(),maquinaActual,0);
             
             
             
@@ -320,7 +320,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
             Registry registroRemoto = LocateRegistry.getRegistry(g.getIp(maquinaSiguiente),g.getPuerto(maquinaSiguiente));
             InterfazMaquina m = (InterfazMaquina) registroRemoto.lookup(maquinaSiguiente);
             System.out.println("nombre maquina " + m.getNombre());
-            m.recibirBarco(this.getName(),maquinaActual);
+            m.recibirBarco(this.getName(),maquinaActual,1);
             
             
             
@@ -382,23 +382,23 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
             
             while (!cofreLugar.getTesoros().isEmpty() ){
                 int rest = 0;
-                System.out.println("Corrida -------------------------------------------------------------------");
+               // System.out.println("Corrida -------------------------------------------------------------------");
                 int iMenorPeso  =cofreLugar.getTesoroMenorPeso();
-                System.out.println("El indice del menor lugar esta: " + iMenorPeso);
+               // System.out.println("El indice del menor lugar esta: " + iMenorPeso);
                 Tesoro t =cofreLugar.getTesoros().get(iMenorPeso);
-                System.out.println("Agarre el tesoro : "+  t.getNombre());
+                //System.out.println("Agarre el tesoro : "+  t.getNombre());
                 rest = cofre.agregarTesoro(t);
-                cofre.imprimirTesoros();
+               // cofre.imprimirTesoros();
                 cofreLugar.getTesoros().remove(t);
                // cofreLugar.getTesoros().remove(cofreLugar.getTesoroMenorPeso());
                 //System.out.println("y lo meti en mi cofre aqui esta : " + cofre.getTesoros().get(cofre.getTesoros().size() - 1).getNombre() );
                 if (rest==1){
-                    System.out.println("rest es :"+rest);
+                //    System.out.println("rest es :"+rest);
                     break;
                 }
             }
-             System.out.println("IMPRIMO COFRE PROPIOOOO CON TODO");
-             cofre.imprimirTesoros();
+            // System.out.println("IMPRIMO COFRE PROPIOOOO CON TODO");
+            // cofre.imprimirTesoros();
         }
         return 1;
     }

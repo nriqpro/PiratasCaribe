@@ -90,7 +90,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
     }
 
     @Override
-    public void recibirBarco(String nombreBarco, String nombreMaquinaAnterior) throws RemoteException {
+    public void recibirBarco(String nombreBarco, String nombreMaquinaAnterior,int esOrigen) throws RemoteException {
         try {
             GestorRMI g = new GestorRMI();
             String urlServer = "rmi://" + g.getIp(nombreMaquinaAnterior) + ":" + g.getPuerto(nombreMaquinaAnterior) + "/";
@@ -111,14 +111,14 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
             //Elimino la referencia en la maquina anterior
             if (!nombreMaquinaAnterior.equalsIgnoreCase(this.nombre)){
                 System.out.println("Hola soy maquina " + this.nombre + "y debo eliminar la refenrecia de: "+nombreMaquinaAnterior);
-             InterfazMaquina m = (InterfazMaquina) registroRemoto.lookup(nombreMaquinaAnterior);
-             m.eliminarReferenciaBarco(nombreBarco, nombreMaquinaAnterior);
+                InterfazMaquina m = (InterfazMaquina) registroRemoto.lookup(nombreMaquinaAnterior);
+                m.eliminarReferenciaBarco(nombreBarco, nombreMaquinaAnterior);
             }
             //hacer aqui procedimiento para dibujar interfaz barco moviendose a destino
             b.setMaquinaActual(this.nombre);
             b.setMaquinaAnterior(nombreMaquinaAnterior);
             
-            Runnable hg =new HiloGui(b);
+            Runnable hg =new HiloGui(b,esOrigen);
             new Thread(hg).start();
            /* ubicarBarco(b);
 //           barco.marcarMapa()
@@ -172,14 +172,15 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
     public void izarVelas(String nombreBarco) throws RemoteException {
         System.out.println("Debo izarVelas: " + nombreBarco);
         for (int i = 0; i < islas.size(); i++) {
+            System.out.println("\t\tnombre isla: "+ islas.get(i).getNombre());
             for (int j = 0; j < islas.get(i).getSitios().size(); j++) {
-
+                System.out.println("\t\t\tnombre sitio: " + islas.get(i).getSitios().get(j).getNombre());
                 for (int k = 0; islas.get(i).getSitios().get(j).getBarcos() != null && k < islas.get(i).getSitios().get(j).getBarcos().size(); k++) {
-
+                    System.out.println("\t\t\t\tnombre barco: "+islas.get(i).getSitios().get(j).getBarcos().get(k).getName());
                     if (islas.get(i).getSitios().get(j).getBarcos().get(k).getName().equalsIgnoreCase(nombreBarco)) {
                         Barco barco = islas.get(i).getSitios().get(j).getBarcos().get(k);
                         borrarBarcoGui(barco.getName());
-                        if (barco.retornarOrigen()){
+                        if (barco.retornarOrigen() && !barco.getMapaOrigen().getNombreSitio().equalsIgnoreCase(islas.get(i).getSitios().get(j).getNombre())){
                             System.out.println("Debo retornar origen imprimo condiciones");
                             barco.imprimirContenido();
                             barco.imprimirOriginales();
@@ -210,8 +211,10 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                                 barco.recargar();
                                 islas.get(i).getSitios().get(j).getCofre().getTesoros().addAll(barco.getCofre().getTesoros());
                                 barco.getCofre().getTesoros().clear();
-                                if (barco.getSiguienteDestino() >= 0 )
+                                if (barco.getSiguienteDestino() >= 0 ){
                                     barco.partir();
+                                  //  islas.get(i).getSitios().get(j).getBarcos().remove(k);
+                                }
                                 else
                                     System.out.println("Barco : " + barco.getName() + " no tiene mas destinos...");
                             }
@@ -256,7 +259,18 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                         barco.partir();
                     }   else if (barco.getMapaOrigen().getNombreMaquina().equalsIgnoreCase(this.nombre)) {
                             System.out.println("He retornado a mi origen hacer algo...");
-
+                            if (barco.getCofre().poseeCorazon() >= 0 )
+                                System.out.println("FINALIZADO EL BARCO :" + barco.getName() +" CONSIGUIO EL CORAZON");
+                            else{
+                                System.out.println("Recargando...");
+                                barco.recargar();
+                               cayos.get(i).getCofre().getTesoros().addAll(barco.getCofre().getTesoros());
+                                barco.getCofre().getTesoros().clear();
+                                if (barco.getSiguienteDestino() >= 0 )
+                                    barco.partir();
+                                else
+                                    System.out.println("Barco : " + barco.getName() + " no tiene mas destinos...");
+                            }
 
                         } else {
                             System.out.println("He visitado todos mis lugares, me regreso al inicio");
@@ -272,10 +286,23 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
         //System.out.println();
     }
 
-    public void ubicarBarco(Barco barco) throws RemoteException {
+    public void ubicarBarco(Barco barco,int esOrigen) throws RemoteException {
         try {
-            int sigDest = barco.getSiguienteDestino();
-            Mapa mapa;
+            Mapa mapa = null;
+            int sigDest;
+            if (esOrigen==1){
+                mapa = barco.getMapaOrigen();
+                sigDest=1;
+            }else{
+                sigDest = barco.getSiguienteDestino();
+                if (sigDest>=0){
+                    barco.marcarMapa(sigDest);//marcamos el sitio donde estabamos anteriormente como visitado
+                    mapa = barco.getMapas().get(sigDest); //marcamos el mapa en el sitio como actual
+                    mapa.setEstado("actual");
+                }
+            }
+            //int sigDest = barco.getSiguienteDestino();
+           // Mapa mapa;
 
             /*System.out.println("El siguiente destino que tiene el barco es:" + barco.getMapas().get(sigDest).getNombreSitio());
              for (int i = 0 ; i < islas.size() ; i++){
@@ -285,22 +312,22 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
              }*/
             //System.out.println("Debo ubicarlo en ");
             if (sigDest >= 0) {//encontro destino con exito
-                barco.marcarMapa(sigDest);//marcamos el sitio donde estabamos anteriormente como visitado
-                mapa = barco.getMapas().get(sigDest); //marcamos el mapa en el sitio como actual
-                mapa.setEstado("actual");
-                System.out.println("Entro en sigDest ");
+               
+                //System.out.println("Entro en sigDest ");
                 if (mapa.esIsla())
                     System.out.println("El nombre del siguiente sitio es: " + mapa.getNombreIsla() +"/" + mapa.getNombreSitio());
                 else
                     System.out.println("El nombre del siguiente cayo es: " + mapa.getNombreCayo());
                 if (mapa.esIsla() && islas != null) {
-                    System.out.println("Entro en mapa es isla y tod eso");
+                    //System.out.println("Entro en mapa es isla y tod eso");
                     for (int i = 0; i < islas.size(); i++) {
+                      //  System.out.println("\t\tnombre isla:" + islas.get(i).getNombre() );
                         if (islas.get(i).getNombre().equalsIgnoreCase(mapa.getNombreIsla())) {
                             System.out.print(i);
                             ArrayList<Sitio> sitios;
                             sitios = islas.get(i).getSitios();
                             for (int j = 0; j < sitios.size(); j++) {
+                             //  System.out.println("\t\t\tnombre sitio: " + sitios.get(j).getNombre());
                                 if (sitios.get(j).getNombre().equalsIgnoreCase(mapa.getNombreSitio())) {
 
                                     System.out.println("Lo he ubicado en el sitio: " + sitios.get(j).getNombre());
@@ -524,14 +551,17 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
     }
     
     private class HiloGui implements Runnable {
-        Barco b;
-        public HiloGui(Barco barco) {
+        private Barco b;
+        private int esOrigen;
+        
+        public HiloGui(Barco barco, int esOrigen) {
             this.b = barco;
+            this.esOrigen = esOrigen;
         }
 
         public void run() {
             try{
-               ubicarBarco(b);
+               ubicarBarco(b,esOrigen);
                Thread.sleep((long) (5 * 1000.0));
                izarVelas(b.getName());
              //  System.out.println("El barco ha partido");
