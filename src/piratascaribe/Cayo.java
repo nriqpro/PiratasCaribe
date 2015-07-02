@@ -51,6 +51,16 @@ public class Cayo implements Serializable{
         if (barcos!=null && barco!= null){
             this.barcos.add(barco);
             barco.cargarCofre(this.cofre);
+           /*  if (barco.cargarCofre(this.cofre)==0){
+               this.barcos.remove(barco);
+               try{
+                   System.out.println("Enhorabuena has conseguido el corazon de la princesa y te devuelves al origen");
+                   barco.partirOrigen();
+               }catch(Exception e){
+                   System.out.println("Error sitio: encalla barco");
+                   e.printStackTrace();
+               }
+           }*/
         }
         else
             System.out.println("Error en Cayo: encallaBarco 'barcos' o 'barco' null");

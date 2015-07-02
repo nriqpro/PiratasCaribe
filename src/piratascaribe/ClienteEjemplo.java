@@ -125,7 +125,7 @@ public class ClienteEjemplo {
             System.out.println("Ahora esperare a que me llegue una consulta");
             String audioPath = "musica"+numMaquina+".wav";
             Sonido musica = new Sonido(audioPath);
-            musica.play();
+            new Thread(musica).start();
             if (numMaquina==1){
                 xml.leerBarcos(1);
                 Barco bp = xml.barcotemp;
@@ -135,23 +135,23 @@ public class ClienteEjemplo {
                 bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));*/
                 Mapa mapaOrigen = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
               //  Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
-                Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
+               // Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
                 //Mapa mapa2 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
-                Mapa mapa21 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
+               // Mapa mapa21 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
                 Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
-                Mapa mapa4 = new Mapa("Cayo de Sotavento","1");
-                Mapa mapa5 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");
+               /* Mapa mapa4 = new Mapa("Cayo de Sotavento","1");
+                Mapa mapa5 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");*/
                // Mapa mapa5 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
               
                 //System.out.println("cayo: "+mapa2.getNombreCayo() + "mapa boolean: "+ mapa2.esIsla());
                 bp.setMapaOrigen(mapaOrigen);
                 System.out.println("Mapa origen :" + bp.getMapaOrigen().getNombreMaquina());
                 
-                bp.agregarMapa(mapa1);
-                bp.agregarMapa(mapa21);
+                /*bp.agregarMapa(mapa1);
+                bp.agregarMapa(mapa21);*/
                 bp.agregarMapa(mapa3);
-                bp.agregarMapa(mapa4);
-                 bp.agregarMapa(mapa5);
+             /*   bp.agregarMapa(mapa4);
+                 bp.agregarMapa(mapa5);*/
                 registro.rebind(/*urlServer+*/bp.getName(), bp);
                 bp.setMaquinaActual(m.getNombre());
                 bp.setMaquinaAnterior(m.getNombre());

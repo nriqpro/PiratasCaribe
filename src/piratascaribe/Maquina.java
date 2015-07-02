@@ -178,7 +178,17 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
 
                     if (islas.get(i).getSitios().get(j).getBarcos().get(k).getName().equalsIgnoreCase(nombreBarco)) {
                         Barco barco = islas.get(i).getSitios().get(j).getBarcos().get(k);
-                        islas.get(i).getSitios().get(j).getBarcos().remove(k);
+                        borrarBarcoGui(barco.getName());
+                        if (barco.retornarOrigen()){
+                            System.out.println("Debo retornar origen imprimo condiciones");
+                            barco.imprimirContenido();
+                            barco.imprimirOriginales();
+                            barco.partirOrigen();
+                            islas.get(i).getSitios().get(j).getBarcos().remove(k);
+                            return;
+                            
+                        }
+                       // islas.get(i).getSitios().get(j).getBarcos().remove(k);
                         int x = barco.getSiguienteDestino();//ACOMODAR
                         
                         //borramos el barco
@@ -188,20 +198,33 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                         if (x >= 0) {
                             System.out.println("Siguiente destino:" + barco.getMapas().get(x).getNombreIsla());
                             System.out.println("partir");
-                            borrarBarcoGui(barco.getName());
+                           // borrarBarcoGui(barco.getName());
                             barco.partir();
                         } else if (barco.getMapaOrigen().getNombreMaquina().equalsIgnoreCase(this.nombre)) {
                             System.out.println("He retornado a mi origen hacer algo...");
-
+                           // barco.recargar();
+                            if (barco.getCofre().poseeCorazon() >= 0 )
+                                System.out.println("FINALIZADO EL BARCO :" + barco.getName() +" CONSIGUIO EL CORAZON");
+                            else{
+                                System.out.println("Recargando...");
+                                barco.recargar();
+                                islas.get(i).getSitios().get(j).getCofre().getTesoros().addAll(barco.getCofre().getTesoros());
+                                barco.getCofre().getTesoros().clear();
+                                if (barco.getSiguienteDestino() >= 0 )
+                                    barco.partir();
+                                else
+                                    System.out.println("Barco : " + barco.getName() + " no tiene mas destinos...");
+                            }
+                            
 
                         } else {
                             System.out.println("He visitado todos mis lugares, me regreso al inicio");
-                            borrarBarcoGui(barco.getName());
+                           // borrarBarcoGui(barco.getName());
                             barco.partirOrigen();
                         }
                         
                        // borrarBarcoGui(barco.getName());
-                        islas.get(i).getSitios().get(j).getBarcos().remove(barco);
+                        islas.get(i).getSitios().get(j).getBarcos().remove(k);
                         return;
                     }
                 }
@@ -217,6 +240,15 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
 
                     Barco barco = cayos.get(i).getBarcos().get(j);
                     borrarBarcoGui(barco.getName());
+                    if (barco.retornarOrigen()){
+                            System.out.println("Debo retornar origen imprimo condiciones");
+                            barco.imprimirContenido();
+                            barco.imprimirOriginales();
+                            barco.partirOrigen();
+                            cayos.get(i).getBarcos().remove(j);
+                            return;
+                            
+                        }
                     int x = barco.getSiguienteDestino();
                     if (x >= 0) {
                         System.out.println("Siguiente destino:" + barco.getMapas().get(x).getNombreIsla());//ACOMODAR NO SOLO ISLA
@@ -231,7 +263,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                             barco.partirOrigen();
                         }
 
-                    cayos.get(i).getBarcos().remove(barco);
+                    cayos.get(i).getBarcos().remove(j);
                     return;
                 }
 
@@ -256,7 +288,11 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                 barco.marcarMapa(sigDest);//marcamos el sitio donde estabamos anteriormente como visitado
                 mapa = barco.getMapas().get(sigDest); //marcamos el mapa en el sitio como actual
                 mapa.setEstado("actual");
-                System.out.println("Entro en sigDest");
+                System.out.println("Entro en sigDest ");
+                if (mapa.esIsla())
+                    System.out.println("El nombre del siguiente sitio es: " + mapa.getNombreIsla() +"/" + mapa.getNombreSitio());
+                else
+                    System.out.println("El nombre del siguiente cayo es: " + mapa.getNombreCayo());
                 if (mapa.esIsla() && islas != null) {
                     System.out.println("Entro en mapa es isla y tod eso");
                     for (int i = 0; i < islas.size(); i++) {

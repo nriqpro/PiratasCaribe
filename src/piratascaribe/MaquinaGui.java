@@ -15,6 +15,7 @@ public class MaquinaGui extends javax.swing.JFrame {
     private javax.swing.JLabel PlayadelasPerlas;
     private javax.swing.JLabel CaladelosMartires;
     private javax.swing.JLabel CayodelBuenViento;
+     private javax.swing.JLabel CayodeSotavento;
      
     //maquina2
     private javax.swing.JLabel IslaLaHolandesa;
@@ -59,6 +60,7 @@ public class MaquinaGui extends javax.swing.JFrame {
                 CaladelosMartires = new javax.swing.JLabel();
                 CayodelBuenViento = new javax.swing.JLabel();
                 IslaNuevaEsperanzas = new javax.swing.JLabel();
+                CayodeSotavento = new javax.swing.JLabel();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                 setMinimumSize(new java.awt.Dimension(800, 600));
@@ -89,7 +91,12 @@ public class MaquinaGui extends javax.swing.JFrame {
                 getContentPane().add(CayodelBuenViento);
                 CayodelBuenViento.setBounds(60, 330, 270, 230);
                 coordenadas.put("Cayo del Buen Viento", new Coordenada(60,330));
-
+                
+                CayodeSotavento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cayosotavento.png")));
+                getContentPane().add(CayodeSotavento);
+                CayodeSotavento.setBounds(20,40, 206, 211);
+                coordenadas.put("Cayo de Sotavento", new Coordenada(20,40));
+                
                 IslaNuevaEsperanzas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/maquina1.png"))); // NOI18N
                 getContentPane().add(IslaNuevaEsperanzas);
                 IslaNuevaEsperanzas.setBounds(0, 0, 800, 600);
@@ -172,8 +179,8 @@ public class MaquinaGui extends javax.swing.JFrame {
 
                 CayodeBarlovento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Barlovento.png"))); // NOI18N
                 getContentPane().add(CayodeBarlovento);
-                CayodeBarlovento.setBounds(70, 410, 260, 180);
-                coordenadas.put("Cayo de Barlovento", new Coordenada(70,410));
+                CayodeBarlovento.setBounds(20, 290, 260, 180);
+                coordenadas.put("Cayo de Barlovento", new Coordenada(20,290));
 
                 CuevadelosHuesos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/m3-cuevahuesos.png"))); // NOI18N
                 getContentPane().add(CuevadelosHuesos);

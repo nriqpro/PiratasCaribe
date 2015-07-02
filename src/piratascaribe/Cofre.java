@@ -24,6 +24,10 @@ public class Cofre implements Serializable{
     }
     
     public int agregarTesoro (Tesoro tesoro){
+      /*  System.out.print("Deseo agregar el tesoro: " + tesoro.getNombre());
+        System.out.print("que tiene un peso de: " + tesoro.getPeso());
+        System.out.println("El peso actual es: " + this.getPeso());
+        System.out.println("La capacidad es: " + capacidad);*/
         if ((this.getPeso() + tesoro.getPeso()) <= capacidad) {
             tesoros.add(tesoro);
             return 0;
@@ -118,5 +122,18 @@ public class Cofre implements Serializable{
             return 0;
         }
         return 1;   
+    }
+    
+    public void imprimirTesoros(){
+        if (tesoros==null){
+            System.out.println("Error Cofre: imprimirTesoros tesoros es null");
+            return;
+        }
+        if (tesoros.size()==0)
+            System.out.println("El cofre no tiene ningun tesoro :(");
+        System.out.println("Nombre \t\t Peso");
+        for (int i = 0 ; i < tesoros.size() ; i++){
+            System.out.println(tesoros.get(i).getNombre() + "-->"+ tesoros.get(i).getPeso());
+        }
     }
 }

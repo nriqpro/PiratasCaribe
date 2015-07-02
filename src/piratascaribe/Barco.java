@@ -57,7 +57,8 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         this.nRaciones = nRacionesOriginal;
         this.enRetirada=false;
 //        this.mapas = new ArrayList<Mapa>();
-        if (pirata){
+        //System.out.println("ES PIRATA?!?!?!?!?:"+ pirata);
+        if (nombre.equalsIgnoreCase("La_Venganza_Errante")){
             //crear cofree con capacidad 100
             this.cofre = new Cofre(100);
         }
@@ -90,6 +91,16 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         System.out.println ("Numero Tripulacion: "+ this.nTripulacion);
         System.out.println ("Numero Raciones: "+ this.nRaciones);
         System.out.println ("Numero Ammo: "+ this.nAmmo);
+        System.out.println("En Retirada: "+ this.enRetirada);
+        System.out.println ("--------------***************--------------");
+    }
+    
+    public void imprimirOriginales(){
+        System.out.println ("--------------ORIGINALES BARCO--------------");
+        System.out.println ("Numero TripulacionOriginal: "+ this.nTripulacionOriginal);
+        System.out.println ("Numero RacionesOriginal: "+ this.nRacionesOriginal);
+        System.out.println ("Numero AmmoOriginal: "+ this.nAmmoOriginal);
+      //  System.out.println("En Retirada: "+ this.enRetiradaOriginal);
         System.out.println ("--------------***************--------------");
     }
     @Override
@@ -340,7 +351,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         this.puertoOrigen = barco.getPuertoOrigen();
     }
     
-    public void cargarCofre (Cofre cofreLugar){
+    public int cargarCofre (Cofre cofreLugar){
         System.out.println("Me toca agarrar mis tesoros jijiji");
         int corazon = cofreLugar.poseeCorazon();
         if (corazon >= 0){///posee el corazon
@@ -348,29 +359,71 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
                if (cofre.getMapas().size() > 0)
                    cofre.eliminarMapa(cofre.getMapas().size()-1);
             }
+            if (cofre.poseeCorazon()>=0)
+                return 0;
         }
         else{//no posee el corazon
             for (int i = 0 ; i < cofreLugar.getMapas().size() ; i++){
-              if (cofre.agregarMapa(cofreLugar.getMapas().get(i)) == 1)
-                  break;
+             /* if (*/cofre.agregarMapa(cofreLugar.getMapas().get(i)); /*== 1)*/
+                  //break;
               
             }
-            for (int i = 0 ; i < cofre.getTesoros().size() ; i++){
+          /*  for (int i = 0 ; i < cofre.getTesoros().size() ; i++){
                 cofreLugar.getTesoros().add(cofre.getTesoros().get(i));
-            }
+            }*/
             //aqui coloo todos los elementos de mi cofre en el cofre del sitio, posteriormente vacio mi cofre
             //para luego tomar los objetos mas livianos
             cofreLugar.getTesoros().addAll(cofre.getTesoros());
             cofre.getTesoros().clear();
+            System.out.println("IMPRIMO COFRE PROPIO VACIO");
+            cofre.imprimirTesoros();
+            System.out.println("IMPRIMO COFRE LUGAR CON TODO");
+            cofreLugar.imprimirTesoros();
             
-            while (!cofreLugar.getTesoros().isEmpty() && 
-                    cofre.agregarTesoro(cofreLugar.getTesoros().get(cofreLugar.getTesoroMenorPeso()))!=1){
-                cofreLugar.getTesoros().remove(cofreLugar.getTesoroMenorPeso());
+            while (!cofreLugar.getTesoros().isEmpty() ){
+                int rest = 0;
+                System.out.println("Corrida -------------------------------------------------------------------");
+                int iMenorPeso  =cofreLugar.getTesoroMenorPeso();
+                System.out.println("El indice del menor lugar esta: " + iMenorPeso);
+                Tesoro t =cofreLugar.getTesoros().get(iMenorPeso);
+                System.out.println("Agarre el tesoro : "+  t.getNombre());
+                rest = cofre.agregarTesoro(t);
+                cofre.imprimirTesoros();
+                cofreLugar.getTesoros().remove(t);
+               // cofreLugar.getTesoros().remove(cofreLugar.getTesoroMenorPeso());
+                //System.out.println("y lo meti en mi cofre aqui esta : " + cofre.getTesoros().get(cofre.getTesoros().size() - 1).getNombre() );
+                if (rest==1){
+                    System.out.println("rest es :"+rest);
+                    break;
+                }
             }
+             System.out.println("IMPRIMO COFRE PROPIOOOO CON TODO");
+             cofre.imprimirTesoros();
         }
+        return 1;
     }
     
+    public boolean retornarOrigen(){
+        if (this.nTripulacion <= (this.nTripulacionOriginal / 3))
+            return true;
+        if (this.nAmmo <= 0)
+            return true;
+        if (this.nRaciones <= 0)
+            return true;
+        if (this.cofre.getPeso() >= 90)
+            return true;
+        if (this.cofre.poseeCorazon()>=0)
+            return true;
+        
+        return false;
+    }
     
+    public void recargar(){
+        this.nAmmo = this.nAmmoOriginal;
+        this.nRaciones = this.nRacionesOriginal;
+        this.nTripulacion = this.nTripulacionOriginal;
+        this.enRetirada = false;
+    }
     
    
 }
