@@ -370,7 +370,9 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
 
                                         }
                                     }
+                                    if(barco.enRetirada!=true){
                                     sitios.get(j).encallaBarco(barco);
+                                    }
                                 }
                             }
                         }
@@ -417,7 +419,9 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
 
                                 }
                             }
+                            if(barco.enRetirada!=true){
                             cayos.get(i).encallaBarco(barco);
+                            }
                         }
                     }
                     if (i == cayos.size()) {
@@ -431,9 +435,10 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                         if (islas.get(i).getNombre().equalsIgnoreCase(barco.getMapaOrigen().getNombreIsla())) {
                             for (int j = 0; islas.get(i).getSitios() != null && j < islas.get(i).getSitios().size(); j++) {
                                 if (islas.get(i).getSitios().get(j).getNombre().equalsIgnoreCase(barco.getMapaOrigen().getNombreSitio())) {
+                                    if(barco.enRetirada!=true){
                                     islas.get(i).getSitios().get(j).encallaBarco(barco);
                                     System.out.println("Lo he ubicado en sitio origen: " + islas.get(i).getSitios().get(j).getNombre());
-
+                                    }
                                 }
                             }
                         }
@@ -441,9 +446,10 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                 } else {
                     for (int i = 0; cayos != null && i < cayos.size(); i++) {
                         if (cayos.get(i).getNombre().equalsIgnoreCase(barco.getMapaOrigen().getNombreCayo())) {
+                            if(barco.enRetirada!=true){
                             cayos.get(i).encallaBarco(barco);
                             System.out.println("Lo he ubicado en el cayo origen: " + cayos.get(i).getNombre());
-
+                            }
                         }
                     }
 
