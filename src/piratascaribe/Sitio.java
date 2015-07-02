@@ -52,7 +52,7 @@ public class Sitio implements Serializable {
     public void encallaBarco (Barco barco){
         if (barcos!=null && barco!= null){
             this.barcos.add(barco);
-            //barco.cargarCofre(this.cofre);
+            barco.cargarCofre(this.cofre);
         }
         else
             System.out.println("Error en Sitio: encallaBarco 'barcos' o 'barco' null");

@@ -23,11 +23,26 @@ public class Cofre implements Serializable{
         this.mapas = new ArrayList<Mapa>();
     }
     
-    public void agregarTesoro (Tesoro tesoro){
-        if ((this.getPeso() + tesoro.getPeso()) <= capacidad) 
+    public int agregarTesoro (Tesoro tesoro){
+        if ((this.getPeso() + tesoro.getPeso()) <= capacidad) {
             tesoros.add(tesoro);
-        else
-            System.out.println("Agregar Tesoro: no se pudo agregar objeto supera el limite de la capacidad");
+            return 0;
+        }
+        else{
+            return 1;
+           // System.out.println("Agregar Tesoro: no se pudo agregar objeto supera el limite de la capacidad");
+        }
+    }
+    
+      public int agregarMapa(Mapa mapa){
+        if ((mapas!=null && (this.getPeso() + 5 <= capacidad) )) {
+            mapas.add(mapa);
+            return 0;
+        }
+        else{
+            return 1;
+           // System.out.println("Agregar Tesoro: no se pudo agregar objeto supera el limite de la capacidad");
+        }
     }
     
     public void eliminarTesoro(int i){
@@ -78,6 +93,30 @@ public class Cofre implements Serializable{
         }
         return valor;
     }
+     
+     public int poseeCorazon(){
+         for (int i = 0 ; i < tesoros.size() ; i ++){
+             if (tesoros.get(i).getNombre().equalsIgnoreCase("Corazon de la Princesa")){
+                 return i;
+             }
+         }
+         return -1;
+     }
     
-    
+    public int getTesoroMenorPeso(){
+        int menor = 0;
+        for (int i = 0 ; i < tesoros.size() ; i++){
+            if (tesoros.get(menor).getPeso() >= tesoros.get(i).getPeso())
+                menor = i;
+        }
+        return menor;
+    }
+     
+    public int eliminarMapa(int i){
+        if (mapas!=null && i <= mapas.size()){
+            mapas.remove(i);
+            return 0;
+        }
+        return 1;   
+    }
 }

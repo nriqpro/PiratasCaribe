@@ -31,7 +31,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     public Boolean enRetirada;
     private String maquinaAnterior;
     private String maquinaActual;
-    private ArrayList<Mapa> mapas;
+  //  private ArrayList<Mapa> mapas;
     private static String visitado = "visitado";
     private static String no_visitado = "no_visitado";
     private static String actual = "actual";
@@ -56,7 +56,7 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         this.nTripulacion = nTripulacionOriginal;
         this.nRaciones = nRacionesOriginal;
         this.enRetirada=false;
-        this.mapas = new ArrayList<Mapa>();
+//        this.mapas = new ArrayList<Mapa>();
         if (pirata){
             //crear cofree con capacidad 100
             this.cofre = new Cofre(100);
@@ -85,29 +85,57 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     }
     
 
-    public void imprimirTRA(){
+    public void imprimirContenido(){
+        System.out.println ("--------------CONTENIDO BARCO--------------");
         System.out.println ("Numero Tripulacion: "+ this.nTripulacion);
         System.out.println ("Numero Raciones: "+ this.nRaciones);
         System.out.println ("Numero Ammo: "+ this.nAmmo);
+        System.out.println ("--------------***************--------------");
     }
     @Override
     public void imprimirCofre() throws RemoteException{
         
        
         //codigo del metodo
-        if (cofre!=null && cofre.getTesoros()!=null){
-            if (cofre.getTesoros().size() == 0){
-                System.out.println("El cofre no posee ningun tesoro :(");
+        if (cofre!=null){
+            if ( cofre.getTesoros()!=null){
+                if (cofre.getTesoros().size() == 0){
+                    System.out.println("El cofre no posee ningun tesoro :(");
+                }
+                else{
+                    System.out.println("----------TESOROS----------");
+                    System.out.println("Nombre \t\t Peso");
+                    for (int i = 0 ; i < cofre.getTesoros().size() ; i++)
+                        System.out.println(cofre.getTesoros().get(i).getNombre()+" -> "+cofre.getTesoros().get(i).getPeso());
+
+                }
             }
-            else{
-                System.out.println("Nombre \t\t Peso");
-                for (int i = 0 ; i < cofre.getTesoros().size() ; i++){
-                    System.out.println(cofre.getTesoros().get(i).getNombre()+" -> "+cofre.getTesoros().get(i).getPeso());
+            if (cofre.getMapas()!=null){
+                if (cofre.getMapas().size() == 0){
+                    System.out.println("El cofre no posee ningun mapa :(");
+                }
+                 else{
+                    System.out.println("-----------MAPAS-----------");
+                    System.out.println("Destino \t\t Estado");
+                    for (int i = 0 ; i < cofre.getMapas().size() ; i++){
+                        Mapa mapa = cofre.getMapas().get(i);
+                        String dest;
+                        if (mapa.esIsla()){
+                            dest = mapa.getNombreIsla();
+                            dest = dest +"/"+ mapa.getNombreSitio();
+                        }else{
+                            dest = mapa.getNombreCayo();
+                        }
+                             
+                        System.out.println("Destino :" + dest + "->" + mapa.getEstado() );
+                    }
+                       
+
                 }
             }
         }
         else{
-            System.out.println("Error en Barco: imprimirCofre el cofre o arrayTesoros es null");
+            System.out.println("Error en Barco: imprimirCofre el cofre  es null");
         }
         
     }
@@ -175,12 +203,12 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     }
     
     public ArrayList<Mapa> getMapas(){
-        return this.mapas;
+        return cofre.getMapas();
     }
     
     public int agregarMapa(Mapa mapa){
-        if (this.mapas!=null){
-            this.mapas.add(mapa);
+        if (cofre!=null && cofre.getMapas()!=null){
+            cofre.agregarMapa(mapa);
             return 1;
         }
         else{
@@ -192,8 +220,8 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     @Override
     public int getSiguienteDestino() throws RemoteException{
        // return "No Implementado";
-        for (int i = 0 ; i < mapas.size() ; i++){
-            if (mapas.get(i).getEstado().equalsIgnoreCase(no_visitado))
+        for (int i = 0 ; i < cofre.getMapas().size() ; i++){
+            if (cofre.getMapas().get(i).getEstado().equalsIgnoreCase(no_visitado))
                     return i;
         }
         return -1;
@@ -203,20 +231,13 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
     public int marcarMapa(int i) throws RemoteException{
        // return "No Implementado";
         
-        if (i < mapas.size() ){
-            mapas.get(i).setEstado(visitado);
+        if (i < cofre.getMapas().size() ){
+            cofre.getMapas().get(i).setEstado(visitado);
             return 1;
         }
         else {
             return -1;
         }
-        /*for (int i = 0 ; i < mapas.size() ; i++){
-            if (mapas.get(i).getEstado().equalsIgnoreCase(actual)){
-                    mapas.get(i).setEstado(visitado);
-                    return 1;
-            }
- 
-        }*/
 
     }
 
@@ -251,15 +272,15 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
         try {
             String maquinaAct = this.maquinaActual;
             GestorRMI g = new  GestorRMI();
-            String maquinaSiguiente = mapas.get(this.getSiguienteDestino()).getNombreMaquina();
-            System.out.println("Maquina Siguiente : " + maquinaSiguiente + "Mapas sitio "+ mapas.get(getSiguienteDestino()).getNombreSitio()+ "Cayo " + mapas.get(getSiguienteDestino()).getNombreCayo());
+            String maquinaSiguiente = cofre.getMapas().get(this.getSiguienteDestino()).getNombreMaquina();
+            System.out.println("Maquina Siguiente : " + maquinaSiguiente + "Mapas sitio "+ cofre.getMapas().get(getSiguienteDestino()).getNombreSitio()+ "Cayo " + cofre.getMapas().get(getSiguienteDestino()).getNombreCayo());
             Thread.sleep((long) (3 * 1000.0));
             Registry registroRemoto = LocateRegistry.getRegistry(g.getIp(maquinaSiguiente),g.getPuerto(maquinaSiguiente));
             InterfazMaquina m = (InterfazMaquina) registroRemoto.lookup(maquinaSiguiente);
             System.out.println("nombre maquina "+m.getNombre());
-            this.nTripulacion = nTripulacion - 10;
+         /*   this.nTripulacion = nTripulacion - 10;
             this.nRaciones = nRaciones - 10;
-            this.nAmmo = nAmmo - 10;
+            this.nAmmo = nAmmo - 10;*/
             m.recibirBarco(this.getName(),maquinaActual);
             
             
@@ -314,10 +335,42 @@ public class Barco extends UnicastRemoteObject implements InterfazBarco{
 
         this.maquinaAnterior = barco.getMaquinaAnterior();
         this.maquinaActual = barco.getMaquinaActual();
-        this.mapas = barco.getMapas();
+//        this.mapas = barco.getMapas();
         this.cofre = barco.getCofre();
         this.puertoOrigen = barco.getPuertoOrigen();
     }
+    
+    public void cargarCofre (Cofre cofreLugar){
+        System.out.println("Me toca agarrar mis tesoros jijiji");
+        int corazon = cofreLugar.poseeCorazon();
+        if (corazon >= 0){///posee el corazon
+            while (cofre.agregarTesoro(cofreLugar.getTesoros().get(corazon))==1){
+               if (cofre.getMapas().size() > 0)
+                   cofre.eliminarMapa(cofre.getMapas().size()-1);
+            }
+        }
+        else{//no posee el corazon
+            for (int i = 0 ; i < cofreLugar.getMapas().size() ; i++){
+              if (cofre.agregarMapa(cofreLugar.getMapas().get(i)) == 1)
+                  break;
+              
+            }
+            for (int i = 0 ; i < cofre.getTesoros().size() ; i++){
+                cofreLugar.getTesoros().add(cofre.getTesoros().get(i));
+            }
+            //aqui coloo todos los elementos de mi cofre en el cofre del sitio, posteriormente vacio mi cofre
+            //para luego tomar los objetos mas livianos
+            cofreLugar.getTesoros().addAll(cofre.getTesoros());
+            cofre.getTesoros().clear();
+            
+            while (!cofreLugar.getTesoros().isEmpty() && 
+                    cofre.agregarTesoro(cofreLugar.getTesoros().get(cofreLugar.getTesoroMenorPeso()))!=1){
+                cofreLugar.getTesoros().remove(cofreLugar.getTesoroMenorPeso());
+            }
+        }
+    }
+    
+    
     
    
 }

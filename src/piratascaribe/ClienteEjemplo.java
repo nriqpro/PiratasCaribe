@@ -191,8 +191,8 @@ public class ClienteEjemplo {
                 br2.setMaquinaActual(m.getNombre());
                 br2.setMaquinaAnterior(m.getNombre());
                 
-                br2.partir();
-                br1.partir();
+              //  br2.partir();
+               // br1.partir();
                 //Thread.sleep((long) (4 * 1000.0));
                // registro.unbind(br1.getName());
             }
