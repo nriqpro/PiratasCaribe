@@ -134,27 +134,49 @@ public class ClienteEjemplo {
                 /*bp.getCofre().agregarTesoro(new Tesoro ("Corazon de la princesa",5));
                 bp.getCofre().agregarTesoro(new Tesoro ("Dolares 6,3",10));*/
                 Mapa mapaOrigen = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
+                
+                //InputStreamReader leer = new InputStreamReader(System.in);
+                //BufferedReader buff = new BufferedReader(leer);
+                Mapa mapa = null;
+                System.out.print("Escriba la primera maquina: ");
+                String machine = buff.readLine();
+                System.out.println("Te diriges a:  (1)sitio  (2)Cayo");
+                String esCayo = buff.readLine();
+                if (esCayo.equalsIgnoreCase("2")){
+                    System.out.print("Escriba el nombre del cayo: ");
+                    String cayo = buff.readLine();
+                    mapa = new Mapa(cayo,machine);
+                    
+                }else{
+                    System.out.print("Escriba el nombre de la isla: ");
+                    String isla = buff.readLine();
+                    System.out.print("Escriba el nombre del sitio: ");
+                    String sitio = buff.readLine();
+                    mapa = new Mapa(sitio,isla,machine);
+                }
+                
               //  Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
                // Mapa mapa1 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
                 //Mapa mapa2 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
                // Mapa mapa21 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
-                Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
+                //Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
                /* Mapa mapa4 = new Mapa("Cayo de Sotavento","1");
                 Mapa mapa5 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");*/
                // Mapa mapa5 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
               
                 //System.out.println("cayo: "+mapa2.getNombreCayo() + "mapa boolean: "+ mapa2.esIsla());
                 bp.setMapaOrigen(mapaOrigen);
-                System.out.println("Mapa origen :" + bp.getMapaOrigen().getNombreMaquina());
+                //System.out.println("Mapa origen :" + bp.getMapaOrigen().getNombreMaquina());
                 
                 /*bp.agregarMapa(mapa1);
                 bp.agregarMapa(mapa21);*/
-                bp.agregarMapa(mapa3);
+                //bp.agregarMapa(mapa3);
              /*   bp.agregarMapa(mapa4);
                  bp.agregarMapa(mapa5);*/
                 registro.rebind(/*urlServer+*/bp.getName(), bp);
                 bp.setMaquinaActual(m.getNombre());
                 bp.setMaquinaAnterior(m.getNombre());
+                bp.agregarMapa(mapa);
                 bp.partir();
               //  registro.unbind(bp.getName());
                 
@@ -166,16 +188,16 @@ public class ClienteEjemplo {
                 xml.leerBarcos(3);
                 Barco br2 = xml.barcotemp;
                 Mapa mapaOrigen = new Mapa("Puerto de la Reina","Isla La Holandesa","2");
-                Mapa mapa1 = new Mapa("Bahia del Buen Reposo","Isla La Holandesa","2");
+              //  Mapa mapa1 = new Mapa("Bahia del Buen Reposo","Isla La Holandesa","2");
                 
-                Mapa mapa2 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
+               // Mapa mapa2 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
              //   Mapa mapa21 = new Mapa("Bahia del Buen Reposo","Isla La Holandesa","2");
               //   Mapa mapa22 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
               //  Mapa mapa23 = new Mapa("Bahia del Buen Reposo","Isla La Holandesa","2");
                //  Mapa mapa24 = new Mapa("Bahia de la Esperanza","Isla del Naufrago","2");
                 //Mapa mapa25 = new Mapa("Bahia del Buen Reposo","Isla La Holandesa","2");
-                Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
-                Mapa mapa4 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");
+               // Mapa mapa3 = new Mapa("Cayo de Barlovento","3");
+                //Mapa mapa4 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");
                // Mapa mapa5 = new Mapa("Puerto Real","Isla Nueva Esperanzas","1");
               
              //   System.out.println("cayo: "+mapa2.getNombreCayo() + "mapa boolean: "+ mapa2.esIsla());
@@ -183,13 +205,49 @@ public class ClienteEjemplo {
                 br2.setMapaOrigen(mapaOrigen);
                
                //System.out.println("Mapa origen :" + br1.getMapaOrigen().getNombreMaquina());
+                Mapa mapa1 = null;
+                System.out.print("Escriba la primera maquina: de: " + br1.getName());
+                String machine1 = buff.readLine();
+                System.out.println("Te diriges a:  (1)sitio  (2)Cayo");
+                String esCayo = buff.readLine();
+                if (esCayo.equalsIgnoreCase("2")){
+                    System.out.print("Escriba el nombre del cayo: ");
+                    String cayo1 = buff.readLine();
+                    mapa1 = new Mapa(cayo1,machine1);
+                    
+                }else{
+                    System.out.print("Escriba el nombre de la isla: ");
+                    String isla1 = buff.readLine();
+                    System.out.print("Escriba el nombre del sitio: ");
+                    String sitio1 = buff.readLine();
+                    mapa1 = new Mapa(sitio1,isla1,machine1);
+                }
+                
+                
+                Mapa mapa2 = null;
+                System.out.print("Escriba la primera maquina: de: " + br2.getName());
+                String machine2 = buff.readLine();
+                System.out.println("Te diriges a:  (1)sitio  (2)Cayo");
+                String esCayo2 = buff.readLine();
+                if (esCayo2.equalsIgnoreCase("2")){
+                    System.out.print("Escriba el nombre del cayo: ");
+                    String cayo2 = buff.readLine();
+                    mapa2 = new Mapa(cayo2,machine2);
+                    
+                }else{
+                    System.out.print("Escriba el nombre de la isla: ");
+                    String isla2 = buff.readLine();
+                    System.out.print("Escriba el nombre del sitio: ");
+                    String sitio2 = buff.readLine();
+                    mapa2 = new Mapa(sitio2,isla2,machine2);
+                }
                     
                 
               br1.agregarMapa(mapa1);
-              br1.agregarMapa(mapa2);
+             // br1.agregarMapa(mapa2);
               
-              br2.agregarMapa(mapa3);
-              br2.agregarMapa(mapa4);
+              br2.agregarMapa(mapa2);
+            //  br2.agregarMapa(mapa4);
                 
                 registro.rebind(br1.getName(), br1);
                 br1.setMaquinaActual(m.getNombre());
