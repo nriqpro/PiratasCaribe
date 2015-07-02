@@ -172,8 +172,8 @@ public class MaquinaGui extends javax.swing.JFrame {
 
                 CayodeBarlovento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Barlovento.png"))); // NOI18N
                 getContentPane().add(CayodeBarlovento);
-                CayodeBarlovento.setBounds(490, 60, 260, 180);
-                coordenadas.put("Cayo de Barlovento", new Coordenada(490,60));
+                CayodeBarlovento.setBounds(70, 410, 260, 180);
+                coordenadas.put("Cayo de Barlovento", new Coordenada(70,410));
 
                 CuevadelosHuesos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/m3-cuevahuesos.png"))); // NOI18N
                 getContentPane().add(CuevadelosHuesos);

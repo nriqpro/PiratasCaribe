@@ -319,7 +319,9 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                         if (cayos.get(i).getNombre().equalsIgnoreCase(mapa.getNombreCayo())) {
 
                             System.out.println("Lo he ubicado en el cayo: " + cayos.get(i).getNombre());
-                            
+                            System.out.println("Que tiene como coordenadas:  X:"+
+                                    maquinaInterfaz.getCoordenadas().get(cayos.get(i).getNombre()).getX() + "  Y:"+
+                                    maquinaInterfaz.getCoordenadas().get(cayos.get(i).getNombre()).getY());
                             pintarBarco(barco.getName() , maquinaInterfaz.getCoordenadas().get(cayos.get(i).getNombre()).getX() , maquinaInterfaz.getCoordenadas().get(cayos.get(i).getNombre()).getY());
                             if (cayos.get(i).getBarcos() != null && cayos.get(i).getBarcos().size() >= 1) {
                                 if (cayos.get(i).getBarcos().size() >= 2) {
@@ -462,7 +464,7 @@ public class Maquina extends UnicastRemoteObject implements InterfazMaquina {
                     BarcoImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/interceptor.png")));
                 }
 
-                BarcoImg.setBounds(x+10
+                BarcoImg.setBounds(x
                         , y, 130, 120);
                 maquinaInterfaz.getContentPane().add(BarcoImg, 0);
                 maquinaInterfaz.revalidate();
