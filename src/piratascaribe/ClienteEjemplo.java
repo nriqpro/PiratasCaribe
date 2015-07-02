@@ -176,7 +176,7 @@ public class ClienteEjemplo {
               
                 registro.rebind(bp.getName(), bp);
                 Mapa mapa = new Mapa("Cayo de Barlovento","3");
-                 Mapa mapa11 = new Mapa("Cayo de Barlovento","3");
+                 Mapa mapa11 = new Mapa("Puerto Rico","La Gran Isla de la Española","4");
                 bp.setMaquinaActual(m.getNombre());
                 bp.setMaquinaAnterior(m.getNombre());
                 bp.agregarMapa(mapa);
@@ -252,9 +252,9 @@ public class ClienteEjemplo {
              // br1.agregarMapa(mapa2);
             //  Maquina2/Isla del Naufrago/Cueva del Bucanero
                Mapa mapa2 = new Mapa("Cueva del Bucanero","Isla del Naufrago","2");
-                Mapa mapa22 = new Mapa("Cayo de Barlovento","3");
+              //  Mapa mapa22 = new Mapa("Cayo de Barlovento","3");
               br2.agregarMapa(mapa2);
-              br2.agregarMapa(mapa2);
+             // br2.agregarMapa(mapa22);
             //  br2.agregarMapa(mapa4);
                 
                 registro.rebind(br1.getName(), br1);
