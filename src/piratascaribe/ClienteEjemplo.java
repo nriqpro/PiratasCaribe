@@ -125,7 +125,7 @@ public class ClienteEjemplo {
             System.out.println("Ahora esperare a que me llegue una consulta");
             String audioPath = "musica"+numMaquina+".wav";
             Sonido musica = new Sonido(audioPath);
-            musica.run();
+            musica.play();
             if (numMaquina==1){
                 xml.leerBarcos(1);
                 Barco bp = xml.barcotemp;
