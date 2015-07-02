@@ -30,7 +30,7 @@
 			<cofre>
 					<tesoro>Bolsa de Monedas de Oro</tesoro>
 					<mapa>
-						<destino>Bahia del Retiro</destino>
+						<destino>Bahia del Buen Retiro</destino>
 						<isla>Isla Tortuga</isla>
 						<machine>3</machine>
 					</mapa>
@@ -113,7 +113,7 @@
 					<tesoro>Corazon de la Princesa</tesoro>
 					<mapa>
 						<destino>Cementerio de Barcos</destino>
-						<isla>Isla las Avesa</isla>
+						<isla>Isla las Aves</isla>
 						<machine>3</machine>
 					</mapa>
 					<mapa>
